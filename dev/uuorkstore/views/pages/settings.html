@@ -1,0 +1,192 @@
+<!-- job seeker -->
+
+<div class="padding-out" ng-if="currentUser.jobSeekerId">
+  <div class="p-h-md p-v bg-white box-shadow pos-rlt">
+    <h3 class="no-margin">Settings</h3>
+  </div>
+  <div class="box ">
+    <div class="col-md-3 caja">
+      <div style="background:url({{$parent.currentUser.picture_url}}) center center; background-size:cover">
+        <div class="p-lg bg-white-overlay text-center">
+          <a href class="w-xs inline">
+            <img src="{{currentUser.picture_url}}" class="img-circle img-responsive">
+          </a>
+          <div class="m-b m-t-sm h2">
+            <span class="text-black">{{currentUser.firstName}}</span>
+          </div>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+      <ul class="nav nav-lists b-t" ui-nav>
+        <li class="active">
+          <a ng-click="show('profile')">Profile </a>
+        </li>
+        <li>
+          <a ng-click="show('pro-info')">Profesional information</a>
+        </li>
+        <li>
+          <a ng-click="show('skills')">Skills</a>
+        </li>
+        <li>
+          <a ng-click="show('location')">Location</a>
+        </li>
+        <li>
+          <a ng-click="show('notifications')">Notifications</a>
+        </li>
+        <li>
+          <a ng-click="show('security')">Security</a>
+        </li>
+        <li>
+          <a ng-click="show('acc-settings')">Account Settings</a>
+        </li>
+
+      </ul>
+    </div>
+    
+    <settings-profile user="currentUser" ng-if="menu === 'profile'"> </settings-profile>
+
+    <settings-pro-info user="currentUser" ng-if="menu === 'pro-info'"> </settings-pro-info>
+
+    <settings-skills user="currentUser" ng-if="menu === 'skills'" > </settings-skills>
+
+    <settings-location user="currentUser" ng-if="menu === 'location'"> </settings-location>
+
+    <settings-notifications user="currentUser" ng-if=" menu === 'notifications'"> </settings-notifications>
+
+    <settings-security user="currentUser" ng-if="menu === 'security'"> </settings-security>
+
+    <settings-account-settings user="currentUser" ng-if="menu === 'acc-settings'"> </settings-account-settings>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- human resources manager --> 
+<div class="padding-out" ng-if="currentUser.access_level === 2">
+  <div class="p-h-md p-v bg-white box-shadow pos-rlt">
+    <h3 class="no-margin">Settings </h3>
+  </div>
+  <div class="box">
+    <div class="col-md-3 caja">
+      <div style="background:url({{currentUser.picture_url}}) center center; background-size:cover">
+        <div class="p-lg bg-white-overlay text-center">
+          <a href class="w-xs inline">
+            <img src="{{currentUser.picture_url}}" class="img-circle img-responsive">
+          </a>
+          <div class="m-b m-t-sm h2">
+            <span class="text-black">{{currentUser.firstName}}</span>
+          </div>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+      <ul class="nav nav-lists b-t" ui-nav>
+        <li class="active">
+          <a ng-click="show('profile')">Profile </a>
+        </li>
+        <li>
+          <a ng-click="show('company-info')">Company information</a>
+        </li>
+        <li>
+          <a ng-click="show('location')">Location</a>
+        </li>
+        <li>
+          <a ng-click="show('notifications')">Notifications</a>
+        </li>
+        <li>
+          <a ng-click="show('security')">Security</a>
+        </li>
+        <li>
+          <a ng-click="show('acc-settings')">Account Settings</a>
+        </li>
+      </ul>
+    </div>
+    
+    <settings-profile user="currentUser" ng-if="menu === 'profile'"> </settings-profile>
+
+    <settings-company-info user="currentUser" ng-if="menu === 'company-info'"> </settings-company-info>
+
+    <settings-location user="currentUser" ng-if="menu === 'location'" > </settings-location>
+
+    <settings-notifications user="currentUser" ng-if=" menu === 'notifications'"> </settings-notifications>
+
+    <settings-security user="currentUser" ng-if="menu === 'security'"> </settings-security>
+
+    <settings-account-settings user="currentUser" ng-if="menu === 'acc-settings'"> </settings-account-settings>
+
+  </div>
+</div>
+
+
+
+
+
+
+<!--  company -->
+
+<div class="padding-out" ng-if="currentUser.companyId">
+  <div class="p-h-md p-v bg-white box-shadow pos-rlt">
+    <h3 class="no-margin">Settings</h3>
+  </div>
+  <div class="box">
+    <div class="col-md-3 caja">
+      <div style="background:url({{$parent.currentUser.picture_url}}) center center; background-size:cover">
+        <div class="p-lg bg-white-overlay text-center">
+          <a href class="w-xs inline">
+            <img src="{{currentUser.picture_url}}" class="img-circle img-responsive">
+          </a>
+          <div class="m-b m-t-sm h2">
+            <span class="text-black">{{currentUser.firstName}}</span>
+          </div>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+      <ul class="nav nav-lists b-t" ui-nav>
+        <li class="active">
+          <a ng-click="show('profile')">Profile </a>
+        </li>
+        <li>
+          <a ng-click="show('company-info')">Company information</a>
+        </li>
+        <li>
+          <a ng-click="show('location')">Location</a>
+        </li>
+        <li>
+          <a ng-click="show('notifications')">Notifications</a>
+        </li>
+        <li>
+          <a ng-click="show('security')">Security</a>
+        </li>
+        <li>
+          <a ng-click="show('acc-settings')">Account Settings</a>
+        </li>
+
+      </ul>
+    </div>
+    
+    <settings-profile user="currentUser" ng-if="menu === 'profile'"> </settings-profile>
+
+    <settings-company-info user="currentUser" ng-if="menu === 'company-info'"> </settings-company-info>
+
+    <settings-location user="currentUser" ng-if="menu === 'location'" > </settings-location>
+
+    <settings-notifications user="currentUser" ng-if=" menu === 'notifications'"> </settings-notifications>
+
+    <settings-security user="currentUser" ng-if="menu === 'security'"> </settings-security>
+
+    <settings-account-settings user="currentUser" ng-if="menu === 'acc-settings'"> </settings-account-settings>
+
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.jobSeekerId">
+	<div class="p-md bg-light lt b-b font-bold">Location</div>
+	<br>
+	<div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>State</label>
+            <md-select ng-model="location">
+              <md-option ng-repeat="loc in locations| orderBy: 'name'" value="{{loc.locationId}}">
+                {{loc.name}}
+              </md-option>
+            </md-select>
+        </md-input-container>
+	</div>
+	<div ng-if="!showSaveOptions()">
+    	<md-button class="md-raised" ng-click="setSaving(true)">Edit</md-button>
+	</div>
+	<div ng-if="showSaveOptions()">
+	    <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+	    <md-button class="md-raised md-warn" ng-click="reset()">Cancel</md-button>
+	</div>
+
+</div>
+
+
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.humanResourcesManagerId">
+	<div class="p-md bg-light lt b-b font-bold">Location</div>
+
+</div>
+
+
+
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.companyId">
+	<div class="p-md bg-light lt b-b font-bold">Location</div>
+
+</div>

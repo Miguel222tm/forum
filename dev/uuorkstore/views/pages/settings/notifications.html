@@ -1,0 +1,26 @@
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.jobSeekerId">
+	<div class="p-md bg-light lt b-b font-bold">Notifications</div>
+
+	<div>
+		<md-subheader class="md-no-sticky">Enable or disable any of the notification options, or click on one to see more details.</md-subheader>
+		<md-list-item ng-click="navigateTo(setting.extraScreen, $event)" ng-repeat="setting in settings">
+			<i class="{{setting.icon}} icon-notification"></i>
+		    <p> {{ setting.name }} </p>
+		    <md-switch class="md-secondary" ng-model="setting.enabled"></md-switch>
+		</md-list-item>
+		
+	</div>
+</div>
+
+
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.humanResourcesManagerId">
+	<div class="p-md bg-light lt b-b font-bold">Notifications</div>
+
+</div>
+
+
+
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.companyId">
+	<div class="p-md bg-light lt b-b font-bold">Notifications</div>
+
+</div>

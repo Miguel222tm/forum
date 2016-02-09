@@ -1,0 +1,36 @@
+Remember that you can report errors and get help in https://github.com/NicoSantangelo/sublime-gulp
+
+11-29-2015 16:59:
+C:\uuorkstore.com\uuorkstore.com\.sublime-gulp-tmp.js:33
+        'dev/uuorkstore/js/modules.js',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Unexpected string
+    at exports.runInThisContext (vm.js:53:16)
+    at Module._compile (module.js:404:25)
+    at Object.Module._extensions..js (module.js:432:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)
+    at Module.require (module.js:366:17)
+    at require (module.js:385:17)
+    at requireGulp (C:\Users\Miguel\Downloads\Miguel222tm-sbt3-0240c6f\Miguel222tm-sbt3-0240c6f\win64\Sublime Text Build 3059 x64\Data\Packages\Gulp\write_tasks_to_cache.js:28:16)
+    at Object.<anonymous> (C:\Users\Miguel\Downloads\Miguel222tm-sbt3-0240c6f\Miguel222tm-sbt3-0240c6f\win64\Sublime Text Build 3059 x64\Data\Packages\Gulp\write_tasks_to_cache.js:80:12)
+    at Module._compile (module.js:425:26)
+
+
+11-29-2015 17:00:
+C:\uuorkstore.com\uuorkstore.com\.sublime-gulp-tmp.js:33
+        'dev/uuorkstore/js/modules.js',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Unexpected string
+    at exports.runInThisContext (vm.js:53:16)
+    at Module._compile (module.js:404:25)
+    at Object.Module._extensions..js (module.js:432:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:311:12)
+    at Module.require (module.js:366:17)
+    at require (module.js:385:17)
+    at requireGulp (C:\Users\Miguel\Downloads\Miguel222tm-sbt3-0240c6f\Miguel222tm-sbt3-0240c6f\win64\Sublime Text Build 3059 x64\Data\Packages\Gulp\write_tasks_to_cache.js:28:16)
+    at Object.<anonymous> (C:\Users\Miguel\Downloads\Miguel222tm-sbt3-0240c6f\Miguel222tm-sbt3-0240c6f\win64\Sublime Text Build 3059 x64\Data\Packages\Gulp\write_tasks_to_cache.js:80:12)
+    at Module._compile (module.js:425:26)

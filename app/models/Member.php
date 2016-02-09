@@ -1,0 +1,23 @@
+<?php
+
+namespace App\models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Member extends Model
+{
+    protected $table="members";
+
+    protected $primaryKey = 'memberId';
+
+    protected $fillable = ['userId','name', 'surname', 'email', 'picture_url', 'unique_code', 'access_level', 'rating'];
+
+    protected $hidden = ['created_at', 'updated_at', 'userId'];
+
+    public function user(){
+    	$foreignKey='userId';
+    	return $this->belongsTo('App\User', $foreignKey);
+    }
+
+    
+}

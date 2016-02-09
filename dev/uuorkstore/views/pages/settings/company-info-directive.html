@@ -1,0 +1,96 @@
+<div class="p-md bg-light lt b-b font-bold" ng-if="bSave">
+	Company Information
+	<div class="ci-options">
+    	<button md-ink-ripple class="md-btn md-raised m-b btn-fw green-500" ng-click="save()" ng-disabled="disableSaveButton()" >Save</button>
+    	<button md-ink-ripple class="md-btn md-raised m-b btn-fw red-500" ng-click="cancel()">Cancel</button>
+    </div>
+</div>
+<div class="p-md bg-light lt b-b font-bold" ng-if="bEdit">
+	Company Information
+	<div class="ci-options">
+		<button md-ink-ripple class="md-btn md-raised m-b btn-fw blue-500" ng-click="edit()">Edit</button>
+	</div>
+</div>
+<!-- education : field, school name -->
+<div class="card-body bg-dark">
+    <div class="row row-sm">
+      	<div class="col-sm-6">
+	        <div class="md-form-group">
+	        	<input class="md-input md-input-white" ng-model="user.companyName" ng-disabled="bEdit" ng-value="user.companyName">
+	        	<label>Company name</label>
+	        </div>
+      	</div>
+	    <div class="col-sm-6">
+	        <div class="md-form-group">
+	        	<input class="md-input md-input-white" ng-model="user.universal_name" ng-disabled="bEdit" ng-value="user.universal_name">
+	        	<label>Universal name</label>
+	        </div>
+	    </div>
+    </div>
+
+</div> <!--  end of field , school name -->
+<div class="card-body">
+	<div class="row row-sm">
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.company_code" ng-disabled="bEdit" ng-value="user.company_code">
+				<label>Company code</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.company_type" ng-disabled="bEdit" ng-value="user.company_type">
+				<label>Company type</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.website_url" ng-disabled="bEdit" ng-value="user.website_url">
+				<label><i class="fa fa-globe"></i> Website url</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.email_domains" ng-disabled="bEdit" ng-value="user.email_domains">
+				<label><i class="fa fa-at"></i> Email domains</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.facebook_id" ng-disabled="bEdit" ng-value="user.facebook_id">
+				<label><i class="fa fa-facebook"></i> Facebook page</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.twitter_id" ng-disabled="bEdit" ng-value="user.twitter_id">
+				<label><i class="fa fa-twitter"></i> Twitter page</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.instagram_id" ng-disabled="bEdit" ng-value="user.instagram_id">
+				<label><i class="fa fa-instagram"></i> Instagram page</label>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="md-form-group">
+				<input class="md-input" ng-model="user.blog_url" ng-disabled="bEdit" ng-value="user.blog_url">
+				<label><i class="fa fa-rss"></i> Blog page</label>
+			</div>
+		</div>
+
+	    <div class="col-sm-12">
+	        <div class="md-form-group">
+	          	<textarea class="md-input" ng-model="user.specialities" rows="4" ng-disabled="bEdit" ng-value="user.specialities" ></textarea>
+	          	<label>Specialities</label>
+	        </div>
+	    </div>
+	    <div class="col-sm-12">
+	        <div class="md-form-group">
+	          	<textarea class="md-input" ng-model="user.description" rows="4" ng-disabled="bEdit" ng-value="user.description"></textarea>
+	          	<label>Description</label>
+	        </div>
+	    </div>
+	</div>    	
+</div>

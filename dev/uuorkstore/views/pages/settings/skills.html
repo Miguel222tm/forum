@@ -1,0 +1,66 @@
+<div class="col-md-12 b-l bg-white bg-auto" ng-if="user.jobSeekerId">
+	<div class="p-md bg-light lt b-b font-bold">Skills & Endorsements 
+		<div ng-if="!showSaveOptions()" class="add-a-skill-button">
+        	<md-button class="md-raised " ng-click="setSaving(true)">Add a skill</md-button>
+    	</div>
+    </div>
+
+    <br>
+	<div class="panel panel-card" ng-if="!showSaveOptions()">
+		<hr>
+	    <table class="table">
+	      <thead>
+	        <tr>
+	          <th>#</th>
+	          <th>Skill</th>
+	          <th>validated by</th>    
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <tr ng-repeat="skill in skills" ng-if="skill.jobSeekerSkillId">
+	          <td>{{$index+1}}</td>
+	          <td>{{skill.tag_name}}</td>  
+	          <td>{{skill.validated_by}}</td>      
+	        </tr>
+	      </tbody>
+	    </table> 	   
+  	</div>
+
+  	<div class="panel panel-card" ng-if="showSaveOptions()">
+  		<br>
+	    <md-chips
+	    ng-model="skills"
+	    md-autocomplete-snap=""
+	    md-transform-chip="transformChip($chip)"
+	    md-require-match="autocompleteDemoRequireMatch" >
+
+	      <md-autocomplete
+	      	md-selected-item="selectedItem"
+	      	md-search-text="searchText"
+	      	md-items="item in querySearch(searchText)"
+	      	md-item-text="item.tag_name"
+	      	placeholder="Search for a skill">
+	        <span md-highlight-text="searchText">{{item.tag_name}} :: {{item.skillId}}</span>
+	      </md-autocomplete>
+	      
+	      <md-chip-template>
+	        <span>
+	          <strong>{{$chip.tag_name}}</strong>
+	          <em>({{$chip.skillId}})</em>
+	        </span>
+	      </md-chip-template>
+	    </md-chips>
+
+	    <!-- <md-checkbox ng-model="autocompleteDemoRequireMatch">
+	      Tell the autocomplete to require a match (when enabled you cannot create new chips)
+	    </md-checkbox> -->
+	    <div ng-if="showSaveOptions()">
+	        <md-button class="md-raised md-primary" ng-click="save()">Save</md-button>
+	        <md-button class="md-raised md-warn" ng-click="reset()">Cancel</md-button>
+	    </div>
+    </div>
+
+
+
+</div>
+

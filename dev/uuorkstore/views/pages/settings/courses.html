@@ -1,0 +1,43 @@
+<div class="card"  ng-if="bCard">
+	<div class="card-heading" ng-if="bSave">
+	    <h2>{{course.name}}</h2>
+	    <div class="options">
+	    	<button md-ink-ripple class="md-btn md-raised m-b btn-fw green-500" ng-click="save()" ng-disabled="!disableSaveButton()" >Save</button>
+	    	<button md-ink-ripple class="md-btn md-raised m-b btn-fw red-500" ng-click="cancel()">Cancel</button>
+	    	&nbsp; &nbsp;
+	    	<i class="fa fa-trash-o"  ng-click="confirmDelete($event)"></i>
+	    </div>
+	</div>
+	<div class="card-heading" ng-if="bEdit">
+	    <h2>{{course.name}}</h2>
+	    <div class="options">
+			<button md-ink-ripple class="md-btn md-raised m-b btn-fw blue-500" ng-click="edit()"  >Edit</button>
+			&nbsp; &nbsp;
+			<i class="fa fa-trash-o"  ng-click="confirmDelete($event)"></i>
+		</div>
+	</div>
+	<div ng-if="bContent">
+		<div class="card-body">
+		<div class="row row-sm">
+			<div class="col-sm-6">
+		        <div class="md-form-group">
+		          	<input class="md-input " ng-model="course.name">
+		          	<label>Name</label>
+		        </div>
+		    </div>
+		    <div class="col-sm-6">
+		        <div class="md-form-group">
+		          	<input class="md-input " ng-model="course.number">
+		          	<label>Number</label>
+		        </div>
+		    </div>
+		    <div class="col-sm-12">
+		        <div class="md-form-group">
+		          	<textarea class="md-input" ng-model="course.summary" rows="4"></textarea>
+		          	<label>Summary</label>
+		        </div>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
