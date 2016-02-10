@@ -46,6 +46,7 @@
 
   <!-- router -->
   <script src="libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/satellizer/satellizer.js"> </script>
   <!-- storage -->
   <script src="libs/angular/ngstorage/ngStorage.js"></script>
   <!-- utils -->
@@ -53,7 +54,9 @@
   <!-- lazyload -->
   <script src="libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
 
-<!-- App -->
+  <script src="scripts/scripts.min.js"> </script>
+<!-- App 
+  
   <script src="scripts/app.js"></script>
   <script src="scripts/config.js"></script>
   <script src="scripts/config.lazyload.js"></script>
@@ -72,6 +75,7 @@
   <script src="scripts/services/ngstore.js"></script>
   <script src="scripts/services/ui-load.js"></script>
   <script src="scripts/services/palette.js"></script>
+  -->
 <!-- endbuild -->
 </body>
 </html>

@@ -19,55 +19,34 @@ var gulp = require('gulp'),
 var resources = {
     js_src : [
         /* module,config, routes*/
-        'dev/uuorkstore/js/module.js',
-        'dev/uuorkstore/js/config.js',
-        'dev/uuorkstore/js/config.lazyload.js',
-        'dev/uuorkstore/js/routes.js',
-        /* controllers, directives, filters, services*/
-        'dev/uuorkstore/js/module.ctrl.js',
-        'dev/uuorkstore/js/modules/**/js/*js',
-        'dev/uuorkstore/js/framework/controllers/*.js',
-        'dev/uuorkstore/js/controllers/*.js',
-        'dev/uuorkstore/js/framework/directives/*.js',
-        'dev/uuorkstore/js/directives/**/*.js',
-        'dev/uuorkstore/js/framework/filters/*.js',
-        'dev/uuorkstore/js/filters/*.js',
-        'dev/uuorkstore/js/framework/services/*.js',
-        'dev/uuorkstore/js/services/*.js',        
-        /*modules*/ 
-        'dev/uuorkstore/js/modules.js',
+        'dev/clubmein/scripts/app.js',
+        'dev/clubmein/scripts/config.js',
+        'dev/clubmein/scripts/config.lazyload.js',
+        'dev/clubmein/scripts/config.router.js',
+
+        'dev/clubmein/scripts/app.ctrl.js',
+        'dev/clubmein/scripts/directives/*.js',
+        'dev/clubmein/scripts/filters/*.js',
+        'dev/clubmein/scripts/services/*.js',
+        'dev/clubmein/scripts/controllers/*.js',
+
+        'dev/clubmein/scripts/modules.js',
     ],
-    js_dest : 'public/js/',
+    js_dest : 'public/scripts/',
     mobile_js_dest: 'wrapper/www/js',
     /* lint */ 
-
-    js_lint_src: [
-        /* module,config, routes*/
-        'dev/uuorkstore/js/module.js',
-        'dev/uuorkstore/js/config.js',
-        'dev/uuorkstore/js/routes.js',
-        /* controllers, directives, filters, services*/
-        'dev/uuorkstore/js/modules/**/js/*js',
-        'dev/uuorkstore/js/controllers/*.js',
-        'dev/uuorkstore/js/directives/**/*.js',
-        'dev/uuorkstore/js/filters/*.js',
-        'dev/uuorkstore/js/services/*.js',
-        /*modules*/ 
-        'dev/uuorkstore/js/modules.js',
-    ],
-
 
     /* views */
     views:{
         src: [
-        'dev/uuorkstore/views/*.html',
-        'dev/uuorkstore/views/**/*.html',
+        'dev/clubmein/views/*.html',
+        'dev/clubmein/views/**/*.html',
         ],
         dest: 'public/views/'
     },
 
     sass_src: [
-        'dev/uuorkstore/sass/*.scss',    
+        'dev/clubmein/sass/*.scss',    
     ],
     css_dest: 'public/css/'
     
@@ -101,30 +80,30 @@ gulp.task('js-lint', function() {
       .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('uuorkstore-js', function() {
+gulp.task('clubmein-js', function() {
     gulp.src(resources.js_src)
     .pipe(concat('scripts.min.js'))
       .pipe(gulp.dest(resources.js_dest));
 });
 
-gulp.task('uuorkstore-js-production', function(){
+gulp.task('clubmein-js-production', function(){
     gulp.src(resources.js_src)
     .pipe(concat('ugly.min.js'))
         .pipe(uglify())
             .pipe(gulp.dest(resources.js_dest));
 });
 
-gulp.task('uuorkstore-html', function(){
+gulp.task('clubmein-html', function(){
     gulp.src(resources.views.src)
         .pipe(gulp.dest(resources.views.dest));
 
 });
 
-gulp.task('uuorkstore-dev', ['uuorkstore-js', 'uuorkstore-html', 'uu-sass', 'js-lint'], function(){
-    gulp.watch(resources.js_src,['uuorkstore-js']);
-    gulp.watch(resources.views.src, ['uuorkstore-html']);
-    gulp.watch(resources.sass_src, ['uu-sass']);
-    gulp.watch(resources.js_lint_src, ['js-lint']);
+gulp.task('clubmein-dev', ['clubmein-js', 'clubmein-html' /*, 'uu-sass'*/], function(){
+    gulp.watch(resources.js_src,['clubmein-js']);
+    gulp.watch(resources.views.src, ['clubmein-html']);
+    //gulp.watch(resources.sass_src, ['uu-sass']);
+    /*gulp.watch(resources.js_lint_src, ['js-lint']);*/
    // gulp.watch(resources.js_src,['uuorkstore-js-production']);
 });
 /*

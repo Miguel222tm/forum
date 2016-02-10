@@ -19,11 +19,11 @@ class vendorController extends Controller
     public function index()
     {
         try{
-            $member = Member::all();
+            $Vendor = Vendor::all();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($Vendor);
     }
 
     /**
@@ -45,13 +45,13 @@ class vendorController extends Controller
     public function store(Request $request)
     {
         try{
-            $member = new Member();
-            $member->fill(Input::all());
-            $member->save();
+            $Vendor = new Vendor();
+            $Vendor->fill(Input::all());
+            $Vendor->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($Vendor);
     }
 
     /**
@@ -63,11 +63,11 @@ class vendorController extends Controller
     public function show($id)
     {
         try{
-            $member = Member::findOrFail($id);
+            $Vendor = Vendor::findOrFail($id);
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($Vendor);
     }
 
     /**
@@ -91,13 +91,13 @@ class vendorController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $member = Member::findOrFail($id);
-            $member->fill(Input::all());
-            $member->save();
+            $Vendor = Vendor::findOrFail($id);
+            $Vendor->fill(Input::all());
+            $Vendor->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($Vendor);
     }
 
     /**
@@ -109,14 +109,14 @@ class vendorController extends Controller
     public function destroy($id)
     {
         try{
-            $member = Member::findOrFail($id);
+            $Vendor = Vendor::findOrFail($id);
             $user = User::findOrFail($js->userId);
             $user->delete();
-            $member->delete();
+            $Vendor->delete();
 
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($Vendor);
     }
 }
