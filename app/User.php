@@ -43,19 +43,19 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('UserAccessToken', $foreignKey);
     }
 
-    public function jobSeeker() {
+    public function member() {
         $foreignKey = "userId";
-        return $this->hasOne('App\models\JobSeeker', $foreignKey);
+        return $this->hasOne('App\models\Member', $foreignKey);
     }
 
-    public function humanResourcesManager() {
+    public function vendor() {
         $foreignKey='userId';
-        return $this->hasOne('App\models\HumanResourcesManager', $foreignKey);
+        return $this->hasOne('App\models\Vendor', $foreignKey);
     }
 
-    public function company() {
+    public function employee() {
         $foreignKey='userId';
-        return $this->hasOne('App\models\Company',$foreignKey);
+        return $this->hasOne('App\models\Employee',$foreignKey);
     }
 
     

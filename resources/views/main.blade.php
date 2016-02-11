@@ -21,15 +21,20 @@
   <link rel="stylesheet" href="assets/glyphicons/glyphicons.css" type="text/css" />
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css" type="text/css" />
   <link rel="stylesheet" href="assets/material-design-icons/material-design-icons.css" type="text/css" />
+  <link rel="stylesheet" href="styles/1.0.angular-material.css" type="text/css" />
 
   <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
   <!-- build:css assets/styles/app.min.css -->
   <link rel="stylesheet" href="assets/styles/app.css" type="text/css" />
   <!-- endbuild -->
   <link rel="stylesheet" href="assets/styles/font.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/all.css">
 </head>
 <body ng-app="app" ng-controller="AppCtrl" class="" ng-class="">
+  <growl-notifications></growl-notifications>
   <div class="app" ui-view></div>
+
 <!-- build:js scripts/app.angular.js -->
 <!-- jQuery -->
   <script src="libs/jquery/jquery/dist/jquery.js"></script>
@@ -40,10 +45,14 @@
 <!-- Angular -->
   <script src="libs/angular/angular/angular.js"></script>
   <script src="libs/angular/angular-animate/angular-animate.js"></script>
+  <script src="libs/angular/angular-aria/angular-aria.js"></script>
   <script src="libs/angular/angular-resource/angular-resource.js"></script>
   <script src="libs/angular/angular-sanitize/angular-sanitize.js"></script>
   <script src="libs/angular/angular-touch/angular-touch.js"></script>
 
+  <script src="libs/angular-growl-notifications.js"></script>
+
+  <script src="libs/1.0.angular-material.js"></script>
   <!-- router -->
   <script src="libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="node_modules/satellizer/satellizer.js"> </script>

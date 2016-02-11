@@ -16,7 +16,7 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
             }else{
                 $rootScope.currentUser = response;
                 console.log('rootscope.currentUser', $rootScope.currentUser);
-                $state.go('app.home');
+                $state.go('app.dashboard');
             }
         }, function(error){
             vm.error= error;

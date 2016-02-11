@@ -23,14 +23,15 @@ var resources = {
         'dev/clubmein/scripts/config.js',
         'dev/clubmein/scripts/config.lazyload.js',
         'dev/clubmein/scripts/config.router.js',
-
+        'dev/clubmein/scripts/app.modules.js',
         'dev/clubmein/scripts/app.ctrl.js',
         'dev/clubmein/scripts/directives/*.js',
         'dev/clubmein/scripts/filters/*.js',
         'dev/clubmein/scripts/services/*.js',
         'dev/clubmein/scripts/controllers/*.js',
 
-        'dev/clubmein/scripts/modules.js',
+        
+
     ],
     js_dest : 'public/scripts/',
     mobile_js_dest: 'wrapper/www/js',
@@ -53,7 +54,7 @@ var resources = {
 };
 
 
-gulp.task('uu-sass', function() {
+gulp.task('clubmein-sass', function() {
     gulp.src(resources.sass_src)
       .pipe(plumber())
       .pipe(sass())
@@ -99,10 +100,10 @@ gulp.task('clubmein-html', function(){
 
 });
 
-gulp.task('clubmein-dev', ['clubmein-js', 'clubmein-html' /*, 'uu-sass'*/], function(){
+gulp.task('clubmein-dev', ['clubmein-js', 'clubmein-html' , 'clubmein-sass'], function(){
     gulp.watch(resources.js_src,['clubmein-js']);
     gulp.watch(resources.views.src, ['clubmein-html']);
-    //gulp.watch(resources.sass_src, ['uu-sass']);
+    gulp.watch(resources.sass_src, ['clubmein-sass']);
     /*gulp.watch(resources.js_lint_src, ['js-lint']);*/
    // gulp.watch(resources.js_src,['uuorkstore-js-production']);
 });

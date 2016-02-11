@@ -71,7 +71,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {   
-
+        
          $credentials = $request->only('code');
          //return $credentials;
          try{

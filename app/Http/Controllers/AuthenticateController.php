@@ -32,26 +32,26 @@ class AuthenticateController extends Controller
             }
             // job seeker
             if($user->type === 1){
-                $jobSeeker = $user->jobSeeker()->first();
-                $access_level = AccessLevel::find($jobSeeker->access_level);
+                $member = $user->member()->first();
+                $access_level = AccessLevel::find($member->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
-                $jobSeeker->functionalities = $functionalities;
-                return response()->json($jobSeeker);
+                $member->functionalities = $functionalities;
+                return response()->json($member);
 
             }
             else if( $user->type === 2){
-                $humanResourcesManager = $user->humanResourcesManager()->first();
-                $access_level = AccessLevel::find($humanResourcesManager->access_level);
+                $vendor = $user->vendor()->first();
+                $access_level = AccessLevel::find($vendor->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
-                $humanResourcesManager->functionalities = $functionalities;
-                return response()->json($humanResourcesManager);
+                $vendor->functionalities = $functionalities;
+                return response()->json($vendor);
             }
             else if ($user->type === 3){
-                $company = $user->company()->first();
-                $access_level = AccessLevel::find($company->access_level);
+                $employee = $user->employee()->first();
+                $access_level = AccessLevel::find($employee->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
-                $company->functionalities = $functionalities;
-                return response()->json($company);
+                $employee->functionalities = $functionalities;
+                return response()->json($employee);
             }
 
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {

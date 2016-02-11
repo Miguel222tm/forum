@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        /*$this->call(FunctionalityTableSeeder::class);
+        $this->call(FunctionalityTableSeeder::class);
        
-        $this->call(AccessLevelTableSeeder::class);*/
+        $this->call(AccessLevelTableSeeder::class);
         $this->call(UserTableSeeder::class);
 
 

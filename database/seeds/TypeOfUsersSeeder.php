@@ -12,10 +12,8 @@ class TypeOfUsersSeeder extends Seeder
     public function run()
     {
          $types = array(
-                ['code' => 'js' ,'description' => 'Job Seeker'],
-                ['code' => 'hrm' ,'description' => 'Human Resources Manager'],
-                ['code' => 'cmp' ,'description' => 'Company'],
-                ['code' => 'int' ,'description' => 'interviewer'],
+                ['code' => 'mem' ,'description' => 'Member'],
+                ['code' => 'ven' ,'description' => 'Vendor'],
                 ['code' => 'emp' ,'description' => 'Employee'],
                 ['code' => 'g' ,'description' => 'Guest']
 

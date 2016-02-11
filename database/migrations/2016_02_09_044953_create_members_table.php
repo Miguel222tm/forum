@@ -16,6 +16,8 @@ class CreateMembersTable extends Migration
             $table->increments('memberId');
             $table->integer('userId');
             $table->string('name');
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('surname');
             $table->string('email')->unique();
             $table->string('picture_url');

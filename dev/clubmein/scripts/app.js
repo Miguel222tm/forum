@@ -11,9 +11,11 @@
       .module('app', [
         'UURootService',
         'ngAnimate',
+        'ngAria',
         'ngResource',
         'ngSanitize',
         'ngTouch',
+        'ngMaterial',
         'ngStorage',
         'ngStore',
         'ui.router',
@@ -22,4 +24,5 @@
         'ui.jp',
         'oc.lazyLoad',
         'satellizer',
+        'growlNotifications'
       ]);

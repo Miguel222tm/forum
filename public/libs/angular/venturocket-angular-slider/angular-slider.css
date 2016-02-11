@@ -21,7 +21,7 @@ slider span.bar {
   z-index: 0;
   -webkit-border-radius: 1em/1em;
   border-radius: 1em/1em;
-  background-color: rgba(0,0,0,0.1);
+  background-color: #e4eaec;
 }
 slider span.bar.selection {
   width: 0%;

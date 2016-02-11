@@ -16,7 +16,8 @@ class CreateVendorsTable extends Migration
             $table->increments('vendorId');
             $table->integer('userId');
             $table->string('name');
-            $table->string('surname');
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('email')->unique();
             $table->string('second_email');
             $table->string('picture_url');

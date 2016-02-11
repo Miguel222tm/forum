@@ -1,0 +1,154 @@
+.nav-icon {
+  font-size: 18px;
+  color: #7F4545; }
+
+growl-notifications {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000; }
+
+growl-notifications growl-notification {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 15px 30px;
+  width: 300px;
+  display: block;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center; }
+
+.select-user {
+  color: black; }
+
+.select-user-information {
+  min-height: 230px !important;
+  background: white; }
+
+.caja {
+  height: 42% !important; }
+
+.icon-notification {
+  margin-right: 30px; }
+
+.resume-upload {
+  width: 240px;
+  height: 286px;
+  background: url("../imgs/fa-file-text-o.png");
+  overflow: hidden; }
+
+.resume-upload input {
+  display: block !important;
+  width: 240px !important;
+  height: 286px !important;
+  opacity: 0 !important;
+  overflow: hidden !important; }
+
+.button {
+  -moz-appearance: button;
+  /* Firefox */
+  -webkit-appearance: button;
+  /* Safari and Chrome */
+  padding: 10px;
+  margin: 10px;
+  width: 70px; }
+
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  width: 200px;
+  height: 130px;
+  text-align: center;
+  padding-top: 25px;
+  margin: 10px; }
+
+.dragover {
+  border: 5px dashed blue; }
+
+.options {
+  float: right;
+  position: relative;
+  top: -25px; }
+
+.ci-options {
+  float: right;
+  position: relative;
+  top: -10px; }
+
+.iscurrent {
+  padding-left: 18px; }
+
+/**
+ *
+ * languages
+ *
+ */
+.option-md-select {
+  position: relative;
+  bottom: 26px; }
+
+.alert-message {
+  background-color: red;
+  color: white;
+  width: 100%;
+  text-align: center; }
+
+.social-buton {
+  width: 31%;
+  height: 35px;
+  margin: 5px; }
+
+.socialMedia {
+  padding: 15px; }
+
+.chipsdemoBasicUsage .custom-chips .md-chip {
+  position: relative; }
+
+.chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  margin-right: 0;
+  height: 24px; }
+
+.chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container md-button.vegetablechip {
+  position: relative;
+  height: 24px;
+  width: 24px;
+  line-height: 30px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  -webkit-transition: background 0.15s linear;
+          transition: background 0.15s linear;
+  display: block; }
+
+.chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container md-button.vegetablechip md-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0) scale(0.7);
+          transform: translate3d(-50%, -50%, 0) scale(0.7);
+  color: white;
+  fill: white; }
+
+.chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container button.vegetablechip:hover, .chipsdemoBasicUsage .custom-chips .md-chip .md-chip-remove-container button.vegetablechip:focus {
+  background: rgba(255, 0, 0, 0.8); }
+
+.chipsdemoBasicUsage .custom-chips .md-chip:not(.md-readonly) md-chip-template {
+  padding-right: 5px; }
+
+.close-button-chips {
+  text-align: right;
+  position: relative;
+  top: -7px;
+  left: 10px; }
+
+.add-a-skill-button {
+  float: right;
+  position: relative;
+  top: -17px; }

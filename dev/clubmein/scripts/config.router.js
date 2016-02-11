@@ -79,6 +79,17 @@
         // Push the new factory onto the $http interceptor array
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $authProvider.loginUrl = '/authenticate';
+
+        $authProvider.facebook({
+          clientId: '193867407627493'
+        });
+
+        $authProvider.google({
+          clientId: '325516560821-2i72bk8rgf5av8rn9vha6qg7id86fo6l.apps.googleusercontent.com'
+        });
+        $authProvider.linkedin({
+          clientId: '77klqbzj550pjv'
+        });
         
         var p = getParams('layout'),
             l = p ? p + '.' : '',
@@ -547,11 +558,17 @@
             })
             .state('access.signin', {
               url: '/signin',
-              templateUrl: 'views/misc/signin.html'
+              templateUrl: 'views/misc/signin.html', 
+              controller: 'AuthController'
             })
             .state('access.signup', {
               url: '/signup',
               templateUrl: 'views/misc/signup.html'
+            })
+            .state('access.select-user',{
+              url: '/select-user', 
+              templateUrl: 'views/pages/select-user.html',
+              controller: 'LimboCtrl'
             })
             .state('access.forgot-password', {
               url: '/forgot-password',
