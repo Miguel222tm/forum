@@ -117,6 +117,47 @@
               resolve: load(['scripts/controllers/chart.js'])
             })
 
+            .state('app.home', {
+              url: '/home',
+              templateUrl: 'views/page/home.html', 
+              data: { title: 'Home' } ,
+              controller: 'homeCtrl',  
+            })
+            .state('app.items', {
+              url: '/items',
+              templateUrl: 'views/page/items.html', 
+              data: { title: 'Items' } ,
+              controller: 'itemsCtrl',  
+            })
+
+            .state('app.search', {
+              url: '/search',
+              templateUrl: 'views/page/search.html', 
+              data: { title: 'Search' } ,
+              controller: 'searchCtrl',  
+            })
+
+            .state('app.nearby', {
+              url: '/nearby',
+              templateUrl: 'views/page/near-by.html', 
+              data: { title: 'Near by' } ,
+              controller: 'nearByCtrl',  
+            })
+
+            .state('app.myproducts', {
+              url: '/myproducts',
+              templateUrl: 'views/page/my-products.html', 
+              data: { title: 'My products' } ,
+              controller: 'myProductsCtrl',  
+            })
+
+            .state('app.mybids', {
+              url: '/mybids',
+              templateUrl: 'views/page/my-bids.html', 
+              data: { title: 'My bids' } ,
+              controller: 'myBidsCtrl',  
+            })
+
             // applications
 
             .state('app.contact', {

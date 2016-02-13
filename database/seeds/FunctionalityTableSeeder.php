@@ -17,6 +17,11 @@ class FunctionalityTableSeeder extends Seeder
     		'name' => 'Home',
     		'code' => 'fn_home'
     	]);
+        App\models\Functionality::create([
+            'name' => 'Search',
+            'code' => 'fn_search'
+        ]);
+
     	App\models\Functionality::create([
     		'name' => 'items',
     		'code' => 'fn_items'

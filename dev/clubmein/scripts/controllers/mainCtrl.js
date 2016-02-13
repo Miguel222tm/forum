@@ -30,6 +30,23 @@ var MainController = [ '$http','$auth', '$rootScope','$state','RootService','$sc
     
     vm.getUser();
 
+    scope.logout = function() {
+
+        $auth.logout().then(function() {
+            // Flip authenticated to false so that we no longer
+            // show UI elements dependant on the user being logged in
+            $rootScope.authenticated = false;
+
+            // Remove the current user info from rootscope
+            $rootScope.currentUser = null;
+            $RootService.setCurrentUser(null);
+            $RootService.setNotifications(null);
+
+            $state.go('access.signin');
+
+        });
+    };
+
 
     
 
