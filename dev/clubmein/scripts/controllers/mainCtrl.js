@@ -58,3 +58,6 @@ var MainController = [ '$http','$auth', '$rootScope','$state','RootService','$sc
 
 angular.module('app')
     .controller('MainController', MainController);
+
+    //searchCtrl
+    //itemsCtrl
