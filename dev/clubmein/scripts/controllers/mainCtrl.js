@@ -61,3 +61,4 @@ angular.module('app')
 
     //searchCtrl
     //itemsCtrl
+    //nearByCtrl
