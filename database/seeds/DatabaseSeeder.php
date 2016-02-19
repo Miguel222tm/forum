@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AccessLevelTableSeeder::class);
         $this->call(UserTableSeeder::class);
 
-
+        $this->call(CategoryTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->call(BrandTableSeeder::class);
+        $table->call(ModelTableSeeder::class);
         /**
          * more seeder tables
          */
