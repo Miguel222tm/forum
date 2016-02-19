@@ -2738,7 +2738,10 @@ class StateSeederTable extends Seeder
         	["name"=>"Bulawayo","countryId"=>"246"],
         	["name"=>"Harare","countryId"=>"246"],
         	["name"=>"Manicaland","countryId"=>"246"]
-
         );
+        
+        foreach ($states as $state) {
+            App\models\State::create($state);
+        }
     }
 }

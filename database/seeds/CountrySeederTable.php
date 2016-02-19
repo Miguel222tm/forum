@@ -11,7 +11,7 @@ class CountrySeederTable extends Seeder
      */
     public function run()
     {
-        $country  = array(
+        $countries=array(
         	["code"=>"AF","name"=>"Afghanistan"],
         	["code"=>"AX","name"=>"Aland Island"],
         	["code"=>"AL","name"=>"Albania"],
@@ -21,15 +21,14 @@ class CountrySeederTable extends Seeder
         	["code"=>"AO","name"=>"Angola"],
         	["code"=>"AI","name"=>"Anguilla"],
         	["code"=>"AQ","name"=>"Antarctica"],
-        	["code"=>"AG","name"=>"Antigua and 
-        	 arbuda"],
+        	["code"=>"AG","name"=>"Antigua and arbuda"],
         	["code"=>"AR","name"=>"Argentina"],
         	["code"=>"AM","name"=>"Armenia"],
         	["code"=>"AW","name"=>"Aruba"],
         	["code"=>"AU","name"=>"Australia"],
         	["code"=>"AT","name"=>"Austria"],
         	["code"=>"AZ","name"=>"Azerbaijan"],
-        	["code"=>"BS","name"=>"Bahamas"].
+        	["code"=>"BS","name"=>"Bahamas"],
         	["code"=>"BH","name"=>"Bahrain"],
         	["code"=>"BD","name"=>"Bangladesh"],
         	["code"=>"BB","name"=>"Barbados"],
@@ -259,6 +258,10 @@ class CountrySeederTable extends Seeder
         	["code"=>"YE","name"=>"Yemen"],
         	["code"=>"ZM","name"=>"Zambia"],
         	["code"=>"ZW","name"=>"Zimbabwe"]
-       );
+        );
+        
+        foreach($countries as $country) {
+            App\models\Country::create($country);
+        }
     }
 }
