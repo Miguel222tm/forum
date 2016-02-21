@@ -45,7 +45,7 @@
           // Call jQuery method and pass relevant options
           function callPlugin() {
             $timeout(function() {
-              $(elm)[attrs.uiJp].apply($(elm), getOptions());
+              //$(elm)[attrs.uiJp].apply($(elm), getOptions());
             }, 0, false);
           }
 

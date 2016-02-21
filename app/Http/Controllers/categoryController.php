@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\models\Category;
+use Input;
 class categoryController extends Controller
 {
     /**
@@ -16,18 +17,15 @@ class categoryController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $categories = Category::all();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +35,13 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $category = new Category();
+            $category->fill(Input::all());
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($category);
     }
 
     /**
@@ -48,7 +52,13 @@ class categoryController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $category = Category::findOrFail($id);
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($category);
     }
 
     /**
@@ -71,7 +81,13 @@ class categoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $category = Category::findOrFail($id);
+            $category->fill(Input::all());
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($category);
     }
 
     /**
@@ -82,6 +98,22 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $category = Category::findOrFail($id);
+            $category->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($category);
+    }
+
+    public function products($id){
+        try{
+            $category = Category::findOrFail($id);
+            $products = $category->products()->get();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($products);
     }
 }

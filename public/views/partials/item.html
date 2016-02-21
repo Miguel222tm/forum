@@ -1,20 +1,114 @@
 <div>
 	<li class="list-item">
-      <a herf class="list-left">
-      	<span class="w-40 r-2x _600 text-lg accent">
-        	B
-        </apan>
-      </a>
-      <div class="list-body">
-      	<div class="m-y-sm pull-right">
-        	<a href class="btn btn-xs white">Manage</a>
-        	<a href class="btn btn-xs white btn-icon"><i class="fa fa-pencil"></i></a>
-    	</div>
-        <div><a href>Broadcast web app mockup</a></div>
-        <div class="text-sm">
-        	<span class="text-muted"><strong>5</strong> tasks, <strong>3</strong> issues</span> 
-        	<span class="label"></span>
-        </div>
+    <a herf class="list-left">
+    	<span class="w-40 r-2x _600 text-lg accent">
+      	{{item.model_name[0]}}
+      </apan>
+    </a>
+    <div class="list-body" ng-if="items.itemId">
+    	<div class="m-y-sm pull-right">
+      	<a href class="btn btn-xs white">Manage</a>
+      	<a href class="btn btn-xs white btn-icon"><i class="fa fa-pencil"></i></a>
+  	  </div>
+      <div>
+        <a href>Broadcast web app mockup</a>
       </div>
+      <div class="text-sm">
+      	<span class="text-muted"><strong>5</strong> tasks, <strong>3</strong> issues</span> 
+      	<span class="label"></span>
+      </div>
+    </div>
+    <div class="col-sm-12 m-t">
+      <form ui-jp="parsley">
+        <div class="box">
+          <div class="box-header">
+            <h2>Item information</h2>
+          </div>
+          <div class="box-body">                    
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Category</label>
+              <div class="col-sm-9">
+                <select required class="form-control c-select m-y" ng-model="category" ng-options="category as category.name for category in categories" ng-click="setCategory()" ng-selected="category.categoryId === scope.item.categoryId">
+                </select>    
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Product</label>
+              <div class="col-sm-9">
+                <select required class="form-control c-select m-y" ng-model="product" ng-options="product as product.name for product in products" ng-click="setProduct()" ng-selected="null">
+                  
+                </select> 
+              </div>
+            </div>
+
+            product:{{product}}
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Brand</label>
+              <div class="col-sm-9">
+                <select required class="form-control c-select m-y">
+                  <option value="">Please choose</option>
+                  <option value="foo">Foo</option>
+                  <option value="bar">Bar</option>
+                </select> 
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Model</label>
+              <div class="col-sm-9">
+                <select required class="form-control c-select m-y">
+                  <option value="">Please choose</option>
+                  <option value="foo">Foo</option>
+                  <option value="bar">Bar</option>
+                </select> 
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Quantity</label>
+              <div class="col-sm-9">
+                <input type="number" data-parsley-type="number" class="form-control" placeholder="number">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Price</label>
+              <div class="col-sm-9">
+                <input type="number" data-parsley-type="number" class="form-control" placeholder="number">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Description</label>
+              <div class="col-sm-9">
+                <textarea type="text" data-parsley-type="number"  rows="4" class="form-control" placeholder="number"> </textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Location</label>
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label class="checkbox ui-check">
+                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location {{item.otherLocation}}
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div ng-if="item.otherLocation">
+              <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
+              
+            </div>
+
+          </div>
+          <div class="dker p-a text-right">
+            <button type="submit" class="btn info">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
     </li>
 </div>

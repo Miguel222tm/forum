@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\models\Member;
-use App\User;
+use App\models\Item;
 use Input;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-
-class membersController extends Controller
+class itemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,11 +18,11 @@ class membersController extends Controller
     public function index()
     {
         try{
-            $member = Member::all();
+             $items = Item::all();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($items);
     }
 
     /**
@@ -36,7 +32,7 @@ class membersController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -48,13 +44,13 @@ class membersController extends Controller
     public function store(Request $request)
     {
         try{
-            $member = new Member();
-            $member->fill(Input::all());
-            $member->save();
+            $item = new Item();
+            $item->fill(Input::all());
+            $item->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($item);
     }
 
     /**
@@ -66,11 +62,11 @@ class membersController extends Controller
     public function show($id)
     {
         try{
-            $member = Member::findOrFail($id);
+            $item = Item::find($id);
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($item);
     }
 
     /**
@@ -94,13 +90,13 @@ class membersController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $member = Member::findOrFail($id);
-            $member->fill(Input::all());
-            $member->save();
+            $item = Item::find($id);
+            $item->fill(Input::all());
+            $item->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
+        return response()->json($item);
     }
 
     /**
@@ -112,47 +108,11 @@ class membersController extends Controller
     public function destroy($id)
     {
         try{
-            $member = Member::findOrFail($id);
-            $user = User::findOrFail($js->userId);
-            $user->delete();
-            $member->delete();
-
+            $item = Item::find($id);
+            $item->delete();
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($member);
-    }
-
-    public function profile(){
-        try{
-            if(!$user = JWTAuth::parseToken()->authenticate()){
-                return response()->json(['user_not_found', 404]);
-            }
-            $member = $user->member()->firstOrFail();
-
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($member);
-    }
-
-    public function items(){
-        try{
-            if(!$user = JWTAuth::parseToken()->authenticate()){
-                return response()->json(['user_not_found', 404]);
-            }
-            $member = $user->member()->firstOrFail();
-            $items = $member->items()->get();
-
-            if(isset($items)){
-                foreach ($items as $item) {
-                    $item['location'] = $item->location();
-                }
-            }
-
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($items);
+        return response()->json($item);
     }
 }

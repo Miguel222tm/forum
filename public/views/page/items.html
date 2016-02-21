@@ -3,16 +3,16 @@
 		<div class="col-sm-12 col-md-12">
 	    	<div class="box">
 	    		<div class="box-header">
-	    			<h3>Your items <span class="label warning"> 0</span></h3>
+	    			<h3>Your items <span class="label warning"> {{items.length}}</span></h3>
 	    			<small>These are your items that you created, click on each one of them to see or edit them.</small>
 	    		</div>
-		    	<ul class="list inset">
-			        <item user="currentUser" > </item>
+		    	<ul class="list inset" ng-repeat="item in items">
+			        <item user="currentUser" item="item" categories="categories"> </item>
 			    </ul>
 		    </div>
 	    </div>
 	    <div class="col-sm-12 col-md-12">
-	    	<button class="btn btn-fw primary col-sm-12 col-md-12">Add a new item</button>
+	    	<button class="btn btn-fw primary col-sm-12 col-md-12" ng-click="addItem()">Add a new item</button>
 	    </div>
 	</div>
 

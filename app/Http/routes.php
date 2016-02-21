@@ -77,10 +77,12 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/members', 'membersController@index');
   
   Route::get('/members/profile', 'membersController@profile');
+
+  Route::get('/members/items', 'membersController@items');
   
   Route::get('/members/{id}', 'membersController@show');
   
-  Route::post('/memberss', 'membersController@store');
+  Route::post('/members', 'membersController@store');
   
   Route::put('/members/{id}', 'membersController@update');
 
@@ -132,33 +134,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   /*=====  End of location  ======*/
 
 
-  /*=================================
-  =            currency             =
-  =================================*/
-    
-  Route::get('/constant/currency', 'currencyController@index');
-    
-  Route::get('/constant/currency/{id}', 'currencyController@show');
 
-    
-  /*=====  End of currency   ======*/
-  
-  
-  /*=====================================
-  =            type of users            =
-  =====================================*/
-  
-  Route::get('/constant/user-types', 'userTypesController@index');
-
-  Route::get('/constant/user-types/{id}', 'userTypesController@show');
-  
-  /*=====  End of type of users  ======*/  
-
+ 
 
   
 
    /*===============================
-  =            resumes            =
+  =            requests            =
   ===============================*/
   Route::get('/request', 'requestController@index');
 
@@ -172,31 +154,35 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::delete('/request/{id}', 'requestController@destroy');
     
-  /*=====  End of resumes  ======*/
+  /*=====  End of requests  ======*/
 
   /*====================================
-  =            js category            =
+  =             category            =
   ====================================*/
   
-  Route::get('/category', 'categoryController@index');
+  Route::get('/categories', 'categoryController@index');
 
   Route::get('/category/{id}', 'categoryController@show');
 
-  Route::post('/category', 'categoryController@store');
+  Route::get('/category/{id}/products', 'categoryController@products');
+
+  Route::post('/categories', 'categoryController@store');
 
   Route::put('/category/{id}', 'categoryController@update');
 
   Route::delete('/category/{id}', 'categoryController@destroy');
   
-  /*=====  End of js category  ======*/
+  /*=====  End of  category  ======*/
 
   /*=================================
-  =            js product            =
+  =             product            =
   =================================*/
   
   Route::get('/product', 'productController@index');
 
   Route::get('/product/{id}', 'productController@show');
+
+  Route::get('/product/{id}/brands', 'productController@brands');
 
   Route::post('/product', 'productController@store');
 
@@ -204,13 +190,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::delete('/product/{id}', 'productController@destroy'); 
   
-  /*=====  End of js product  ======*/
+  /*=====  End of  product  ======*/
 
 
 
 
   /*==================================
-  =            js courses            =
+  =             brands            =
   ==================================*/
   
   Route::get('/brands', 'brandsController@index');
@@ -223,10 +209,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::delete('/brands/{id}', 'brandsController@destroy');
    
-  /*=====  End of js courses  ======*/
+  /*=====  End of  brands  ======*/
     
   /*=====================================
-  =            js volunteers            =
+  =             volunteers            =
   =====================================*/
   
   Route::get('/models', 'modelsController@index');
@@ -239,35 +225,83 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::delete('/models/{id}', 'modelsController@destroy');
   
-  /*=====  End of js volunteers  ======*/
+  /*=====  End of  volunteers  ======*/
 
   /*=================================
-  =            js skills            =
+  =             bids            =
   =================================*/
   
-  Route::get('/bids', 'bidsController@jsIndex');
+  Route::get('/bids', 'bidsController@index');
 
-  Route::get('/bids/{id}',  'bidsController@jsShow');
+  Route::get('/bids/{id}',  'bidsController@show');
 
-  Route::post('/bids', 'bidsController@jsStore');
+  Route::post('/bids', 'bidsController@store');
 
-  Route::delete('/bids/{id}', 'bidsController@jsDestroy');
+  Route::delete('/bids/{id}', 'bidsController@destroy');
   
-  /*=====  End of js skills  ======*/
+  /*=====  End of bids  ======*/
+  
+  /*=================================
+  =             items            =
+  =================================*/
+  
+  Route::get('/items', 'itemsController@index');
+
+  Route::get('/items/{id}',  'itemsController@show');
+
+  Route::post('/items', 'itemsController@store');
+
+  Route::put('/items/{id}', 'itemsController@update');
+
+  Route::delete('/items/{id}', 'itemsController@destroy');
+  
+  /*=====  End of items  ======*/
   
   
   
 });
 
-  /*==============================
-  =            skills            =
-  ==============================*/
-  
-  Route::get('/constant/skills', 'skillsController@index');
+/*=================================
+=            constants            =
+=================================*/
 
-  Route::get('/constant/skill', 'skillsController@show');  
+Route::get('/countries', 'countriesController@index');
+
+Route::get('/country/{id}', 'countriesController@show');
+
+Route::get('/country/{id}/states', 'countriesController@states');
+
+Route::post('/country', 'countriesController@store');
+
+Route::put('country/{id}', 'countriesController@update');
+
+Route::delete('/country/{id}', 'countriesController@destroy');
+
+Route::get('/states', 'statesController@index');
+
+Route::get('/state/{id}', 'statesController@show');
+
+Route::get('/state/{id}/cities', 'statesController@cities');
+
+Route::post('/state', 'statesController@store');
+
+Route::put('state/{id}', 'statesController@update');
+
+Route::delete('/state/{id}', 'statesController@destroy');
+
+Route::get('/cities', 'citiesController@index');
+
+Route::get('/city/{id}', 'citiesController@show');
+
+Route::post('/city', 'citiesController@store');
+
+Route::put('city/{id}', 'citiesController@update');
+
+Route::delete('/city/{id}', 'citiesController@destroy');
+
+/*=====  End of constants  ======*/
+
   
-  /*=====  End of skills  ======*/
 
 
 

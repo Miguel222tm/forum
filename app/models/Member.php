@@ -19,5 +19,10 @@ class Member extends Model
     	return $this->belongsTo('App\User', $foreignKey);
     }
 
+    public function items(){
+    	$foreignKey = 'memberId';
+    	return $this->hasMany('App\models\Item', $foreignKey);
+    }
+
     
 }

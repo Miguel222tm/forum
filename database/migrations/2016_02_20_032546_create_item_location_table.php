@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRequestLocationTable extends Migration
+class CreateItemLocationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateUserRequestLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_request_location', function (Blueprint $table) {
-            $table->increments('uRLocationId');
-            $table->integer('requestId');
+        Schema::create('item_location', function (Blueprint $table) {
+            $table->increments('itemLocationId');
+            $table->integer('itemId');
             $table->integer('countryId');
             $table->integer('stateId');
             $table->integer('cityId');
@@ -29,6 +29,6 @@ class CreateUserRequestLocationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('user_request_location');
+        Schema::drop('item_location');
     }
 }

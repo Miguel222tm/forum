@@ -14,7 +14,7 @@ class Category extends Model
 
 
 
-    public function product(){
+    public function products(){
     	$foreignKey = 'categoryId';
     	return $this->hasMany('App\models\Product', $foreignKey);
     }

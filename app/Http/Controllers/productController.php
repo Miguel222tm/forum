@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
+use App\models\Product;
 
 class productController extends Controller
 {
@@ -83,5 +85,16 @@ class productController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function brands($id){
+        try{
+            $product = Product::find($id);
+            $brands = $product->brands()->get();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brands);
     }
 }

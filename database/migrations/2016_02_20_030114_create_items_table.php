@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRequestTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateUserRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('userRequest', function (Blueprint $table) {
-            $table->increments('requestId');
-            $table->integer('clubId');
+        Schema::create('items', function (Blueprint $table) {
+            $table->increments('itemId');
+            $table->integer('memberId');
             $table->integer('categoryId');
             $table->integer('productId');
             $table->integer('brandId');
@@ -26,7 +26,7 @@ class CreateUserRequestTable extends Migration
             $table->integer('quantity');
             $table->integer('price');
             $table->string('description', 500);
-            $table->string('active');
+            $table->boolean('active');
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateUserRequestTable extends Migration
      */
     public function down()
     {
-        Schema::drop('userRequest');
+        Schema::drop('items');
     }
 }

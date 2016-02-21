@@ -11,7 +11,7 @@ class StateSeederTable extends Seeder
      */
     public function run()
     {
-        $state = array(
+        $states = array(
         	["name"=>"","countryId"=>"1"],
         	["name"=>"Kabul","countryId"=>"1"],
         	["name"=>"Kandahar","countryId"=>"1"],
