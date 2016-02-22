@@ -548,6 +548,7 @@
             .state('app.page.setting', {
               url: '/setting',
               templateUrl: 'views/page/setting.html',
+              controller: 'SettingsCtrl',
               data : { title: 'Setting' }
             })
             .state('app.page.search', {

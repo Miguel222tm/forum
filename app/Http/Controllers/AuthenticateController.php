@@ -30,22 +30,27 @@ class AuthenticateController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
-            // job seeker
+            $location = $user->location()->first();
+            // member
             if($user->type === 1){
                 $member = $user->member()->first();
                 $access_level = AccessLevel::find($member->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
                 $member->functionalities = $functionalities;
+                $member->location = $location;
                 return response()->json($member);
 
             }
+            // vendor
             else if( $user->type === 2){
                 $vendor = $user->vendor()->first();
                 $access_level = AccessLevel::find($vendor->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
                 $vendor->functionalities = $functionalities;
+                $vendor->location = $location;  
                 return response()->json($vendor);
             }
+            //employee
             else if ($user->type === 3){
                 $employee = $user->employee()->first();
                 $access_level = AccessLevel::find($employee->access_level);

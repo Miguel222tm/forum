@@ -14,6 +14,11 @@
         <div ui-include="'../views/blocks/aside.top.0.html'"></div>
       </div>
     </div>
+    <div ng-repeat="(id, notification) in notifications track by id">
+      <growl-notification style="{{notification.style}}">
+        {{notification.text}}
+      </growl-notification>
+    </div>
     
   <!--ie9 (if you want support the vertical scroll in ie9, use the below code.)
     <div class="left navside dark dk">

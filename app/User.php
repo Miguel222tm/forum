@@ -58,6 +58,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\models\Employee',$foreignKey);
     }
 
+    public function location(){
+        $foreignKey = 'userId';
+        return $this->hasOne('App\models\UserLocation', $foreignKey);
+    }
     
 
 }

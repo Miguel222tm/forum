@@ -10,5 +10,5 @@ class UserRequestLocation extends Model
 
     protected $primaryKey = 'uRLocationId';
 
-    protected $fillable = ['requestId'];
+    protected $fillable = ['requestId', 'country', 'state', 'city'];
 }

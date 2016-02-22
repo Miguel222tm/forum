@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\models\Brand;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\User;
 use Input;
+use App\models\UserLocation;
 
-class brandsController extends Controller
+class userLocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,7 +42,21 @@ class brandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+
+            $userlocation = new UserLocation();
+            $userlocation->userId = $user->userId;
+            $userlocation->fill(Input::all());
+            $userlocation->save();
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($userlocation);
+        
     }
 
     /**
@@ -71,9 +88,19 @@ class brandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $userlocation = UserLocation::where('userId' , '=', $user->userId)->first();
+            $userlocation->fill(Input::all());
+            $userlocation->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($userlocation);
     }
 
     /**
@@ -85,15 +112,5 @@ class brandsController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function models($id){
-        try{
-            $brand = Brand::findOrFail($id);
-            $models = $brand->models()->get();
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($models);
     }
 }

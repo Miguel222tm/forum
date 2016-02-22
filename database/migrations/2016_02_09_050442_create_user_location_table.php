@@ -13,7 +13,11 @@ class CreateUserLocationTable extends Migration
     public function up()
     {
         Schema::create('userLocation', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('userLocationId');
+            $table->integer('userId');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');   
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class CreateUserRequestLocationTable extends Migration
         Schema::create('user_request_location', function (Blueprint $table) {
             $table->increments('uRLocationId');
             $table->integer('requestId');
-            $table->integer('countryId');
-            $table->integer('stateId');
-            $table->integer('cityId');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
             $table->timestamps();
         });
     }

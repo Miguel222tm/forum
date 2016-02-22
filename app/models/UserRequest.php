@@ -10,5 +10,7 @@ class UserRequest extends Model
 
     protected $primaryKey = 'requestId';
 
-    protected $fillable = [''];
+    protected $fillable = ['memberId','categoryId', 'productId', 'brandId', 'modelId', 'category_name', 'product_name', 'brand_name', 'model_name', 'quantity', 'price', 'description', 'active'];
+
+    
 }

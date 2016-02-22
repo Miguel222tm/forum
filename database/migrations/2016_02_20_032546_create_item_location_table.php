@@ -15,9 +15,9 @@ class CreateItemLocationTable extends Migration
         Schema::create('item_location', function (Blueprint $table) {
             $table->increments('itemLocationId');
             $table->integer('itemId');
-            $table->integer('countryId');
-            $table->integer('stateId');
-            $table->integer('cityId');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
             $table->timestamps();
         });
     }

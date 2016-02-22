@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\models\UserRequest;
+use Input;
 class requestController extends Controller
 {
     /**
@@ -37,7 +38,13 @@ class requestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $request = new UserRequest();
+            $request->fill(Input::all());
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($request);
     }
 
     /**

@@ -11,6 +11,8 @@ use App\User;
 use App\models\Member;
 use App\models\Vendor;
 use App\models\Employee;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UsersController extends Controller
 {
@@ -132,6 +134,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
+
+
+    
 }

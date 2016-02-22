@@ -7,13 +7,7 @@
             <a class="nav-link block active" href data-toggle="tab" data-target="#tab-1">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link block" href data-toggle="tab" data-target="#tab-2">Account Settings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link block" href data-toggle="tab" data-target="#tab-3">Emails</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link block" href data-toggle="tab" data-target="#tab-4">Notifications</a>
+            <a class="nav-link block" href data-toggle="tab" data-target="#tab-2">Location</a>
           </li>
           <li class="nav-item">
             <a class="nav-link block" href data-toggle="tab" data-target="#tab-5">Security</a>
@@ -36,55 +30,74 @@
           </div>
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" ng-model="currentUser.firstName">
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" ng-model="currentUser.lastName">
           </div>
           <div class="form-group">
-            <label>URL</label>
-            <input type="text" class="form-control">
+            <label>email</label>
+            <input type="text" class="form-control" ng-model="currentUser.email" ng-disabled="true">
           </div>
-          <div class="form-group">
-            <label>Company</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Location</label>
-            <input type="text" class="form-control">
-          </div>
-          <div class="checkbox">
-            <label class="ui-check">
-              <input type="checkbox"><i class="dark-white"></i> Available for hire
-            </label>
-          </div>
-          <button type="submit" class="btn btn-info m-t">Update</button>
+          
+          <button type="submit" class="btn btn-info m-t" ng-click="update()">Update</button>
         </form>
       </div>
       <div class="tab-pane" id="tab-2">
-        <div class="p-a-md dker _600">Account settings</div>
-        <form role="form" class="p-a-md col-md-6">
-          <div class="form-group">
-            <label>Client ID</label>
-            <input type="text" disabled class="form-control" value="d6386c0651d6380745846efe300b9869">
+        <div class="p-a-md dker _600">Location  </div>
+        <div ng-if="!currentUser.location || bEditLocation">
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">State</label>
+            <div class="col-sm-9">
+              <select name="country" class="countries form-control c-select m-y" id="countryId" ng-model="currentUser.location.country" ng-click="setCountry(country)">
+                <option value="" >Select Country</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Secret Key</label>
-            <input type="text" disabled class="form-control" value="3f9573e88f65787d86d8a685aeb4bd13">
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">State</label>
+            <div class="col-sm-9">
+              <select name="state" class="states form-control c-select m-y" id="stateId" ng-model="currentUser.location.state" ng-click="setState(state)" >
+                <option value="">Select State</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label>App Name</label>
-            <input type="text" class="form-control">
+          <div class="form-group row">
+            <label class="col-sm-3 form-control-label">City</label>
+            <div class="col-sm-9">
+              <select name="city" class="cities form-control c-select m-y" id="cityId" ng-model="currentUser.location.city" ng-click="setCity(city)">
+                <option value="">Select City</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <label>App URL</label>
-            <input type="text" class="form-control">
+          <script src="http://lab.iamrohit.in/js/location.js"></script>
+          <button type="submit" class="btn btn-info m-t" ng-click="updateLocation()">Update Location</button>
+          <button type="submit" class="btn btn-warning m-t" ng-click="cancel()">Cancel</button>
+        </div>
+        <div ng-if="currentUser.location && !bEditLocation">
+          <div class="clearfix m-b-lg">
+            <form role="form" class="col-md-6 p-a-0">
+              <div class="form-group">
+                <label>Country</label>
+                <input type="text" class="form-control" ng-model="currentUser.location.country" ng-disabled="true">
+              </div>
+              <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" ng-model="currentUser.location.state" ng-disabled="true">
+              </div>
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" ng-model="currentUser.location.city" ng-disabled="true">
+              </div>
+              <button type="submit" class="btn btn-info m-t" ng-click="editLocation()">Edit</button>
+            </form>
           </div>
-          <button type="submit" class="btn btn-info m-t">Update</button>
-        </form>
+        </div>
+
+        
       </div>
-      <div class="tab-pane" id="tab-3">
+      <!-- <div class="tab-pane" id="tab-3">
         <div class="p-a-md dker _600">Emails</div>
         <form role="form" class="p-a-md col-md-6">
           <p>E-mail me whenever</p>
@@ -137,7 +150,7 @@
           </div>
           <button type="submit" class="btn btn-info m-t">Update</button>
         </form>
-      </div>
+      </div> -->
       <div class="tab-pane" id="tab-5">
         <div class="p-a-md dker _600">Security</div>
         <div class="p-a-md">

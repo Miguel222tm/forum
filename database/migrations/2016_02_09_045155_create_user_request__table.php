@@ -14,7 +14,7 @@ class CreateUserRequestTable extends Migration
     {
         Schema::create('userRequest', function (Blueprint $table) {
             $table->increments('requestId');
-            $table->integer('clubId');
+            $table->integer('memberId');
             $table->integer('categoryId');
             $table->integer('productId');
             $table->integer('brandId');

@@ -4,7 +4,7 @@
 
 growl-notifications {
   position: fixed;
-  top: 10px;
+  top: 50px;
   right: 10px;
   z-index: 1000; }
 
@@ -16,7 +16,8 @@ growl-notifications growl-notification {
   display: block;
   border-radius: 5px;
   margin-top: 15px;
-  text-align: center; }
+  text-align: center;
+  z-index: 1000; }
 
 .select-user {
   color: black; }

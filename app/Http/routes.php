@@ -63,6 +63,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::post('/users', 'UsersController@store');
 
+  Route::post('user/location', 'userLocationController@store');
+
+  Route::put('/user/location', 'userLocationController@update');
+
   Route::put('/users/{id}', 'UsersController@update');
 
   Route::delete('/users/{id}', 'UsersController@destroy');  
@@ -76,15 +80,15 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   /*----------  job seekers  ----------*/
   Route::get('/members', 'membersController@index');
   
-  Route::get('/members/profile', 'membersController@profile');
+  Route::get('/member/profile', 'membersController@profile');
 
   Route::get('/members/items', 'membersController@items');
   
-  Route::get('/members/{id}', 'membersController@show');
+  Route::get('/member/{id}', 'membersController@show');
   
   Route::post('/members', 'membersController@store');
   
-  Route::put('/members/{id}', 'membersController@update');
+  Route::put('/member/{id}', 'membersController@update');
 
   Route::delete('/members/{id}', 'membersController@destroy');
 
@@ -201,18 +205,20 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   
   Route::get('/brands', 'brandsController@index');
 
-  Route::get('/brands/{id}', 'brandsController@show');
+  Route::get('/brand/{id}', 'brandsController@show');
+
+  Route::get('/brand/{id}/models', 'brandsController@models');
 
   Route::post('/brands', 'brandsController@store');
 
-  Route::put('/brands/{id}', 'brandsController@update');
+  Route::put('/brand/{id}', 'brandsController@update');
 
-  Route::delete('/brands/{id}', 'brandsController@destroy');
+  Route::delete('/brand/{id}', 'brandsController@destroy');
    
   /*=====  End of  brands  ======*/
     
   /*=====================================
-  =             volunteers            =
+  =             models            =
   =====================================*/
   
   Route::get('/models', 'modelsController@index');
@@ -225,7 +231,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::delete('/models/{id}', 'modelsController@destroy');
   
-  /*=====  End of  volunteers  ======*/
+  /*=====  End of  models  ======*/
 
   /*=================================
   =             bids            =
@@ -247,13 +253,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   
   Route::get('/items', 'itemsController@index');
 
-  Route::get('/items/{id}',  'itemsController@show');
+  Route::get('/item/{id}',  'itemsController@show');
 
-  Route::post('/items', 'itemsController@store');
+  Route::post('/item', 'itemsController@store');
 
-  Route::put('/items/{id}', 'itemsController@update');
+  Route::put('/item/{id}', 'itemsController@update');
 
-  Route::delete('/items/{id}', 'itemsController@destroy');
+  Route::delete('/item/{id}', 'itemsController@destroy');
   
   /*=====  End of items  ======*/
   
