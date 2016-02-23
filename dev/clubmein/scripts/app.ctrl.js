@@ -18,7 +18,7 @@
         vm.isSmart = isSmart();
         // config
         vm.app = {
-          name: 'Flatkit',
+          name: 'Clubmein',
           version: '1.1.0',
           // for chart colors
           color: {

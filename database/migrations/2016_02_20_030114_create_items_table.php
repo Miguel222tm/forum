@@ -15,10 +15,10 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('itemId');
             $table->integer('memberId');
-            $table->integer('categoryId');
-            $table->integer('productId');
-            $table->integer('brandId');
-            $table->integer('modelId');
+            $table->integer('categoryId')->nullable();
+            $table->integer('productId')->nullable();
+            $table->integer('brandId')->nullable();
+            $table->integer('modelId')->nullable();
             $table->string('category_name');
             $table->string('product_name');
             $table->string('brand_name');

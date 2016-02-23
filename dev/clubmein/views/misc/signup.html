@@ -6,8 +6,17 @@
     </div>
 
     <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+    <div class="" align="center">
+      Sign up with a social network
+    </div>
+    <div class="socialMedia" layout="row">
+    <br>
+      <button md-ink-ripple ng-click="authenticate('google')" class="md-btn md-raised red btn-block p-h-md social-buton" id="authorize-button" ><i class="fa fa-google"></i></button>
+      <button md-ink-ripple ng-click="authenticate('linkedin')" class="md-btn md-raised  btn-block p-h-md social-buton" style="background-color: #069 !important"><i class="fa fa-linkedin"></i></button>
+      <button md-ink-ripple ng-click="authenticate('facebook')" class="md-btn md-raised blue btn-block p-h-md social-buton" style="background-color: #4C67A1" ><i class="fa fa-facebook"></i></button>
+    </div>
       <div class="m-b text-sm">
-        Sign up to your {{app.name}} Account
+        Sign up to your Clubmein Account
       </div>
       <form name="form">
         <div class="md-form-group">

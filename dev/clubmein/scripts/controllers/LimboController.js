@@ -1,4 +1,4 @@
-var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state', function($rootScope, scope, RootService, $mdDialog, $auth, $state){
+var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state','$mdMedia', function($rootScope, scope, RootService, $mdDialog, $auth, $state, $mdMedia){
 	var vm = this;
         
     vm.user = null;
@@ -32,17 +32,16 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
 	};
 
 	scope.showConfirm = function(ev, code, type){
-
-		 // Appending dialog to document.body to cover sidenav in docs app
-	    var confirm = $mdDialog.confirm()
+		/* // Appending dialog to document.body to cover sidenav in docs app
+	   var confirm = $mdDialog.confirm()
 	          .title('Do you really want to be a '+type+'?')
 	          .textContent('Please confirm your answer.')
 	          .ariaLabel('Lucky day')
 	          .targetEvent(ev)
 	          .ok('Yes!')
-	          .cancel("Cancel");
+	          .cancel("Cancel");*/
 
-	    $mdDialog.show(confirm).then(function() {
+	   /*$mdDialog.show(confirm).then(function() {
     		var data ={
     			code: code
     		};
@@ -60,7 +59,31 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
 	    }, function() {
 	      console.log('you rejected it' );
 	    });
+    */
 	};
+
+    scope.showAdvanced = function(ev, code, type) {
+        $rootScope.limboUser.code = code;
+        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && scope.customFullscreen;
+        $mdDialog.show({
+          controller: limboLocationCtrl,
+          templateUrl: 'views/partials/complete-user-location.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: useFullScreen
+        })
+        .then(function(answer) {
+          scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+          scope.status = 'You cancelled the dialog.';
+        });
+        scope.$watch(function() {
+          return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+          scope.customFullscreen = (wantsFullScreen === true);
+        });
+    };
 }];
 
 angular.module('app').controller('LimboCtrl', LimboCtrl);

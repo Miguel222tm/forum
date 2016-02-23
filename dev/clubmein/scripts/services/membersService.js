@@ -23,21 +23,18 @@ var MembersService = ['$http', '$q', 'RootService',  function ($http, $q, clubSe
 		this.setItems(array);
 	}
 
-	this.addNewItem = function(item){
-		if(!this.newItem()){
-			this.items.push(item);
-		}
-	};
-
-	this.newItem = function(){
-		var booleano = false;
-		angular.forEach(scope.items, function(item, key){
-			if(item && !item.itemId){
-				booleano = true;
+	this.removeItem = function(deletingItem){
+		var array = [];
+		angular.forEach(this.items, function(item, key){
+			if(item.itemId != deletingItem.itemId || !item.itemId){
+				array.push(item);
 			}
 		});
-		return booleano;
+		this.setItems(array);
 	};
+
+
+	
 
 	this.getCategories = function (){
 		return this.categories;

@@ -1,12 +1,14 @@
-var item = ['$state','RootService','MembersService','$rootScope', function($state, clubService, membersService, $rootScope){
+var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', function($state, clubService, membersService, $rootScope, $mdDialog){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/partials/item.html', 
 		scope: { 
 			item: '=',
-			categories: '='
+			items: '=',
+			categories: '=',
 		},
-		link: function(scope){
+		controller: itemsCtrl,
+		link: function(scope, controller){
 			console.log('item: ', scope.item);
 			scope.country;
 			scope.state;
@@ -30,7 +32,7 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 
 			scope.setCategory = function(cat){
 				scope.category = cat;
-				console.log('cat', cat);
+				//console.log('cat', cat);
 				if(scope.category && scope.category.categoryId){
 					scope.category.other = false;
 					scope.item.categoryId = scope.category.categoryId;
@@ -41,9 +43,9 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 
 					//console.log('scope.item::::', scope.item);
 					var request = clubService.sendRequest('GET', '/category/'+scope.item.categoryId+'/products');
-					request.then(function (response){
+					request.then( function(response){
 						scope.products = response;
-						console.log('products ', response);
+						//console.log('products ', response);
 						scope.products.push({name: 'Other', code: 'otr'});
 					}, function(){
 					 	clubService.addNotification('error getting the products', 'error');
@@ -65,18 +67,18 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 				scope.product = product;
 				if(scope.product && scope.product.productId){
 					
-					console.log('scope.category in products', scope.category);
+					//console.log('scope.category in products', scope.category);
 					scope.product.other = false;
 					scope.item.productId = angular.copy(scope.product.productId);
 					scope.item.product_name = angular.copy(scope.product.name);
-					console.log('product id', scope.item.productId);
+					//console.log('product id', scope.item.productId);
 
 					var request = clubService.sendRequest('GET', '/product/'+scope.item.productId+'/brands');	
 					request.then(function(response){
 						scope.brands = response;
 						scope.brands.push({name: 'Other'});
 						scope.product.other = false;
-						console.log('brands', scope.brands);
+						//console.log('brands', scope.brands);
 					}, function(error){
 						clubService.addNotification('error getting the brands');
 					});
@@ -103,7 +105,7 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 					var request = clubService.sendRequest('GET', '/brand/'+scope.item.brandId+'/models');
 					request.then(function(response){
 						scope.models = response;
-						console.log('scope.models', scope.models);
+						//console.log('scope.models', scope.models);
 						scope.models.push({name: 'Other'});
 					}, function(error){
 						clubService.addNotification('error getting models', 'error');
@@ -121,13 +123,13 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 
 			scope.setModel = function(model){
 				scope.model = model;
-				console.log('scope.model', scope.model);
+				//console.log('scope.model', scope.model);
 
 				if(scope.model && scope.model.modelId){
 					scope.item.modelId = scope.model.modelId;
 					scope.item.model_name = scope.model.name;
 					scope.model.other = false;
-					console.log('model', scope.item.modelId);
+					//console.log('model', scope.item.modelId);
 				}
 				if(scope.model  && !scope.model.modelId){
 					scope.item.modelId  = null;
@@ -146,10 +148,20 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 			};
 
 			scope.edit = function (){
+				if(scope.item.otherLocation && scope.country && scope.state && scope.city){
+					scope.location  = {
+						itemLocationId: scope.item.location[1].itemLocationId,
+						country: scope.country,
+						state: scope.state,
+						city: scope.city
+					};
+					scope.item.modifyLocation = scope.location;
+				}
 				var request = clubService.sendRequest('PUT', '/item/'+scope.item.itemId, scope.item);
 				request.then(function(response){
+
 					scope.item = response;
-					console.log('saved');
+					console.log('edited!', response);
 					clubService.addNotification('item saved correctly', 'success');
 					scope.bContent = false;
 				}, function(error){
@@ -159,50 +171,38 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 
 			scope.save = function (){
 				console.log('item to save', scope.item);
-					if(allFieldsCompleted() && scope.item.categoryId && scope.item.productId && scope.item.brandId && scope.item.modelId){
-						
-						if(scope.item.otherLocation && scope.country && scope.state && scope.city){
-							console.log('added other location');
-							scope.location  = {
-								country: scope.country,
-								state: scope.state,
-								city: scope.city
-							};
-							scope.item.location = scope.location;
-						}
+				if(allFieldsCompleted() && scope.item.categoryId && scope.item.productId && scope.item.brandId && scope.item.modelId){
+					scope.item.active = true;
+				}
+				if(allFieldsCompleted() && (!scope.item.categoryId || !scope.item.productId || !scope.item.brandId || !scope.item.modelId)){
+					scope.item.active = false;
+				}
 
-						scope.item.memberId = $rootScope.currentUser.memberId;
-						console.log('new item everything with ids', scope.item);
-						var request = clubService.sendRequest('POST', '/item', scope.item);
-						request.then(function(response){
-							scope.item = response;
-							membersService.addItems(response);
-							scope.bContent = false;
-							clubService.addNotification('added item successfully', 'success');
-						}, function(error){
-							clubService.addNotification('error adding item', 'error');
-						});
-					}
-					if(allFieldsCompleted() && (!scope.item.categoryId || !scope.item.productId || !scope.item.brandId || !scope.item.modelId)){
+				if(scope.item.otherLocation && scope.country && scope.state && scope.city){
+					console.log('added other location');
+					scope.location  = {
+						country: scope.country,
+						state: scope.state,
+						city: scope.city
+					};
+					scope.item.location = scope.location;
+				}
 
-						if(scope.item.otherLocation && scope.country && scope.state && scope.city){
-							console.log('added other location');
-							scope.location  = {
-								country: scope.country,
-								state: scope.state,
-								city: scope.city
-							};
-							scope.item.location = scope.location;
-						}
-
-						var request = clubService.sendRequest('POST', '/request', scope.item);
-						request.then(function(response){
-							scope.requests.push(response);
-						}, function(error){
-
-						});
-					}
+				scope.item.memberId = $rootScope.currentUser.memberId;
+				scope.bContent = false;
+				var request = clubService.sendRequest('POST', '/item', scope.item);
+				request.then(function(response){
 					
+					scope.item.itemId= response.itemId;
+					scope.item.location = response.location;
+					scope.safeItem.itemId = response.itemId;
+					scope.safeItem.location = response.location;
+					scope.edit();
+
+					clubService.addNotification('added item successfully', 'success');
+				}, function(error){
+					clubService.addNotification('error adding item', 'error');
+				});	
 				
 			};
 
@@ -229,6 +229,35 @@ var item = ['$state','RootService','MembersService','$rootScope', function($stat
 			scope.otherLocation = function(){
 				scope.item.otherLocation != scope.item.otherlocation;
 				//console.log('scope.item.otherLocation', scope.item.otherLocation);
+			};
+
+			scope.showConfirm = function(ev, code, type){
+				 // Appending dialog to document.body to cover sidenav in docs app
+			   var confirm = $mdDialog.confirm()
+			          .title('Do you really want delete this item ?')
+			          .textContent('Please confirm your answer.')
+			          .ariaLabel('Lucky day')
+			          .targetEvent(ev)
+			          .ok('Yes!')
+			          .cancel("Cancel");
+
+			   $mdDialog.show(confirm).then(function() {
+		    		scope.deleteItem();
+		    	
+			    }, function() {
+			      console.log('canceled');
+			    });
+		    
+			};
+			scope.deleteItem = function(){
+				var request = clubService.sendRequest('DELETE', '/item/'+scope.item.itemId);
+				request.then(function(response){
+					membersService.removeItem(response);
+					scope.item = null;
+					scope.bContent = false;
+				}, function(error){
+					clubService.addNotification('error deleting the item', 'error');
+				});
 			};
 
 			

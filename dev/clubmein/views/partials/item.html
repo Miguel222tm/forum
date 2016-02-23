@@ -1,4 +1,4 @@
-<div>
+<div ng-if="item">
 	<li class="list-item">
     <a herf class="list-left">
     	<span class="w-40 r-2x _600 text-lg accent">
@@ -8,7 +8,7 @@
     <div class="list-body" >
     	<div class="m-y-sm pull-right" ng-if="item.itemId">
         Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
-      	Delete <a href class="btn btn-xs white btn-icon" ng-click="deleteAlert()"><i class="fa fa-trash"></i></a>
+      	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
   	  </div>
       <div>
         <a href>{{item.brand_name}} - {{item.model_name}}</a>
@@ -85,14 +85,14 @@
               <div class="col-sm-9">
                 <textarea type="text" data-parsley-type="number"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
               </div>
-            </div>
+            </div> 
 
-            <div class="form-group row">
+            <div class="form-group row" >
               <label class="col-sm-3 form-control-label">Location</label>
               <div class="col-sm-9">
                 <div class="checkbox">
                   <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location {{item.otherLocation}}
+                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location 
                   </label>
                 </div>
               </div>
@@ -117,7 +117,7 @@
       <form ui-jp="parsley">
         <div class="box">
           <div class="box-header">
-            <h2>Item information</h2>
+            <h2>Item information {{bContent}}</h2>
           </div>
           <div class="box-body">                    
             <div class="form-group row">
@@ -175,12 +175,19 @@
               </div>
             </div>
 
+            <div class="form-group row" ng-repeat="location in item.location">
+              <label class="col-sm-3 form-control-label">Location</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" ng-value="location.state +', '+ location.city+ ', ' + location.country " ng-disabled="true">
+              </div>
+            </div>
+
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Location</label>
               <div class="col-sm-9">
                 <div class="checkbox">
                   <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location {{item.otherLocation}}
+                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i>  modify your second location
                   </label>
                 </div>
               </div>

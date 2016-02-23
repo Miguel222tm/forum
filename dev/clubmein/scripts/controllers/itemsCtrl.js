@@ -5,9 +5,10 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 	function init(){
 		scope.items = [];
 		scope.countries = null;
-
+		scope.requests = [];
 		
 		getItems();
+		
 		getItemCategories();
 	}
 
@@ -21,12 +22,21 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 				scope.items = response;
 				membersService.setItems(response);
 				//console.log('scope.items', scope.items);
-
+				
 			}, function(error){
 				clubService.addNotification("error getting member's items", 'error');
 			});
 		}
-	}	
+	}
+
+	scope.haveRequests = function(){
+		var booleano = false;
+		angular.forEach(scope.items, function(item, key){
+			if(!item.active)
+				booleano = true;
+		});
+		return booleano;
+	};
 
 	function getItemCategories(){
 		if(!membersService.getCategories()){
@@ -45,10 +55,10 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 	}
 	scope.addItem = function(){
 		var item = {
-			categoryId: null, 
-			productId: null, 
-			brandId: null, 
-			modelId: null, 
+			categoryId: 0, 
+			productId: 0, 
+			brandId: 0, 
+			modelId: 0, 
 			category_name: null, 
 			product_name: null, 
 			brand_name: null, 

@@ -146,7 +146,7 @@ class membersController extends Controller
 
             if(isset($items)){
                 foreach ($items as $item) {
-                    $item['location'] = $item->location();
+                    $item['location'] = $item->location()->get();
                 }
             }
 
