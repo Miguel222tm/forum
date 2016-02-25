@@ -305,6 +305,11 @@ Route::put('city/{id}', 'citiesController@update');
 
 Route::delete('/city/{id}', 'citiesController@destroy');
 
+
+
+Route::get('/near', 'nearByController@index');
+
+
 /*=====  End of constants  ======*/
 
   

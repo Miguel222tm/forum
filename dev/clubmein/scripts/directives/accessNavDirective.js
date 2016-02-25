@@ -33,7 +33,13 @@ var accessNav = ['$state', function($state){
 							state: 'app.search'
 						});
 						break;
-					case "fn_items":
+					
+
+				}
+				if(scope.user.access_level === 1){
+					switch(func.code){
+
+						case "fn_items":
 						scope.menu.push({
 							hierarchy: 3,
 							level: 0,
@@ -43,10 +49,6 @@ var accessNav = ['$state', function($state){
 							state: 'app.items'
 						});
 						break;
-
-				}
-				if(scope.user.access_level === 1){
-					switch(func.code){
 	
 						case "fn_near_by":
 							scope.menu.push({
@@ -62,7 +64,7 @@ var accessNav = ['$state', function($state){
 					}
 				}
 				/*=======================================
-				=            employee           =
+				=            vendor           =
 				=======================================*/			
 				if(scope.user.access_level === 2 || scope.user.access_level === 3){
 					switch(func.code){
@@ -102,10 +104,68 @@ var accessNav = ['$state', function($state){
 							break;
 					}
 				}
+
+				/*=============================================
+				=            employee				          =
+				=============================================*/
+				
 				if(scope.user.access_level === 3){
 					switch(func.code){
 						
-						
+						case "fn_categories":
+							scope.menu.push({
+								hierarchy: 3,
+								level: 0,
+								hidden: false,
+								icon: 'fa fa-list',
+								label: 'Categories',
+								state: 'app.categories'
+							});
+						break;
+						case "fn_requests":
+							scope.menu.push({
+								hierarchy: 4,
+								level: 0,
+								hidden: false,
+								icon: 'fa fa-book',
+								label: 'Requests',
+								state: 'app.requests'
+							});
+						break;
+						case "fn_users":
+							scope.menu.push({
+								hierarchy: 5,
+								level: 0,
+								hidden: false,
+								submenus: true, 
+								icon: 'fa fa-book',
+								label: 'Users',
+								state: 'app.requests',
+								active: false,
+							});
+						break;
+							case "fn_users_members":
+								scope.submenu.push({
+									hierarchy: 5,
+									level: 1,
+									hidden: false,
+									icon: 'fa fa-users',
+									label: 'Members',
+									state: 'app.members'
+								});
+							break;
+							case "fn_users_vendors":
+								scope.submenu.push({
+									hierarchy: 5,
+									level: 1,
+									hidden: false,
+									icon: 'fa fa-users',
+									label: 'Vendors',
+									state: 'app.vendors'
+								});
+							break;
+
+
 					}
 				}
 

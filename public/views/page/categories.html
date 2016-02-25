@@ -1,0 +1,34 @@
+<div> 
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+	    	<div class="box">
+	    		
+		    	<ul class="list inset" ng-repeat="category in categories" >
+			        <category category="category" user="currentUser"> </category>
+			    </ul>
+		    </div>
+	    </div>
+	    
+
+      	<hr>
+      	<div class="col-sm-12 col-md-12" ng-if="haveRequests()">
+	    	<div class="box">
+	    		<div class="box-header">
+	    			<h3>Requests</h3>
+	    			<small>These are your requests, wait till an admin approves them.</small>
+	    		</div>
+		    	<ul class="list inset" ng-repeat="item in items" ng-if="!item.active">
+			        <item  item="item" categories="categories"> </item>
+			        
+			    </ul>
+
+		    </div>
+	    </div>
+
+	    <div class="col-sm-12 col-md-12">
+        	<button class="btn btn-fw primary col-sm-12 col-md-12" ng-click="addItem()">Add a new Category</button>
+      	</div>
+
+	</div>
+
+</div>

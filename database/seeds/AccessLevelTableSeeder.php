@@ -19,10 +19,10 @@ class AccessLevelTableSeeder extends Seeder
 					$al->addFunctionalities([1,2,3,4]);
 					break;
 				case 2: 
-					$al->addFunctionalities([1,3,4,5,6]);
+					$al->addFunctionalities([1,2,6, 13]);
 					break;
 				case 3: 
-					$al->addFunctionalities([1,2,3,4,5,6]);
+					$al->addFunctionalities([1,7,8, 9,10, 11, 12]);
 					break;
 				case 4: 
 					$al->addFunctionalities([1,2]);

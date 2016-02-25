@@ -62,9 +62,11 @@
                // Loop through each rejection reason and redirect to the login
                // state if one is encountered
                angular.forEach(rejectionReasons, function(value, key) {
-                  if(rejection.data.error === value) {
-                    // Send the user to the auth state so they can login
-                    $state.go('access.signin');
+                  if(rejection.data){
+                    if(rejection.data.error === value) {
+                      // Send the user to the auth state so they can login
+                      $state.go('access.signin');
+                    }
                   }
                });
                   return $q.reject(rejection);
@@ -157,6 +159,48 @@
               data: { title: 'My bids' } ,
               controller: 'myBidsCtrl',  
             })
+
+            .state('app.club', {
+              url: '/club',
+              templateUrl: 'views/page/club.html', 
+              data: { title: 'Category/Clubs'} ,
+              controller: 'clubCtrl',  
+            })
+            .state('app.modelo', {
+              url: '/club/modelo',
+              templateUrl: 'views/page/club-modelo.html', 
+              data: { title: 'Club' } ,
+              controller: 'clubModeloCtrl',  
+            })
+
+            .state('app.categories', {
+              url: '/categories',
+              templateUrl: 'views/page/categories.html', 
+              data: { title: 'Categories' } ,
+              controller: 'categoriesCtrl',  
+            })
+
+            .state('app.requests', {
+              url: '/requests',
+              templateUrl: 'views/page/user-requests.html', 
+              data: { title: 'User Requests' } ,
+              controller: 'userRequestsCtrl',  
+            })
+            .state('app.members', {
+              url: '/users/members',
+              templateUrl: 'views/page/members.html', 
+              data: { title: 'Members' } ,
+              controller: 'membersListCtrl',  
+            })
+            .state('app.vendors', {
+              url: '/users/vendors',
+              templateUrl: 'views/page/vendors.html', 
+              data: { title: 'Vendors' } ,
+              controller: 'vendorsListCtrl',  
+            })
+
+
+
 
             // applications
 

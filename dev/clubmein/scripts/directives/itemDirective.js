@@ -9,7 +9,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 		},
 		controller: itemsCtrl,
 		link: function(scope, controller){
-			console.log('item: ', scope.item);
+			//console.log('item: ', scope.item);
 			scope.country;
 			scope.state;
 			scope.category;

@@ -1,8 +1,8 @@
-
 var MembersService = ['$http', '$q', 'RootService',  function ($http, $q, clubService){
 
 	this.items = null;
 	this.categories = null;
+	this.clubModelo = null;
 
 	this.getItems = function (){
 		return this.items;
@@ -34,14 +34,28 @@ var MembersService = ['$http', '$q', 'RootService',  function ($http, $q, clubSe
 	};
 
 
-	
-
 	this.getCategories = function (){
 		return this.categories;
 	};
 
 	this.setCategories = function(categories){
 		this.categories = categories;
+	};
+
+	this.setClub = function(club){
+		this.club = club;
+	};
+
+	this.getClub = function(club){
+		return this.club;
+	};
+
+	this.getClubModelo = function(){
+		return this.clubModelo;
+	};
+
+	this.setClubModelo = function(modelo){
+		this.clubModelo = modelo;
 	};
 
 }];
