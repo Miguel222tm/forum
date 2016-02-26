@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Flatkit - AngularJS Version | Bootstrap 4 Web App Kit with AngularJS</title>
+  <title>ClubMeIn | App</title>
   <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +63,10 @@
   <!-- lazyload -->
   <script src="libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
 
+
   <script src="scripts/scripts.min.js"> </script>
+  <script src="http://lab.iamrohit.in/js/location.js"></script>
+
 <!-- App 
   
   <script src="scripts/app.js"></script>

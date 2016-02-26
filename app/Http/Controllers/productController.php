@@ -18,7 +18,12 @@ class productController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $products = Product::all();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($products);
     }
 
     /**
@@ -39,7 +44,14 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $product = new Product();
+            $product->fill(Input::all());
+            $product->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($product);
     }
 
     /**
@@ -50,7 +62,13 @@ class productController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $product = Product::findOrFail($id);
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($product);
     }
 
     /**
@@ -73,7 +91,14 @@ class productController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $product = Product::findOrFail($id);
+            $product->fill(Input::all());
+            $product->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($product);
     }
 
     /**
@@ -84,7 +109,13 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $product = Product::findOrFail($id);
+            $product->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($product);
     }
 
 

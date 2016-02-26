@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\models\Modelo;
+use Input;
 
 class modelsController extends Controller
 {
@@ -16,7 +18,12 @@ class modelsController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $models = Modelo::all();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($models);
     }
 
     /**
@@ -37,7 +44,14 @@ class modelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $modelo = new Modelo();
+            $modelo->fill(Input::all());
+            $modelo->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelo);
     }
 
     /**
@@ -48,7 +62,13 @@ class modelsController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $modelo = Modelo::findOrFail($id);
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelo);
     }
 
     /**
@@ -71,7 +91,14 @@ class modelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $modelo = Modelo::findOrFail($id);
+            $modelo->fill(Input::all());
+            $modelo->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelo);
     }
 
     /**
@@ -82,6 +109,12 @@ class modelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $modelo = Modelo::findOrFail($id);
+            $modelo->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelo);
     }
 }

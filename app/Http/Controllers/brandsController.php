@@ -18,7 +18,12 @@ class brandsController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $brands = Brand::all();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brands);
     }
 
     /**
@@ -39,7 +44,14 @@ class brandsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $brand = new Brand();
+            $brand->fill(Input::all());
+            $brand->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brand);
     }
 
     /**
@@ -50,7 +62,13 @@ class brandsController extends Controller
      */
     public function show($id)
     {
-        //
+         try{
+            $brand = Brand::findOrFail($id);
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brand);
     }
 
     /**
@@ -73,7 +91,14 @@ class brandsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $brand = Brand::findOrFail($id);
+            $brand->fill(Input::all());
+            $brand->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brand);
     }
 
     /**
@@ -84,7 +109,13 @@ class brandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+         try{
+            $brand = Brand::findOrFail($id);
+            $brand->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($brand);
     }
 
     public function models($id){

@@ -9,7 +9,7 @@
       <div class="m-y-sm pull-right">
          <a href class="btn" ng-click="loadBrands()" ng-if="!bShowChild || !product.brands"> <i class="fa fa-product-hunt"></i>Show brands</a>
         <a href class="btn" ng-click="hideBrands()" ng-if="bShowChild && product.brands"> <i class="fa fa-product-hunt"></i> Hide brands</a>
-        Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
+        Edit <a href class="btn btn-xs white btn-icon" ng-click="showEdit()"> <i class="fa fa-pencil"></i></a>
         Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
       </div>
       <div>
@@ -20,104 +20,41 @@
         <span class="label"></span>
       </div>
     </div>
-   <!--  <div class="col-sm-12 m-t" ng-if="bContent">
+    <div class="col-sm-12 m-t" ng-if="bShowEdit">
       <form ui-jp="parsley">
         <div class="box">
           <div class="box-header">
-            <h2>Item information</h2>
+            <h2>Product information</h2>
           </div>
           <div class="box-body">                    
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">product</label>
+              <label class="col-sm-3 form-control-label">Name</label>
               <div class="col-sm-9">
-                <select required class="form-control c-select m-y" ng-model="product" ng-options="product as product.name for product in categories" ng-click="setproduct(product)">      
-                </select> 
-               
-                <input type="text" data-parsley-type="text" class="form-control" placeholder="Other product" ng-show="product.other" ng-model="item.product_name">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Name" ng-model="product.name">
 
               </div>
             </div>
-            
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Product</label>
+              <label class="col-sm-3 form-control-label">Active</label>
               <div class="col-sm-9">
-                <select required class="form-control c-select m-y" ng-model="product" ng-options="product as product.name for product in products" ng-click="setProduct(product)" ng-hide="product.other">
-                </select>
-                <input type="text" data-parsley-type="text" class="form-control" placeholder="Other product" ng-show="product.other || product.other" ng-model="item.product_name"> 
+                <input type="checkbox" ng-model="product.active" ng-checked="product.active"> {{product.active}}
               </div>
             </div>
-
-            
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Brand</label>
-              <div class="col-sm-9">
-                <select required class="form-control c-select m-y" ng-model="brand" ng-options="brand as brand.name for brand in brands" ng-click="setBrand(brand)" >
-                </select>
-                <input type="text" data-parsley-type="text" ng-model="item.brand_name" class="form-control" placeholder="Other brand" ng-show="product.other || brand.other || product.other">  
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Model</label>
-              <div class="col-sm-9">
-                <select required class="form-control c-select m-y" ng-model="model" ng-options="model as model.name for model in models" ng-click="setModel(model)" ng-hide="product.other || product.other || brand.other">
-                </select>
-                <input type="text" data-parsley-type="text" ng-model="item.model_name" class="form-control" placeholder="Other model" ng-if="product.other || brand.other || product.other || model.other">
-              </div>
-
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Quantity</label>
-              <div class="col-sm-9">
-                <input type="number" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.quantity">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Price</label>
-              <div class="col-sm-9">
-                <input type="number" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.price">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Description</label>
-              <div class="col-sm-9">
-                <textarea type="text" data-parsley-type="number"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
-              </div>
-            </div> 
-
-            <div class="form-group row" >
-              <label class="col-sm-3 form-control-label">Location</label>
-              <div class="col-sm-9">
-                <div class="checkbox">
-                  <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location 
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="item.otherLocation">
-              <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
-              
-            </div>
-
           </div>
           <div class="dker p-a text-right">
             <button type="submit" class="btn info" ng-click="save()">Save</button>
-            <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
-
+            <button type="submit" class="btn warning" ng-click="hideEdit()">Cancel</button>
           </div>
         </div>
       </form>
-    </div> -->
+    </div> 
 
     <div class="col-sm-12 m-t" ng-if="bShowChild">
       <div ng-repeat="brand in product.brands">
         <brand brand="brand" user="user"></brand>
+      </div>
+      <div class="col-sm-12 col-md-12">
+        <button class="btn btn-fw red col-sm-12 col-md-12" ng-click="addBrand()">Add a new brand</button>
       </div>
     </div>
     </li>

@@ -27,7 +27,6 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 				}else{
 					scope.bContent = true;
 				}
-
 			};
 
 			scope.setCategory = function(cat){

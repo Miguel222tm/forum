@@ -38,6 +38,7 @@ class categoryController extends Controller
         try{
             $category = new Category();
             $category->fill(Input::all());
+            $category->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }
@@ -84,6 +85,7 @@ class categoryController extends Controller
         try{
             $category = Category::findOrFail($id);
             $category->fill(Input::all());
+            $category->save();
         }catch(Exception $ex){
             return response()->json($ex);
         }

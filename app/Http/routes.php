@@ -182,7 +182,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   =             product            =
   =================================*/
   
-  Route::get('/product', 'productController@index');
+  Route::get('/products', 'productController@index');
 
   Route::get('/product/{id}', 'productController@show');
 
@@ -209,7 +209,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::get('/brand/{id}/models', 'brandsController@models');
 
-  Route::post('/brands', 'brandsController@store');
+  Route::post('/brand', 'brandsController@store');
 
   Route::put('/brand/{id}', 'brandsController@update');
 
@@ -225,11 +225,11 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::get('/models/{id}', 'modelsController@show');
 
-  Route::post('/models', 'modelsController@store');
+  Route::post('/model', 'modelsController@store');
 
-  Route::put('/models/{id}', 'modelsController@update');
+  Route::put('/model/{id}', 'modelsController@update');
 
-  Route::delete('/models/{id}', 'modelsController@destroy');
+  Route::delete('/model/{id}', 'modelsController@destroy');
   
   /*=====  End of  models  ======*/
 

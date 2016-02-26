@@ -5,7 +5,6 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
     vm.error = null ;
 
     vm.getUser = function() {
-
         // This request will hit the index method in the AuthenticateController
         // on the Laravel side and will return the list of users
         var request= RootService.sendRequest('get','/session/user');
@@ -16,7 +15,7 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
             }else{
                 $rootScope.currentUser = response;
                 console.log('rootscope.currentUser', $rootScope.currentUser);
-                $state.go('app.dashboard');
+                $state.go('app.home');
             }
         }, function(error){
             vm.error= error;
