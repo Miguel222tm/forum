@@ -44,24 +44,40 @@
         Sign up to your Flatkit Account
       </div>
       <form name="form">
+        <div class="m-b text-sm">
+        Sign up to your {{app.name}} Account
+      </div>
+      <form name="form">
         <div class="md-form-group">
-          <input type="text" class="md-input" ng-model="user.name" required>
-          <label>Name</label>
+          <input type="text" class="md-input" ng-model="user.firstName" required>
+          <label>First name</label>
+        </div>
+        <div class="md-form-group">
+          <input type="text" class="md-input" ng-model="user.lastName" required>
+          <label>Last name</label>
         </div>
         <div class="md-form-group">
           <input type="email" class="md-input" ng-model="user.email" required>
           <label>Email</label>
         </div>
         <div class="md-form-group">
-          <input type="password" class="md-input" ng-model="user.password" required>
+          <input type="password" class="md-input" ng-model="user.password" minlength=6 required>
           <label>Password</label>
+        </div>
+        <div class="md-form-group">
+          <input type="password" class="md-input" ng-model="user.repeatPassword" minlength=6 required>
+          <label>Repeat password</label>
+        </div>
+        <div class="md-form-group">
+          <label ng-if="user.repeatPassword!=null && user.password != user.repeatPassword"> Sorry, the password don't match</label>
         </div>
         <div class="m-b-md">
           <label class="md-check">
-            <input type="checkbox" ng-model="agree" required><i class="primary"></i> Agree the <a href>terms and policy</a>
+            <input type="checkbox" ng-model="agree" required><i class="indigo"></i> Agree the <a href>terms and policy</a>
           </label>
         </div>
-        <button type="submit" class="btn primary btn-block p-x-md">Sign up</button>
+        <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md" ng-click="signUp()">Sign up</button>
+      
       </form>
     </div>
 
