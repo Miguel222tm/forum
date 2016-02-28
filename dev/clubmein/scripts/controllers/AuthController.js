@@ -111,7 +111,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
           var request= $RootService.sendRequest('post', '/signup', user);
           request.then( function(response){
               console.log('registration sucessful', response);
-              $RootService.addNotification('registration completed!');
+              $RootService.addNotification('registration completed!', 'success');
               $state.go('access.signin');
           }, function(error){
               $RootService.addNotification('error in the registration, try again');

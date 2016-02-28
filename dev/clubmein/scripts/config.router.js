@@ -649,7 +649,8 @@
             })
             .state('access.signup', {
               url: '/signup',
-              templateUrl: 'views/misc/signup.html'
+              templateUrl: 'views/misc/signup.html', 
+              controller: 'AuthController'
             })
             .state('access.select-user',{
               url: '/select-user', 
