@@ -7,8 +7,8 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 		scope.countries = null;
 		scope.requests = [];
 
-		if($rootScope.currentUser.memberId)
-			getItems();
+		
+		getItems();
 		getItemCategories();
 	}
 

@@ -1,4 +1,4 @@
-var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', function($state, clubService, membersService, $rootScope, $mdDialog){
+var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$timeout', function($state, clubService, membersService, $rootScope, $mdDialog, $timeout){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/partials/item.html', 
@@ -13,7 +13,6 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 			//console.log('item: ', scope.item);
 			scope.country;
 			scope.state;
-			scope.category = null;
 			scope.products = [];
 			scope.bOCategory  = false;
 			scope.bOProduct = false;
@@ -60,7 +59,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 
 			scope.setCategory = function(cat){
 				
-				scope.category = cat;
+				scope.category=cat;		
 				console.log('scope.category!', scope.category);
 				if(scope.category){
 					
@@ -116,6 +115,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 
 			scope.setBrand = function(brand){
 				scope.brand = brand;
+				console.log(scope.brand);
 				if(scope.brand){
 					if(!scope.brand.brandId){
 						scope.bOBrand = true;
@@ -178,6 +178,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 			scope.save = function(){
 				
 				var bSave = false;
+				console.log(allFieldsCompleted() , scope.category , scope.category.categoryId , scope.product , scope.product.productId , scope.brand , scope.brand.brandId , scope.model , scope.model.modelId);
 				if(allFieldsCompleted() && scope.category && scope.category.categoryId && scope.product && scope.product.productId && scope.brand && scope.brand.brandId && scope.model && scope.model.modelId)
 				{
 					scope.item.categoryId = scope.category.categoryId;
@@ -194,7 +195,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 				}else if( allFieldsCompleted() && scope.item.itemId === 'clubIn'){
 					bSave = true;
 				}
-				if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) && scope.item.category_name && scope.item.product_name && scope.item.brand_name && scope.item.model_name)
+				else if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) && scope.item.category_name && scope.item.product_name && scope.item.brand_name && scope.item.model_name)
 				{
 					scope.item.active = false;
 					console.log('item request!', scope.item);

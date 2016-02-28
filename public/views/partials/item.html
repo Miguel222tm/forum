@@ -30,7 +30,7 @@
               <label class="col-sm-3 form-control-label">Category</label>
               <div class="col-sm-9">
 
-                <select  class="form-control c-select m-y" ng-model="category" ng-options="category as category.name for category in categories | filter: {active : 1}" ng-click="setCategory(category)"
+                <select  class="form-control c-select m-y" ng-model="$parent.category" ng-options="category as category.name for category in categories | filter: {active : 1}" ng-change="setCategory(category)"
                  placeholder="select a category"
                 
                 >
@@ -42,11 +42,12 @@
 
               </div>
             </div>
+
             
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Product</label>
               <div class="col-sm-9">
-                <select  class="form-control c-select m-y" ng-model="product" ng-options="product as product.name for product in category.products | filter: {active : 1}" ng-click="setProduct(product)" ng-hide="category.other"
+                <select  class="form-control c-select m-y" ng-model="product" ng-options="product as product.name for product in category.products | filter: {active : 1}" ng-change="setProduct(product)" ng-hide="category.other"
                 >
                 </select>
 
@@ -59,7 +60,7 @@
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Brand</label>
               <div class="col-sm-9">
-                <select  class="form-control c-select m-y" ng-model="brand" ng-options="brand as brand.name for brand in product.brands | filter: {active : 1}" ng-click="setBrand(brand)" 
+                <select  class="form-control c-select m-y" ng-model="brand" ng-options="brand as brand.name for brand in product.brands | filter: {active : 1}" ng-change="setBrand(brand)" 
                 >
                 </select>
                 <input type="text" data-parsley-type="text" ng-model="item.brand_name" class="form-control" placeholder="Other brand" ng-show="bOBrand">  
@@ -69,7 +70,7 @@
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Model</label>
               <div class="col-sm-9">
-                <select  class="form-control c-select m-y" ng-model="model" ng-options="model as model.name for model in brand.models | filter: {active : 1}" ng-click="setModel(model)" ng-hide="product.other || category.other || brand.other"
+                <select  class="form-control c-select m-y" ng-model="model" ng-options="model as model.name for model in brand.models | filter: {active : 1}" ng-change="setModel(model)" ng-hide="product.other || category.other || brand.other"
                 >
                 </select>
                 <input type="text" data-parsley-type="text" ng-model="item.model_name" class="form-control" placeholder="Other model" ng-if="bOModel">
