@@ -6,9 +6,9 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 		scope.items = [];
 		scope.countries = null;
 		scope.requests = [];
-		
-		getItems();
-		
+
+		if($rootScope.currentUser.memberId)
+			getItems();
 		getItemCategories();
 	}
 
@@ -40,11 +40,12 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 
 	function getItemCategories(){
 		if(!membersService.getCategories()){
-			var request = clubService.sendRequest('GET', '/categories');
+			var request = clubService.sendRequest('GET', '/categories?bundle=true');
 			request.then(function(response){
+				console.log('response!', response);
 				scope.categories = response;
 				scope.categories.push({name: 'Other', code: 'otr'});
-				//console.log('categories:: ', response);
+				
 				membersService.setCategories(scope.categories);
 			}, function(error){
 				clubService.addNotification('error getting the categories', 'error');
@@ -62,8 +63,8 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 			category_name: null, 
 			product_name: null, 
 			brand_name: null, 
-			model_name: "new", 
-			quantity: 0, 
+			model_name: null, 
+			quantity: 1, 
 			price: 0, 
 			description: "", 
 			active: false

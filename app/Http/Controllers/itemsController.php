@@ -21,7 +21,11 @@ class itemsController extends Controller
     public function index()
     {
         try{
-             $items = Item::all();
+            if(Input::has('active') && Input::all()['active'] === "false"){
+             $items = Item::where('active', '=', false)->get();
+            }else{
+                $items = Item::all();
+            }
 
         }catch(Exception $ex){
             return response()->json($ex);

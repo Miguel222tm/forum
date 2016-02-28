@@ -6,15 +6,20 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 			item: '=',
 			items: '=',
 			categories: '=',
+			user: '=',
 		},
 		controller: itemsCtrl,
 		link: function(scope, controller){
 			//console.log('item: ', scope.item);
 			scope.country;
 			scope.state;
-			scope.category;
+			scope.category = null;
 			scope.products = [];
-			scope.other;
+			scope.bOCategory  = false;
+			scope.bOProduct = false;
+			scope.bOBrand = false;
+			scope.bOModel = false;
+
 			scope.bContent = false;
 			scope.safeItem;
 
@@ -27,112 +32,114 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 				}else{
 					scope.bContent = true;
 				}
+				if(scope.item.itemId === 'clubIn')
+					scope.bContent = true;
 			};
 
+			scope.addOther = function(parent, type){
+				var array = [];
+				angular.forEach(parent, function(element, key){
+					if(type === 'category' && element.categoryId){
+						array.push(element);
+					}
+					if(type === 'product' && element.productId){
+						array.push(element);
+					}
+					if(type === 'brand' && element.brandId){
+						array.push(element);
+					}
+					if(type === 'model' && element.modelId){
+						array.push(element);
+					}
+				});
+				var nuevo = {name:"Other"};
+				array.push(nuevo);
+				console.log('array ',type );
+				return array;
+			}
+
 			scope.setCategory = function(cat){
+				
 				scope.category = cat;
-				//console.log('cat', cat);
-				if(scope.category && scope.category.categoryId){
-					scope.category.other = false;
-					scope.item.categoryId = scope.category.categoryId;
-					scope.item.category_name = scope.category.name;
-
-					scope.item.productId = null;
+				console.log('scope.category!', scope.category);
+				if(scope.category){
+					
+					if(!scope.category.categoryId){
+						scope.bOCategory = true;
+						scope.bOProduct = true;
+						scope.bOBrand = true;
+						scope.bOModel = true;
+					}else{
+						/// add other to the list
+						scope.category.products = scope.addOther(scope.category.products, 'product');
+						scope.bOCategory = false;
+						scope.bOProduct = false;
+						scope.bOBrand = false;
+						scope.bOModel = false;
+					}
+					scope.item.category_name = null;
 					scope.item.product_name = null;
-
-					//console.log('scope.item::::', scope.item);
-					var request = clubService.sendRequest('GET', '/category/'+scope.item.categoryId+'/products');
-					request.then( function(response){
-						scope.products = response;
-						//console.log('products ', response);
-						scope.products.push({name: 'Other', code: 'otr'});
-					}, function(){
-					 	clubService.addNotification('error getting the products', 'error');
-					});
+					scope.item.brand_name = null;
+					scope.item.model_name = null;
+					scope.product = null;
+					scope.brand = null;
+					scope.model = null;
 				}
-				if(scope.category && !scope.category.categoryId){
-					scope.item.categoryId = null;
-					scope.item.category_name = scope.category.name;
+				
 
-					scope.item.productId = null;
-					scope.item.product_name = null;
-					scope.category.other = true;
-					scope.products = [];
-				}
-							
 			};
 
 			scope.setProduct = function(product){
 				scope.product = product;
-				if(scope.product && scope.product.productId){
-					
-					//console.log('scope.category in products', scope.category);
-					scope.product.other = false;
-					scope.item.productId = angular.copy(scope.product.productId);
-					scope.item.product_name = angular.copy(scope.product.name);
-					//console.log('product id', scope.item.productId);
-
-					var request = clubService.sendRequest('GET', '/product/'+scope.item.productId+'/brands');	
-					request.then(function(response){
-						scope.brands = response;
-						scope.brands.push({name: 'Other'});
-						scope.product.other = false;
-						//console.log('brands', scope.brands);
-					}, function(error){
-						clubService.addNotification('error getting the brands');
-					});
-				}
-				if(scope.product && !scope.productId){
-					scope.item.product_name = scope.product.name;
-					scope.item.productId = null;
-					scope.item.brandId =null;
+				console.log('product', scope.product);
+				if(scope.product){
+					if(!scope.product.productId){
+						scope.bOProduct = true;
+						scope.bOBrand = true;
+						scope.bOModel = true;
+					}else{
+						scope.product.brands= scope.addOther(scope.product.brands, 'brand');
+						scope.bOProduct = false;
+						scope.bOBrand = false;
+						scope.bOModel = false;
+					}
+					//clean item names
+					scope.item.product_name = null;
 					scope.item.brand_name = null;
-
-					scope.product.other = true;
+					scope.item.model_name = null;
+					scope.brand = null;
+					scope.model = null;
 				}
+
 
 			};
 
 			scope.setBrand = function(brand){
-				scope.brand  = brand;
-				if(scope.brand  && scope.brand.brandId){
-					scope.brand.other = false;
-					scope.item.productId = scope.brand.productId;
-					scope.item.brandId = scope.brand.brandId;
-					scope.item.brand_name = scope.brand.name;
-
-					var request = clubService.sendRequest('GET', '/brand/'+scope.item.brandId+'/models');
-					request.then(function(response){
-						scope.models = response;
-						//console.log('scope.models', scope.models);
-						scope.models.push({name: 'Other'});
-					}, function(error){
-						clubService.addNotification('error getting models', 'error');
-					});
-				}
-				if(scope.brand && !scope.brand.brandId){
-					scope.brand.other = true;
-					scope.item.brand_name = scope.brand.name;
-					scope.item.brandId = null;
-
-					scope.item.modelId = null;
+				scope.brand = brand;
+				if(scope.brand){
+					if(!scope.brand.brandId){
+						scope.bOBrand = true;
+						scope.bOModel = true;
+					}else{
+						scope.brand.models= scope.addOther(scope.brand.models, 'model');
+						scope.bOBrand = false;
+						scope.bOModel = false;
+					}
+					scope.item.brand_name = null;
 					scope.item.model_name = null;
+					scope.model = null;
 				}
 			};
 
 			scope.setModel = function(model){
 				scope.model = model;
-				//console.log('scope.model', scope.model);
-
-				if(scope.model && scope.model.modelId){
-					scope.item.modelId = scope.model.modelId;
-					scope.item.model_name = scope.model.name;
-					scope.model.other = false;
-					//console.log('model', scope.item.modelId);
-				}
-				if(scope.model  && !scope.model.modelId){
-					scope.item.modelId  = null;
-					scope.model.other = true;
+				if(scope.model){
+					if(scope.model.modelId){
+						scope.bOModel = false;
+					}else{
+						scope.bOModel = true;
+					}
+					scope.item.model_name = null;
 				}
 			};
 
@@ -168,14 +175,31 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 				});
 			};
 
-			scope.save = function (){
-				console.log('item to save', scope.item);
-				if(allFieldsCompleted() && scope.item.categoryId && scope.item.productId && scope.item.brandId && scope.item.modelId){
+			scope.save = function(){
+				
+				var bSave = false;
+				if(allFieldsCompleted() && scope.category && scope.category.categoryId && scope.product && scope.product.productId && scope.brand && scope.brand.brandId && scope.model && scope.model.modelId)
+				{
+					scope.item.categoryId = scope.category.categoryId;
+					scope.item.productId = scope.product.productId;
+					scope.item.brandId = scope.brand.brandId;
+					scope.item.modelId = scope.model.modelId;
+					scope.item.category_name = scope.category.name;
+					scope.item.product_name = scope.product.name;
+					scope.item.brand_name = scope.brand.name;
+					scope.item.model_name = scope.model.name;
+					console.log('item ready to be saved', scope.item);
 					scope.item.active = true;
+					bSave = true;
+				}else if( allFieldsCompleted() && scope.item.itemId === 'clubIn'){
+					bSave = true;
 				}
-				if(allFieldsCompleted() && (!scope.item.categoryId || !scope.item.productId || !scope.item.brandId || !scope.item.modelId)){
+				if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) && scope.item.category_name && scope.item.product_name && scope.item.brand_name && scope.item.model_name)
+				{
 					scope.item.active = false;
-				}
+					console.log('item request!', scope.item);
+					bSave = true;
+				}			
 
 				if(scope.item.otherLocation && scope.country && scope.state && scope.city){
 					console.log('added other location');
@@ -186,22 +210,26 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 					};
 					scope.item.location = scope.location;
 				}
-
-				scope.item.memberId = $rootScope.currentUser.memberId;
-				scope.bContent = false;
-				var request = clubService.sendRequest('POST', '/item', scope.item);
-				request.then(function(response){
+				if(bSave){
 					
-					scope.item.itemId= response.itemId;
-					scope.item.location = response.location;
-					scope.safeItem.itemId = response.itemId;
-					scope.safeItem.location = response.location;
-					scope.edit();
-
-					clubService.addNotification('added item successfully', 'success');
-				}, function(error){
-					clubService.addNotification('error adding item', 'error');
-				});	
+					scope.item.memberId = $rootScope.currentUser.memberId;
+					scope.bContent = false;
+					var request = clubService.sendRequest('POST', '/item', scope.item);
+					request.then(function(response){
+						
+						scope.item.itemId= response.itemId;
+						scope.item.location = response.location;
+						scope.safeItem.itemId = response.itemId;
+						scope.safeItem.location = response.location;
+						clubService.addNotification('added item successfully', 'success');
+						scope.showContent = false;
+					}, function(error){
+						clubService.addNotification('error adding item', 'error');
+					});
+				}else{
+					clubService.addNotification('Please fill all the fields');
+				}
+				
 				
 			};
 
@@ -219,7 +247,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog', fu
 
 			function allFieldsCompleted(){
 				var booleano = false;
-				if(scope.item.brand_name && scope.item.category_name && scope.item.model_name && scope.item.price > 0 && scope.item.quantity > 0 && scope.item.product_name){
+				if(scope.item.price > 0 && scope.item.quantity > 0 ){
 					booleano = true;
 				}
 				return booleano;

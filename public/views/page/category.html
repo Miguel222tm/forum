@@ -1,4 +1,4 @@
-<div ng-if="category">
+<div ng-if="category" ng-class="{'i-not-active': !category.active}" >
 	<li class="list-item">
     <a herf class="list-left">
     	<span class="w-40 r-2x _600 text-lg green">
@@ -17,7 +17,8 @@
       </div>
       <div class="text-sm">
       	<span class="text-muted"><strong>Code </strong>{{category.code}} </span> 
-      	<span class="label"></span>
+      	<span class="label green" ng-if="category.active">ACTIVE</span>
+        <span class="label red" ng-if="category.categoryId &&!category.active">INACTIVE </span>
       </div>
     </div>
     <div class="col-sm-12 m-t" ng-if="bShowEdit">

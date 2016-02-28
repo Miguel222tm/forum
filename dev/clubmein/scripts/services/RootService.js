@@ -43,13 +43,7 @@ var RootService = ['$http', '$q', function ($http, $q){
 	};
 
 
-	this.getCategories = function(){
-		return this.categories;
-	};
-
-	this.setCategories = function(categories){
-		this.categories = categories;
-	};
+	
 
 
 	/**
@@ -153,7 +147,7 @@ var RootService = ['$http', '$q', function ($http, $q){
   			style: style
   		};
       	this.notifications[i] = notification;
-      	//console.log('notifications ',this.notifications);
+      	console.log('notifications ',this.notifications);
 	};
 
 	this.getNotifications = function (){

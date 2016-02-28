@@ -1,3 +1,4 @@
+
 <div class="navbar">
     <!-- Open side - Naviation on mobile -->
     <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
@@ -19,11 +20,15 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link clear" href data-toggle="dropdown">
-          <span class="avatar w-32">
-            <img src="{{currentUser.picture_url}}" ng-if="currentUser.picture_url"  alt="...">
-            <img src="/images/default_picture.png" ng-if="!currentUser.picture_url" alt="..." >
+          <span class="avatar w-32" ng-if="currentUser.picture_url">
+            <img src="{{currentUser.picture_url}}"   alt="...">
             <i class="on b-white bottom"></i>
           </span>
+          <span class="avatar w-32" ng-if="!currentUser.picture_url">
+            <img src="/images/default_picture.png" alt="..." >
+            <i class="on b-white bottom"></i>
+          </span>
+          
         </a>
         <div ui-include="'../views/blocks/dropdown.user.html'"></div>
       </li>

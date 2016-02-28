@@ -16,9 +16,19 @@ class categoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
+        //return Input::all();
         try{
             $categories = Category::all();
+            if(Input::has('bundle')){
+                $categories = Category::with(['products'=> function($query){
+                    $query->with(['brands'=> function($query){
+                        $query->with('models');
+                    }]);
+                }])->get();//()->with(['brands'=> function($query){
+                   // $query->with('models');
+                //}])->get();
+            }
         }catch(Exception $ex){
             return response()->json($ex);
         }

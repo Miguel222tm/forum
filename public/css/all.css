@@ -88,6 +88,9 @@ growl-notifications growl-notification {
   position: relative;
   bottom: 26px; }
 
+.i-not-active {
+  background-color: rgba(0, 0, 0, 0.06); }
+
 .alert-message {
   background-color: red;
   color: white;

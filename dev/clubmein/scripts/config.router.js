@@ -85,7 +85,7 @@
         $authProvider.facebook({
           clientId: '193867407627493'
         });
-
+        
         $authProvider.google({
           clientId: '325516560821-2i72bk8rgf5av8rn9vha6qg7id86fo6l.apps.googleusercontent.com'
         });
