@@ -51,7 +51,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 						array.push(element);
 					}
 				});
-				var nuevo = {name:"Other"};
+				var nuevo = {name:"Other", active: 1};
 				array.push(nuevo);
 				console.log('array ',type );
 				return array;
@@ -133,6 +133,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 
 			scope.setModel = function(model){
 				scope.model = model;
+				console.log('modelo', scope.model);
 				if(scope.model){
 					if(scope.model.modelId){
 						scope.bOModel = false;
@@ -178,7 +179,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 			scope.save = function(){
 				
 				var bSave = false;
-				console.log(allFieldsCompleted() , scope.category , scope.category.categoryId , scope.product , scope.product.productId , scope.brand , scope.brand.brandId , scope.model , scope.model.modelId);
+				//console.log(allFieldsCompleted() , scope.category , scope.category.categoryId , scope.product , scope.product.productId , scope.brand , scope.brand.brandId , scope.model , scope.model.modelId);
 				if(allFieldsCompleted() && scope.category && scope.category.categoryId && scope.product && scope.product.productId && scope.brand && scope.brand.brandId && scope.model && scope.model.modelId)
 				{
 					scope.item.categoryId = scope.category.categoryId;
@@ -195,8 +196,32 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				}else if( allFieldsCompleted() && scope.item.itemId === 'clubIn'){
 					bSave = true;
 				}
-				else if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) && scope.item.category_name && scope.item.product_name && scope.item.brand_name && scope.item.model_name)
-				{
+				else if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) ){
+					if(scope.category){
+						if(scope.category.categoryId)
+							scope.item.categoryId = scope.category.categoryId;
+						if(scope.category.name)
+							scope.item.category_name = scope.category.name;
+					}
+					if(scope.product){
+						if(scope.product.productId)
+							scope.item.productId = scope.product.productId;
+						if(scope.product.name)
+							scope.item.product_name = scope.product.name;
+					}
+					if(scope.brand){
+						if(scope.brand.brandId)
+							scope.item.brandId = scope.brand.brandId;
+						if(scope.brand.name)
+							scope.item.brand_name = scope.brand.name;
+					}
+					if(scope.model){
+						if(scope.model.modelId)
+							scope.item.modelId = scope.model.modelId;
+						if(scope.model.name)
+							scope.item.model_name = scope.model.name;
+					}
+
 					scope.item.active = false;
 					console.log('item request!', scope.item);
 					bSave = true;
@@ -223,7 +248,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 						scope.safeItem.itemId = response.itemId;
 						scope.safeItem.location = response.location;
 						clubService.addNotification('added item successfully', 'success');
-						scope.showContent = false;
+						scope.bContent = false;
 					}, function(error){
 						clubService.addNotification('error adding item', 'error');
 					});
