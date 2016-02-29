@@ -12,11 +12,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
          $users = array(
-                ['name' => 'Ryan Chenkie','firstName'=>'Ryan','lastName'=>'Chenkie', 'email' => 'ryan@gmail.com', 'password' => Hash::make('secret'), 'type' =>0],
-                ['name' => 'Juan Morales','firstName'=>'Juan','lastName'=>'Morales', 'email' => 'juan@gmail.com', 'password' => Hash::make('secret'), 'type' =>0],
-                ['name' => 'Miguel Sanchez','firstName'=>'Miguel','lastName'=>'Sanchez', 'email' => 'trevino@gmail.com', 'password' => Hash::make('secret'), 'type' =>0],
-                ['name' => 'Adnan Kukic','firstName'=>'Adnan','lastName'=>'Kukic', 'email' => 'morales@gmail.com', 'password' => Hash::make('secret'), 'type' =>0],
-                ['name' => 'Miguel Trevino','firstName'=>'Miguel','lastName'=>'Trevino', 'email' => 'miguel@gmail.com', 'password' => Hash::make('xelha110'), 'type' =>0],
+                ['name' => 'Ryan Chenkie','firstName'=>'Ryan','lastName'=>'Chenkie', 'email' => 'ryan@gmail.com', 'password' => Hash::make('secret'), 'type' =>0, 'active'=>true],
+                ['name' => 'Juan Morales','firstName'=>'Juan','lastName'=>'Morales', 'email' => 'juan@gmail.com', 'password' => Hash::make('secret'), 'type' =>0, 'active'=>true],
+                ['name' => 'Miguel Sanchez','firstName'=>'Miguel','lastName'=>'Sanchez', 'email' => 'trevino@gmail.com', 'password' => Hash::make('secret'), 'type' =>0, 'active'=>true],
+                ['name' => 'Adnan Kukic','firstName'=>'Adnan','lastName'=>'Kukic', 'email' => 'morales@gmail.com', 'password' => Hash::make('secret'), 'type' =>0, 'active'=>true],
+                ['name' => 'Miguel Trevino','firstName'=>'Miguel','lastName'=>'Trevino', 'email' => 'miguel@gmail.com', 'password' => Hash::make('xelha110'), 'type' =>0, 'active'=>true],
         );
             
         // Loop through each user above and create the record for them in the database

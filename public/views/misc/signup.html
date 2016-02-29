@@ -5,7 +5,7 @@
       </div>
     </div>
 
-    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a" ng-if="bForm">
     <div class="" align="center">
       Sign up with a social network
     </div>
@@ -22,7 +22,7 @@
       </div>
       <form name="form">
         <div class="md-form-group">
-          <input type="text" class="md-input" ng-model="user.firstName" required>
+          <input type="text" class="md-input" ng-model="$parent.user.firstName" required>
           <label>First name</label>
         </div>
         <div class="md-form-group">
@@ -53,6 +53,15 @@
       
       </form>
     </div>
+
+     <!-- email confirmation here -->
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a" ng-if="bEmailConfirmation"> 
+      <div class="" align="center">
+        We just sent you an email to {{user.email}}
+        <br>
+        Please click on the link inside the email to confirm your account.
+      </div>
+    </div> 
 
     <div class="p-v-lg text-center">
       <div>Already have an account? <a ui-sref="access.signin" href="#/access/signin" class="text-primary _600">Sign in</a></div>

@@ -7,6 +7,8 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
   vm.loginError = false;
   scope.loginErrorText = null ;
   scope.notifications = $RootService.getNotifications();
+  scope.bForm = true;
+  scope.bEmailConfirmation = false;
 
   /*===================================
   =            social auth            =
@@ -48,7 +50,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
 
   };
   /*=====  End of social auth  ======*/
-
+  scope.tries = 0;
   scope.login = function() {
     console.log('enter to login');
       var credentials = {
@@ -78,7 +80,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
           $rootScope.authenticated = true;
           // Putting the user's data on $rootScope allows
           // us to access it anywhere across the app
-          if(response){
+          if(response.active){
             // Everything worked out so we can now redirect to
             // the users state to view the data
             console.log('response', response);
@@ -89,6 +91,12 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
               $state.go('access.select-user');
             }
             
+          }else if(response.verify){
+            $RootService.addNotification('Please verify your email '+ response.email, 'error');
+            scope.tries+= 1;
+            if(scope.tries === 3 || scope.tries === 6){
+              $RootService.addNotification('we sent you another email verification, please look at your email'+ scope.email);
+            }
           }
       }, function(error){
           console.log(error);
@@ -112,7 +120,10 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
           request.then( function(response){
               console.log('registration sucessful', response);
               $RootService.addNotification('registration completed!', 'success');
-              $state.go('access.signin');
+              scope.bForm = false;
+              scope.bEmailConfirmation = true;
+              
+              
           }, function(error){
               $RootService.addNotification('error in the registration, try again');
               console.log(' error on registration', error);

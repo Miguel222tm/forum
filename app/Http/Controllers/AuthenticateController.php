@@ -11,6 +11,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use Hash;
 use App\models\AccessLevel;
+use Mail;
+use Input;
 
 
 class AuthenticateController extends Controller
@@ -31,8 +33,9 @@ class AuthenticateController extends Controller
                 return response()->json(['user_not_found'], 404);
             }
             $location = $user->location()->first();
+            //return $user;
             // member
-            if($user->type === 1){
+            if($user->type === 1 && $user->active === 1){
                 $member = $user->member()->first();
                 $access_level = AccessLevel::find($member->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
@@ -42,7 +45,7 @@ class AuthenticateController extends Controller
 
             }
             // vendor
-            else if( $user->type === 2){
+            else if( $user->type === 2 && $user->active === 1){
                 $vendor = $user->vendor()->first();
                 $access_level = AccessLevel::find($vendor->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
@@ -51,7 +54,7 @@ class AuthenticateController extends Controller
                 return response()->json($vendor);
             }
             //employee
-            else if ($user->type === 3){
+            else if ($user->type === 3 && $user->active === 1){
                 $employee = $user->employee()->first();
                 $access_level = AccessLevel::find($employee->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
@@ -74,7 +77,11 @@ class AuthenticateController extends Controller
         }
 
         // the token is valid and we have found the user via the sub claim
-        return response()->json($user);
+        if($user->active === true || $user->active === 1)
+            return response()->json($user);
+        else{
+            return response()->json(["verify" => true, "email"=> $user->email]);
+        }
     }    
   
     public function authenticate(Request $request)
@@ -115,11 +122,21 @@ class AuthenticateController extends Controller
             $user->email = $credentials['email'];
             $user->password = Hash::make($credentials['password']);
             $user->remember_token = Hash::make($credentials['email']);
+            $user->active = false;
             $user->save();
+
+            $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
+            {
+                $message->from('uuorkstore.inc@gmail.com');
+                $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
+            });
+
+
         } catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($user);
+        if($sent)
+            return response()->json($user);
     }
     
     

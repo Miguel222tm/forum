@@ -640,7 +640,7 @@
             })
             .state('access', {
               url: '/access',
-              template: '<div class="dark bg-auto w-full"><div ui-view class="fade-in-right-big smooth pos-rlt"></div></div>'
+              template: '<div class="bg-auto w-full"><div ui-view class="fade-in-right-big smooth pos-rlt"></div></div>'
             })
             .state('access.signin', {
               url: '/signin',
@@ -660,6 +660,11 @@
             .state('access.forgot-password', {
               url: '/forgot-password',
               templateUrl: 'views/misc/forgot-password.html'
+            })
+            .state('change-password', {
+              url: '/change-password/:code',
+              templateUrl: 'views/pages/change-password.html',
+              controller: 'forgotPasswordCtrl'
             })
             .state('access.lockme', {
               url: '/lockme',

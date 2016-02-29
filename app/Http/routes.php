@@ -19,6 +19,12 @@ Route::get('/', function () {
    	
 });
 
+Route::post('/send-email', 'emailController@sendEmail');
+Route::get('/verify-user', 'emailController@verifyUser');
+
+//reset password
+Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
+
 /**
  *  System.
  */
@@ -66,6 +72,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::post('user/location', 'userLocationController@store');
 
   Route::put('/user/location', 'userLocationController@update');
+
+  
 
   Route::put('/users/{id}', 'UsersController@update');
 

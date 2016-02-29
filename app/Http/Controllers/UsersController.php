@@ -13,6 +13,8 @@ use App\models\Vendor;
 use App\models\Employee;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Hash;
+use Input;
 
 class UsersController extends Controller
 {
@@ -135,6 +137,22 @@ class UsersController extends Controller
     public function destroy($id)
     {
         
+    }
+
+
+    public function resetPassword($id)
+    {
+
+
+        
+        try {
+            $user = User::findOrFail($id);
+            $user->password = Hash::make(Input::all()['password']);
+            $user->save();
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json($user);
     }
 
 
