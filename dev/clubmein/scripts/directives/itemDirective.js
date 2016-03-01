@@ -55,7 +55,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				array.push(nuevo);
 				console.log('array ',type );
 				return array;
-			}
+			};
 
 			scope.setCategory = function(cat){
 				
@@ -83,8 +83,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					scope.product = null;
 					scope.brand = null;
 					scope.model = null;
-				}
-				
+				}	
 
 			};
 

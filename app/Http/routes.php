@@ -73,7 +73,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::put('/user/location', 'userLocationController@update');
 
-  
+
 
   Route::put('/users/{id}', 'UsersController@update');
 
@@ -106,6 +106,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/vendors', 'vendorController@index');
 
   Route::get('/vendor/companies', 'vendorController@companies');
+
+  Route::get('/vendor/{id}/products', 'vendorController@products');
 
   Route::get('/vendor/{id}', 'vendorController@show');
   

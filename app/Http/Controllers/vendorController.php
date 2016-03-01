@@ -119,4 +119,18 @@ class vendorController extends Controller
         }
         return response()->json($Vendor);
     }
+
+
+
+
+    public function products($id){
+
+        try {
+            $vendor = Vendor::findOrFail($id);
+            $products = $vendor->products()->get();
+        } catch (Exception $ex) {
+            
+        }
+
+    }
 }
