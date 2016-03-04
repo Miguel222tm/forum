@@ -18,12 +18,14 @@
         </a>
         <div ui-include="'../views/blocks/dropdown.notification.html'"></div>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link clear" href data-toggle="dropdown">
           <span class="avatar w-32" ng-if="currentUser.picture_url">
             <img src="{{currentUser.picture_url}}"   alt="...">
             <i class="on b-white bottom"></i>
           </span>
+
           <span class="avatar w-32" ng-if="!currentUser.picture_url">
             <img src="/images/default_picture.png" alt="..." >
             <i class="on b-white bottom"></i>
@@ -31,6 +33,11 @@
           
         </a>
         <div ui-include="'../views/blocks/dropdown.user.html'"></div>
+      </li>
+      <li class="nav-item dropdown" layout="row" layout-align="start end">
+        <span style="padding-top: 20px;">  
+          {{currentUser.name}}
+        </span>
       </li>
       <li class="nav-item hidden-md-up">
         <a class="nav-link" data-toggle="collapse" data-target="#collapse">

@@ -41,6 +41,7 @@ class AuthenticateController extends Controller
                 $functionalities = $access_level->getFunctionality()->get();
                 $member->functionalities = $functionalities;
                 $member->location = $location;
+                $member->user= $user;
                 return response()->json($member);
 
             }
@@ -50,7 +51,8 @@ class AuthenticateController extends Controller
                 $access_level = AccessLevel::find($vendor->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
                 $vendor->functionalities = $functionalities;
-                $vendor->location = $location;  
+                $vendor->location = $location;
+                $vendor->user= $user;
                 return response()->json($vendor);
             }
             //employee
@@ -59,6 +61,7 @@ class AuthenticateController extends Controller
                 $access_level = AccessLevel::find($employee->access_level);
                 $functionalities = $access_level->getFunctionality()->get();
                 $employee->functionalities = $functionalities;
+                $employee->user= $user;
                 return response()->json($employee);
             }
 
@@ -121,7 +124,7 @@ class AuthenticateController extends Controller
             $user->name = $credentials['name'];
             $user->email = $credentials['email'];
             $user->password = Hash::make($credentials['password']);
-            $user->remember_token = Hash::make($credentials['email']);
+            $user->remember_token = str_random(15);
             $user->active = false;
             $user->save();
 

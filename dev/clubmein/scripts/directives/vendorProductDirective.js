@@ -3,24 +3,26 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 		restrict: 'E',
 		templateUrl: 'views/partials/vendor-product.html',
 		scope: {
-			product: '=',
-			user: '='
+			vproduct: '=',
+			user: '=', 
+			categories: '='
 		},
 		link: function(scope, element, attrs){
-
+			console.log('user', scope.user);
 			scope.bOCategory  = false;
 			scope.bOProduct = false;
 			scope.bOBrand = false;
 			scope.bOModel = false;
 
 			scope.bContent = false;
+
 			scope.init = function(){
-				if(scope.product.productId){
+				if(scope.vproduct.productId){
 					scope.bContent = false;
 				}else{
 					scope.bContent = true;
 				}
-				scope.safeProduct = angular.copy(scope.product);
+				scope.safeProduct = angular.copy(scope.vproduct);
 			};
 
 
@@ -48,11 +50,9 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 
 
 			scope.setCategory = function(cat){
-				
 				scope.category=cat;		
 				console.log('scope.category!', scope.category);
-				if(scope.category){
-					
+				if(scope.category){	
 					if(!scope.category.categoryId){
 						scope.bOCategory = true;
 						scope.bOProduct = true;
@@ -66,15 +66,14 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 						scope.bOBrand = false;
 						scope.bOModel = false;
 					}
-					scope.product.category_name = null;
-					scope.product.product_name = null;
-					scope.product.brand_name = null;
-					scope.product.model_name = null;
+					scope.vproduct.category_name = null;
+					scope.vproduct.product_name = null;
+					scope.vproduct.brand_name = null;
+					scope.vproduct.model_name = null;
 					scope.product = null;
 					scope.brand = null;
 					scope.model = null;
 				}	
-
 			};
 
 			scope.setProduct = function(product){
@@ -92,14 +91,12 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 						scope.bOModel = false;
 					}
 					//clean product names
-					scope.product.product_name = null;
-					scope.product.brand_name = null;
-					scope.product.model_name = null;
+					scope.vproduct.product_name = null;
+					scope.vproduct.brand_name = null;
+					scope.vproduct.model_name = null;
 					scope.brand = null;
 					scope.model = null;
 				}
-
-
 			};
 
 
@@ -115,8 +112,8 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 						scope.bOBrand = false;
 						scope.bOModel = false;
 					}
-					scope.product.brand_name = null;
-					scope.product.model_name = null;
+					scope.vproduct.brand_name = null;
+					scope.vproduct.model_name = null;
 					scope.model = null;
 				}
 			};
@@ -130,20 +127,81 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 					}else{
 						scope.bOModel = true;
 					}
-					scope.product.model_name = null;
+					scope.vproduct.model_name = null;
 				}
 			};
 
 
 			scope.save = function(){
+				var bSave = false;
+				// console.log('category', scope.category, 'product', scope.product, 'brand', scope.brand, 'mdoel', scope.model);
+				if(scope.category && scope.product && scope.brand && scope.model){
+					// item without
+					scope.vproduct.categoryId = scope.category.categoryId;
+					scope.vproduct.productId = scope.product.productId;
+					scope.vproduct.brandId = scope.brand.brandId;
+					scope.vproduct.modelId = scope.model.modelId;
+					scope.vproduct.category_name = scope.category.name;
+					scope.vproduct.product_name = scope.product.name;
+					scope.vproduct.brand_name = scope.brand.name;
+					scope.vproduct.model_name = scope.model.name;
+					scope.vproduct.active = true;
+					bSave = true;	
+				}
+				else if((scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel)){
+					if(scope.category){
+						if(scope.category.categoryId)
+							scope.vproduct.categoryId = scope.category.categoryId;
+						if(scope.category.name)
+							scope.vproduct.category_name = scope.category.name;
+					}
+					if(scope.product){
+						if(scope.product.productId)
+							scope.vproduct.productId = scope.product.productId;
+						if(scope.product.name)
+							scope.vproduct.product_name = scope.product.name;
+					}
+					if(scope.brand){
+						if(scope.brand.brandId)
+							scope.vproduct.brandId = scope.brand.brandId;
+						if(scope.brand.name)
+							scope.vproduct.brand_name = scope.brand.name;
+					}
+					if(scope.model){
+						if(scope.model.modelId)
+							scope.vproduct.modelId = scope.model.modelId;
+						if(scope.model.name)
+							scope.vproduct.model_name = scope.model.name;
+					}
 
+					scope.vproduct.active = false;
+					if(scope.vproduct.category_name && scope.vproduct.product_name && scope.vproduct.brand_name && scope.vproduct.model_name){
+						bSave = true;
+					}
+				}
+				if(bSave){
+					scope.vproduct.vendorId = scope.user.vendorId;
+					var request = clubService.sendRequest('POST', '/vendor/product', scope.vproduct);
+					request.then(function(response){
+
+						scope.vproduct.vendorProductId = response.vendorProductId;
+						//scope.safeProduct = scope.vproduct;
+						scope.bContent = false;
+						clubService.addNotification('product saved' , 'success');
+
+					}, function(error){
+						clubService.addNotification('error saving your product', 'error');
+					});
+				}else{
+					clubService.addNotification('please fill all the fields');
+				}
 			};
 
 			scope.cancel = function (){
 				scope.bContent = false;
-				scope.product = angular.copy(scope.safeProduct);
+				scope.vproduct = angular.copy(scope.safeProduct);
 
-				console.log('product cancel', scope.product);
+				console.log('product cancel', scope.vproduct);
 			};
 
 
@@ -167,14 +225,20 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 			};
 
 			scope.deleteProduct = function(){
-				var request = clubService.sendRequest('DELETE', '/product/'+scope.product.productId);
-				request.then(function(response){
-					vendorService.removeProduct(response);
-					scope.product = null;
+				if(scope.vproduct.vendorProductId){
+					var request = clubService.sendRequest('DELETE', '/vendor/product/'+scope.vproduct.vendorProductId);
+					request.then(function(response){
+						vendorService.removeProduct(response);
+						scope.vproduct = null;
+						scope.bContent = false;
+
+					}, function(error){
+						clubService.addNotification('error deleting the product', 'error');
+					});
+				}else{
+					scope.vproduct = null;
 					scope.bContent = false;
-				}, function(error){
-					clubService.addNotification('error deleting the product', 'error');
-				});
+				}
 			};
 
 

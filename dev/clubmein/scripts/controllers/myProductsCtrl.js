@@ -5,22 +5,37 @@ var myProductsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 
 		scope.myProducts = null;
 		console.log($rootScope.currentUser);
+		getItemCategories();
 		scope.user = $rootScope.currentUSer;
 		setTimeout(function() {
 			scope.getMyProducts();
-		}, 1000);	
-		
-
-
-
-
+		}, 2000);	
 	};
+
+	function getItemCategories(){
+		if(!clubService.getCategories()){
+			var request = clubService.sendRequest('GET', '/categories?bundle=true');
+			request.then(function(response){
+				console.log('categories!', response);
+				scope.categories = response;
+				scope.categories.push({name: 'Other', code: 'otr'});
+				
+				clubService.setCategories(scope.categories);
+			}, function(error){
+				clubService.addNotification('error getting the categories', 'error');
+			});
+		}else{
+			scope.categories = clubService.getCategories();
+		}
+	}
 
 	scope.getMyProducts = function(){
 		if(!vendorService.getProducts()){
 			var request = clubService.sendRequest('GET', '/vendor/'+$rootScope.currentUser.vendorId+'/products');
 			request.then(function(response){
+				console.log('my products ',response)
 				scope.myProducts = response;
+				vendorService.setProducts(response);
 			}, function(error){
 				clubService.addNotification('error getting your products', 'error');
 			});

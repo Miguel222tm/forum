@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\models\Vendor;
 use App\User;
 use Input;
+use App\models\VendorProduct;
 class vendorController extends Controller
 {
     /**
@@ -110,7 +111,7 @@ class vendorController extends Controller
     {
         try{
             $Vendor = Vendor::findOrFail($id);
-            $user = User::findOrFail($js->userId);
+            $userv = User::findOrFail($js->userId);
             $user->delete();
             $Vendor->delete();
 
@@ -129,8 +130,30 @@ class vendorController extends Controller
             $vendor = Vendor::findOrFail($id);
             $products = $vendor->products()->get();
         } catch (Exception $ex) {
-            
+            return response()->json($ex);
         }
+        return response()->json($products);
 
+    }
+
+    public function storeProduct(){
+        try {
+            $product = new VendorProduct();
+            $product->fill(Input::all());
+            $product->save();
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json($product);
+    }
+
+    public function destroyProduct($id){
+        try {
+            $product = VendorProduct::findOrFail($id);
+            $product->delete();
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json($product);
     }
 }

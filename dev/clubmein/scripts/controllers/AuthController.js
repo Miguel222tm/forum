@@ -71,6 +71,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
       // Because we returned the $http.get request in the $auth.login
       // promise, we can chain the next promise to the end here
       }).then(function(response) {
+          console.log('authenticated ', response);
           // Stringify the returned data to prepare it
           // to go into local storage
           var user = JSON.stringify(response);
@@ -80,7 +81,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
           $rootScope.authenticated = true;
           // Putting the user's data on $rootScope allows
           // us to access it anywhere across the app
-          if(response.active){
+          if(response.active || response.user.active){
             // Everything worked out so we can now redirect to
             // the users state to view the data
             console.log('response', response);

@@ -15,6 +15,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Hash;
 use Input;
+use Exception;
 
 class UsersController extends Controller
 {
@@ -139,12 +140,20 @@ class UsersController extends Controller
         
     }
 
+    public function activateAccount($id){
+        try {
+            $user= User::findOrFail($id);
+            $user->fill(Input::all());
+            $user->save();
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json($user);
+    }
+
 
     public function resetPassword($id)
     {
-
-
-        
         try {
             $user = User::findOrFail($id);
             $user->password = Hash::make(Input::all()['password']);
@@ -153,6 +162,30 @@ class UsersController extends Controller
             return response()->json($e);
         }
         return response()->json($user);
+    }
+
+    public function changePassword(){
+        try {
+            
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $original = $user->password;
+            $old = Input::all()['old'];
+            $new = Hash::make(Input::all()['new']);
+            if (Hash::check($old, $original)){
+                return "match";
+                $user->password = $new;
+                $user->save();
+                return response()->json($user);            
+            }else{
+                throw new Exception('it doesnt match');
+            }
+
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        
     }
 
 

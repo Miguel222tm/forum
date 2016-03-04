@@ -1,2 +1,23 @@
-<!-- only need a height for layout 4 -->
-<div style="min-height: 200px"></div>
+<div> 
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+	    	<div class="box">
+	    		<div class="box-header">
+	    			<h3>Your Bids<span class="label warning"></span></h3>
+	    			<small></small>
+	    		</div>
+		    	<ul class="list inset" ng-repeat="bid in bids" >
+			        <bid  bid="bid" user="currentUser"> </bid>
+			    </ul>
+		    </div>
+	    </div>
+      	<hr>
+      	
+
+	    <!-- <div class="col-sm-12 col-md-12">
+        	<button class="btn btn-fw primary col-sm-12 col-md-12" ng-click="addProduct()">Add a new bid</button>
+      	</div> -->
+
+	</div>
+
+</div>

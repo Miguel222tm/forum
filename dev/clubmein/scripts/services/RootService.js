@@ -7,7 +7,7 @@ var RootService = ['$http', '$q', function ($http, $q){
 	this.countries = null;
 	this.states = null;
 	this.cities = null;
-	this.categories;
+	this.categories = null;
 	
 	this.getCurrentUser = function () {
 		return this.currentUSer;
@@ -42,6 +42,13 @@ var RootService = ['$http', '$q', function ($http, $q){
 		this.cities = cities;
 	};
 
+	this.getCategories = function(){
+		return this.categories;
+	};
+
+	this.setCategories = function(categories){
+		this.categories = categories;
+	};
 
 	
 

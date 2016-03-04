@@ -58,6 +58,25 @@ var SettingsCtrl = ['$rootScope','$scope','RootService', function($rootScope, sc
 
 	};
 
+
+
+	scope.updatePassword = function(){
+		
+		if(scope.oldPassword &&  scope.newPassword && scope.repeatPassword){
+			var data={
+				old: scope.oldPassword,
+				new: scope.newPassword
+			};
+			var request = clubService.sendRequest('PUT', '/change-password', data);
+			request.then(function(response){
+				console.log('response', response);
+				clubService.addNotification('password changed!', 'success');
+			}, function(error){
+				clubService.addNotification('error changing your password', 'error');
+			});
+		}
+	};
+
 	
 
 

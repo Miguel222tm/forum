@@ -652,6 +652,11 @@
               templateUrl: 'views/misc/signup.html', 
               controller: 'AuthController'
             })
+            .state('access.confirm', {
+              url: '/confirm/:code', 
+              templateUrl: '/views/misc/confirm-account.html', 
+              controller: 'confirmCtrl'
+            })
             .state('access.select-user',{
               url: '/select-user', 
               templateUrl: 'views/pages/select-user.html',
@@ -666,6 +671,7 @@
               templateUrl: 'views/pages/change-password.html',
               controller: 'forgotPasswordCtrl'
             })
+
             .state('access.lockme', {
               url: '/lockme',
               templateUrl: 'views/misc/lockme.html'

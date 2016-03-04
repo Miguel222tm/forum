@@ -1,0 +1,34 @@
+  <div class="center-block w-xxl w-auto-xs p-y-md" >
+    <div class="navbar">
+      <div class="pull-center">
+        <div ui-include="'../views/blocks/navbar.brand.html'"></div>
+      </div>
+    </div>
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+      <div class="m-b">
+        Confirmation
+        <p class="text-xs m-t">Please, look at the information and click confirm to activate your account andn login.</p>
+      </div>
+      <form name="reset">
+        <div class="md-form-group" >
+          <input type="text" ng-model="code" class="md-input" disabled>
+          <label>Code</label>
+        </div>
+        <div class="md-form-group">
+          <input type="text" ng-model="user.email" class="md-input" disabled>
+          <label>Email</label>
+        </div>
+        <div class="md-form-group">
+          <input type="text" ng-model="user.firstName" class="md-input" disabled>
+          <label>First name</label>
+        </div>
+        <div class="md-form-group">
+          <input type="text" ng-model="user.lastName" class="md-input" disabled>
+          <label>Last name</label>
+        </div>
+        <button type="submit" class="btn primary btn-block p-x-md" title="Hey!" data-content="Instructions sent to your email." data-type="info" data-container="#alerts-container" bs-alert ng-click="confirmAccount()">Confirm</button>
+      </form>
+    </div>
+    <p id="alerts-container"></p>
+    <div class="p-v-lg text-center">Return to <a ui-sref="access.signin" href="#/access/signin" class="text-primary _600">Sign in</a></div>    
+  </div>

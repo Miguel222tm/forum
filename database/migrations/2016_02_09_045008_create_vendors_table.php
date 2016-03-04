@@ -19,11 +19,23 @@ class CreateVendorsTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
-            $table->string('second_email');
+            $table->string('title');
             $table->string('picture_url');
             $table->string('unique_code');
             $table->integer('access_level');
+            $table->string('telephone');
+            $table->string('ext');
+            $table->string('address');
+            $table->string('zip_code');
+            $table->string('alternative_first_name');
+            $table->string('alternative_last_name');
+            $table->string('alternative_email');
+            $table->string('alternative_title');
+            $table->string('alternative_telephone');
+            $table->string('alternative_ext');
+
             $table->string('website');
+
             $table->timestamps();
         });
     }

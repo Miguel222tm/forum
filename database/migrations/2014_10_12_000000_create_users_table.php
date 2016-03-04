@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('googleId');
             $table->string('facebookId');
             $table->string('linkedInId');
+            $table->boolean('signup_email');
             $table->rememberToken();
             $table->timestamps();
         });

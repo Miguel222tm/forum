@@ -24,6 +24,8 @@ Route::get('/verify-user', 'emailController@verifyUser');
 
 //reset password
 Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
+Route::put('/change-password', 'UsersController@changePassword');
+Route::put('/users/{id}/activate', 'UsersController@activateAccount');
 
 /**
  *  System.
@@ -73,9 +75,9 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::put('/user/location', 'userLocationController@update');
 
-
-
   Route::put('/users/{id}', 'UsersController@update');
+
+
 
   Route::delete('/users/{id}', 'UsersController@destroy');  
   /*=====  End of users  ======*/
@@ -109,13 +111,18 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::get('/vendor/{id}/products', 'vendorController@products');
 
+  Route::post('/vendor/product', 'vendorController@storeProduct');
+
   Route::get('/vendor/{id}', 'vendorController@show');
   
   Route::post('/vendors', 'vendorController@store');
   
   Route::put('/vendor/{id}', 'vendorController@update');
 
+  Route::delete('/vendor/product/{id}', 'vendorController@destroyProduct');
+
   Route::delete('/vendor/{id}', 'vendorController@destroy');
+
 
   /*----------  companies  ----------*/
 

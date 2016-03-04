@@ -1,26 +1,26 @@
-<div ng-if="product" ng-class="{'i-not-active': !product.active}">
+<div ng-if="vproduct" ng-class="{'i-not-active': !vproduct.active}">
 	<li class="list-item">
     <a herf class="list-left">
     	<span class="w-40 r-2x _600 text-lg accent">
-      	{{item.model_name[0]}}  
+      	{{vproduct.model_name[0]}}  
       </apan>
     </a>
     <div class="list-body" >
-    	<div class="m-y-sm pull-right" ng-if="product.productId && product.vendorId === user.vendorId">
+    	<div class="m-y-sm pull-right" ng-if="vproduct.vendorProductId && vproduct.vendorId === user.vendorId">
         <!-- Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a> -->
       	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
   	  </div>
       <div>
-        <a href>{{product.brand_name}} - {{product.model_name}}</a>
+        <a href>{{vproduct.brand_name}} - {{vproduct.model_name}}</a>
       </div>
       <div class="text-sm">
       	<span class="text-muted"><strong></strong>  <strong></strong> </span> 
-      	<span class="label green" ng-if="product.active">ACTIVE</span>
-        <span class="label red" ng-if="product.productId &&!product.active">REQUEST </span>
+      	<span class="label green" ng-if="vproduct.active">ACTIVE</span>
+        <span class="label red" ng-if="vproduct.vendorProductId && !vproduct.active">REQUEST </span>
       </div>
     </div>
-    <div class="col-sm-12 m-t" ng-if="!product.productId && bContent">
-      <form ui-jp="parsley">
+    <div class="col-sm-12 m-t" ng-if="!vproduct.vendorProductId && bContent">
+      <form >
         <div class="box">
           <div class="box-header">
             <h2>Product information</h2>
@@ -77,44 +77,6 @@
               </div>
 
             </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Quantity</label>
-              <div class="col-sm-9">
-                <input type="number" min="1" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.quantity">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Price</label>
-              <div class="col-sm-9">
-                <input type="number" min="0" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.price">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Description</label>
-              <div class="col-sm-9">
-                <textarea type="text" data-parsley-type="number"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
-              </div>
-            </div> 
-
-            <div class="form-group row" >
-              <label class="col-sm-3 form-control-label">Location</label>
-              <div class="col-sm-9">
-                <div class="checkbox">
-                  <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i> Add another location 
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="item.otherLocation">
-              <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
-              
-            </div>
-
           </div>
           <div class="dker p-a text-right">
             <button type="submit" class="btn info" ng-click="save()">Save</button>
@@ -124,103 +86,7 @@
         </div>
       </form>
     </div>
-    <!-- --------------------------------------------------------- 
-    <div class="col-sm-12 m-t" ng-if="item.itemId && bContent">
-      <form ui-jp="parsley">
-        <div class="box">
-          <div class="box-header">
-            <h2>Item information {{bContent}}</h2>
-          </div>
-          <div class="box-body">                    
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Category</label>
-              <div class="col-sm-9">
-                <input type="text" data-parsley-type="text" class="form-control" placeholder="Other category" ng-model="item.category_name" ng-disabled="true">
-
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Product</label>
-              <div class="col-sm-9">
-                
-                <input type="text" data-parsley-type="text" class="form-control" placeholder="Other product" ng-model="item.product_name" ng-disabled="true"> 
-              </div>
-            </div>
-
-            
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Brand</label>
-              <div class="col-sm-9">
-                
-                <input type="text" data-parsley-type="text" ng-model="item.brand_name" class="form-control" placeholder="Other brand" ng-disabled="true">  
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Model</label>
-              <div class="col-sm-9">
-                
-                <input type="text" data-parsley-type="text" ng-model="item.model_name" class="form-control" placeholder="Other model" ng-disabled="true">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Quantity</label>
-              <div class="col-sm-9">
-                <input type="number" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.quantity">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Price</label>
-              <div class="col-sm-9">
-                <input type="number" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="item.price">
-              </div>
-            </div>
-            
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Description</label>
-              <div class="col-sm-9">
-                <textarea type="text" data-parsley-type="number"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
-              </div>
-            </div>
-
-            <div class="form-group row" ng-repeat="location in item.location">
-              <label class="col-sm-3 form-control-label">Location</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" ng-value="location.state +', '+ location.city+ ', ' + location.country " ng-disabled="true">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Location</label>
-              <div class="col-sm-9">
-                <div class="checkbox">
-                  <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i>  modify your second location
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="item.otherLocation">
-              <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
-              
-            </div>
-
-          </div>
-          <div class="dker p-a text-right" >
-            <button type="submit" class="btn info" ng-show="item.itemId != 'clubIn'" ng-click="edit()">Edit</button>
-            <button type="submit" ng-show="item.itemId === 'clubIn'" class="btn info" ng-click="save()">Save</button>
-            <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
-
-          </div>
-        </div>
-      </form>
-    </div>
-    -->
+    
     </li>
 
     

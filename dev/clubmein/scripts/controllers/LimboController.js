@@ -30,36 +30,7 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
 		console.log('type', type);
 	};
 
-	scope.showConfirm = function(ev, code, type){
-		/* // Appending dialog to document.body to cover sidenav in docs app
-	   var confirm = $mdDialog.confirm()
-	          .title('Do you really want to be a '+type+'?')
-	          .textContent('Please confirm your answer.')
-	          .ariaLabel('Lucky day')
-	          .targetEvent(ev)
-	          .ok('Yes!')
-	          .cancel("Cancel");*/
 
-	   /*$mdDialog.show(confirm).then(function() {
-    		var data ={
-    			code: code
-    		};
-    		console.log('dat', data);
-    		console.log('user', $rootScope.limboUser);
-    		var request = RootService.sendRequest('PUT', '/users/'+$rootScope.limboUser.userId, data);
-    		request.then( function(response){
-    			console.log('response', response);
-    			vm.getUser();
-    		}, function(error){	
-    			console.log('error', error);
-    		});
-
-    	
-	    }, function() {
-	      console.log('you rejected it' );
-	    });
-    */
-	};
 
     scope.showAdvanced = function(ev, code, type) {
         $rootScope.limboUser.code = code;

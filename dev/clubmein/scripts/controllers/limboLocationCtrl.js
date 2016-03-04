@@ -1,9 +1,10 @@
 var limboLocationCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state','$mdMedia', function($rootScope, scope, RootService, $mdDialog, $auth, $state, $mdMedia){
 
-	console.log('location!');
+	console.log('location!', $rootScope.limboUser);
 	scope.country;
 	scope.state;
 	scope.city;
+	scope.limboUser = $rootScope.limboUser;
 	scope.cancel = function(){
 		$mdDialog.hide();
 	};
@@ -27,19 +28,25 @@ var limboLocationCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth'
     };
 
 	scope.save = function(){
-		if(scope.country && scope.state && scope.city){
+		console.log('enter on save', scope.country, scope.state, scope.city, scope.limboUser);
+		if(scope.country && scope.state && scope.city && scope.limboUser.title && scope.limboUser.telephone && scope.limboUser.address && scope.limboUser.zip_code && scope.limboUser.website){
+
+			if(scope.limboUser.address_second_line)	
+				scope.limboUser.address += scope.limboUser.address_second_line;
 			var location = {
 				country: scope.country, 
 				state: scope.state, 
 				city: scope.city
 			};
 			console.log('location ', location);
-			console.log('limbo useer', $rootScope.limboUser);
+			console.log('limbo useer', scope.limboUser);
+
+
 			var request = RootService.sendRequest('POST', '/user/location', location);
 
 			request.then(function(response){
 				console.log('location added to this user!', response);
-				var otherRequest = RootService.sendRequest('PUT', '/users/'+$rootScope.limboUser.userId, $rootScope.limboUser);
+				var otherRequest = RootService.sendRequest('PUT', '/users/'+scope.limboUser.userId, scope.limboUser);
 					otherRequest.then(function(response){
 						console.log('response', response);
 						$mdDialog.hide();
