@@ -1,5 +1,5 @@
 var adminService = ['$http', '$q', 'RootService',  function ($http, $q, clubService){
-	this.categories =null;
+	this.categories = null;
 
 	this.getCategories = function(){
 		return this.categories;

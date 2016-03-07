@@ -180,21 +180,38 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 					}
 				}
 				if(bSave){
-					scope.vproduct.vendorId = scope.user.vendorId;
-					var request = clubService.sendRequest('POST', '/vendor/product', scope.vproduct);
-					request.then(function(response){
+					if(scope.isRepeatedProduct(scope.vproduct)){
+						clubService.addNotification('sorry, you already have this product in your list', 'error');
+					}else{
+						scope.vproduct.vendorId = scope.user.vendorId;
+						var request = clubService.sendRequest('POST', '/vendor/product', scope.vproduct);
+						request.then(function(response){
 
-						scope.vproduct.vendorProductId = response.vendorProductId;
-						//scope.safeProduct = scope.vproduct;
-						scope.bContent = false;
-						clubService.addNotification('product saved' , 'success');
+							scope.vproduct.vendorProductId = response.vendorProductId;
+							//scope.safeProduct = scope.vproduct;
+							scope.bContent = false;
+							clubService.addNotification('product saved' , 'success');
 
-					}, function(error){
-						clubService.addNotification('error saving your product', 'error');
-					});
+						}, function(error){
+							clubService.addNotification('error saving your product', 'error');
+						});
+					}
 				}else{
 					clubService.addNotification('please fill all the fields');
 				}
+			};
+
+			scope.isRepeatedProduct = function(product){
+				var booleano = false;
+				scope.allProducts = vendorService.getProducts();
+				console.log('all products', scope.allProducts);
+				angular.forEach(scope.allProducts, function(pro, key){
+					if(pro.vendorProductId && pro.model_name === product.model_name){
+						console.log('match! pro', pro.model_name, 'product ', product.model_name);
+						booleano = true;
+					}
+				});
+				return booleano;
 			};
 
 			scope.cancel = function (){

@@ -16,7 +16,7 @@
       <div class="text-sm">
       	<span class="text-muted"><strong>Quantity</strong> {{item.quantity}}, <strong>Price</strong> {{item.price}}</span> 
       	<span class="label green" ng-if="item.active">ACTIVE</span>
-        <span class="label red" ng-if="item.itemId &&!item.active">REQUEST </span>
+        <span class="label red" ng-if="item.itemId &&!item.active">NEW </span>
       </div>
     </div>
     <div class="col-sm-12 m-t" ng-if="!item.itemId && bContent">

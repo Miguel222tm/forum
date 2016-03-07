@@ -34,6 +34,7 @@ var confirmCtrl = ['$state' ,'RootService','$stateParams','$scope', function($st
 			var request = clubService.sendRequest('PUT', '/users/'+scope.user.userId+'/activate', scope.user);
 			request.then(function(response){
 				$state.go('access.signin');
+				clubService.addNotification('account activated!', 'success');
 			}, function(error){
 				clubService.addNotification('error activating your account', 'error');
 			});

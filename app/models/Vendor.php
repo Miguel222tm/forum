@@ -24,4 +24,9 @@ class Vendor extends Model
     	return $this->hasMany('App\models\VendorProduct', $foreignKey);
     }
 
+    public function bids(){
+        $foreignKey = 'vendorId';
+        return $this->hasMany('App\models\Bid', $foreignKey);
+    }
+
 }

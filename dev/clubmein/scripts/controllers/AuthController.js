@@ -2,6 +2,7 @@
 var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootService', function($auth, $state, $http, $rootScope, scope, $RootService){
 	var vm = this;
   console.log('enter on the AuthController' );
+  scope.user = null;
   scope.email = null;
   scope.password = null;
   vm.loginError = false;
@@ -107,7 +108,8 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
 
 
   scope.signUp = function(){
-      console.log('register the user');
+      console.log('register the user', scope.user);
+      scope.loading =  true;
       var user = {
           name: scope.user.firstName+" "+scope.user.lastName,
           firstName: scope.user.firstName,
@@ -115,20 +117,26 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
           email: scope.user.email,
           password: scope.user.password
       };
-
-      if(scope.user.password === scope.user.repeatPassword){
+      if(scope.user.firstName && scope.user.lastName && scope.user.email && scope.user.password === scope.user.repeatPassword){
           var request= $RootService.sendRequest('post', '/signup', user);
           request.then( function(response){
-              console.log('registration sucessful', response);
-              $RootService.addNotification('registration completed!', 'success');
-              scope.bForm = false;
-              scope.bEmailConfirmation = true;
+              console.log('registration response: ', response);
+              if(response === 'account already created'){
+                $RootService.addNotification('account already created', 'error');
+              }else{
+                $RootService.addNotification('registration completed!', 'success');
+                scope.bForm = false;
+                scope.bEmailConfirmation = true;
+                scope.loading = false;  
+              }
               
               
           }, function(error){
-              $RootService.addNotification('error in the registration, try again');
+              $RootService.addNotification(error.error, 'error');
               console.log(' error on registration', error);
           });
+      }else{
+        $RootService.addNotification('please fill all the fields', 'error');
       }
   };
 
@@ -139,11 +147,8 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
         // Flip authenticated to false so that we no longer
         // show UI elements dependant on the user being logged in
         $rootScope.authenticated = false;
-
         // Remove the current user info from rootscope
         $rootScope.currentUser = null;
-
-
         $state.go('access.signin');
 
     });

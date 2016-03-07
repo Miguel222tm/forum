@@ -6,17 +6,26 @@
 	    			<h3>Your Bids<span class="label warning"></span></h3>
 	    			<small></small>
 	    		</div>
-		    	<ul class="list inset" ng-repeat="bid in bids" >
+		    	<ul class="list inset" ng-repeat="bid in bids" ng-if="bids.length" >
 			        <bid  bid="bid" user="currentUser"> </bid>
 			    </ul>
+			    <br>
+			    
+		    </div>
+		    <div ng-if="!bids.length">
+		    	<ul class="list inset">
+			    	<li class="list-item">
+			    	You have 0 bids.
+    				</li>
+    			</ul>
 		    </div>
 	    </div>
       	<hr>
       	
 
-	    <!-- <div class="col-sm-12 col-md-12">
-        	<button class="btn btn-fw primary col-sm-12 col-md-12" ng-click="addProduct()">Add a new bid</button>
-      	</div> -->
+	    <div class="col-sm-12 col-md-12">
+        	<button class="btn btn-fw primary col-sm-12 col-md-12" ng-click="addProduct()">See Potential buyers</button>
+      	</div>
 
 	</div>
 

@@ -16,6 +16,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Hash;
 use Input;
 use Exception;
+use Mail;
 
 class UsersController extends Controller
 {
@@ -157,6 +158,7 @@ class UsersController extends Controller
         try {
             $user = User::findOrFail($id);
             $user->password = Hash::make(Input::all()['password']);
+            $user->active = true;
             $user->save();
         } catch (Exception $e) {
             return response()->json($e);
@@ -174,8 +176,8 @@ class UsersController extends Controller
             $old = Input::all()['old'];
             $new = Hash::make(Input::all()['new']);
             if (Hash::check($old, $original)){
-                return "match";
                 $user->password = $new;
+                $user->active = true;
                 $user->save();
                 return response()->json($user);            
             }else{
@@ -184,6 +186,21 @@ class UsersController extends Controller
 
         } catch (Exception $e) {
             return response()->json($e);
+        }
+    }
+
+    public function forgotPassword(){
+        try{
+            $user = User::where('email', '=', Input::all()['email'])->firstOrFail();
+            if($user->email === Input::all()['email']){
+                //send email
+                return response()->json($user);
+            }else{
+                //user not registered
+                return "the account doesnt exists";
+            }
+        }catch(Exception $ex){
+            return response()->json(['error'=> 'user not found'], 404);
         }
         
     }

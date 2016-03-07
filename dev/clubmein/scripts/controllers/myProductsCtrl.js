@@ -7,9 +7,9 @@ var myProductsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 		console.log($rootScope.currentUser);
 		getItemCategories();
 		scope.user = $rootScope.currentUSer;
-		setTimeout(function() {
-			scope.getMyProducts();
-		}, 2000);	
+		
+		scope.getMyProducts();
+			
 	};
 
 	function getItemCategories(){
@@ -19,7 +19,6 @@ var myProductsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 				console.log('categories!', response);
 				scope.categories = response;
 				scope.categories.push({name: 'Other', code: 'otr'});
-				
 				clubService.setCategories(scope.categories);
 			}, function(error){
 				clubService.addNotification('error getting the categories', 'error');
@@ -31,7 +30,7 @@ var myProductsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 
 	scope.getMyProducts = function(){
 		if(!vendorService.getProducts()){
-			var request = clubService.sendRequest('GET', '/vendor/'+$rootScope.currentUser.vendorId+'/products');
+			var request = clubService.sendRequest('GET', '/vendor/products');
 			request.then(function(response){
 				console.log('my products ',response)
 				scope.myProducts = response;

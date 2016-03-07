@@ -236,27 +236,40 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					scope.item.location = scope.location;
 				}
 				if(bSave){
-					
-					scope.item.memberId = $rootScope.currentUser.memberId;
-					scope.bContent = false;
-					var request = clubService.sendRequest('POST', '/item', scope.item);
-					request.then(function(response){
-						
-						scope.item.itemId= response.itemId;
-						scope.item.location = response.location;
-						scope.safeItem.itemId = response.itemId;
-						scope.safeItem.location = response.location;
-						clubService.addNotification('added item successfully', 'success');
+					if(scope.isItemRepeated(scope.item)){
+
+					}else{
+
+						scope.item.memberId = $rootScope.currentUser.memberId;
 						scope.bContent = false;
-					}, function(error){
-						clubService.addNotification('error adding item', 'error');
-					});
+						var request = clubService.sendRequest('POST', '/item', scope.item);
+						request.then(function(response){
+							
+							scope.item.itemId= response.itemId;
+							scope.item.location = response.location;
+							scope.safeItem.itemId = response.itemId;
+							scope.safeItem.location = response.location;
+							clubService.addNotification('added item successfully', 'success');
+							scope.bContent = false;
+						}, function(error){
+							clubService.addNotification('error adding item', 'error');
+						});
+					}
 				}else{
 					clubService.addNotification('Please fill all the fields');
 				}
 				
 				
 			};
+
+			scope.isItemRepeated = function(item){
+				var booleano = true;
+				scope.allItems = membersService.getItems();
+				console.log('all items', scope.allItems);
+
+				return booleano;
+			};
+
 
 			scope.cancel = function (){
 				scope.bContent = false;

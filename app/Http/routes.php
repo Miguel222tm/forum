@@ -19,12 +19,15 @@ Route::get('/', function () {
    	
 });
 
+Route::get('/test', 'testController@index');
+
 Route::post('/send-email', 'emailController@sendEmail');
 Route::get('/verify-user', 'emailController@verifyUser');
 
 //reset password
 Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
 Route::put('/change-password', 'UsersController@changePassword');
+Route::put('/forgot-password', 'UsersController@forgotPassword');
 Route::put('/users/{id}/activate', 'UsersController@activateAccount');
 
 /**
@@ -109,7 +112,9 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::get('/vendor/companies', 'vendorController@companies');
 
-  Route::get('/vendor/{id}/products', 'vendorController@products');
+  Route::get('/vendor/products', 'vendorController@products');
+
+  Route::get('/vendor/bids',  'vendorController@showBids');
 
   Route::post('/vendor/product', 'vendorController@storeProduct');
 

@@ -93,25 +93,20 @@ class emailController extends Controller
 
     public function sendEmail(){
         # Include the Autoloader (see "Libraries" for install instructions)
-        //return Input::all()['email'];
-        $title = Input::all()['title'];
-        $receiver_name = Input::all()['name'];
-        $email = Input::all()['email'];
-        $email_type = Input::all()['email_type'];
-
-        if($email_type === 'emails.verification'){
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
-            }
+        //return Input::all()['user']['name'];
+        if(Input::all()['type'] === 'emails.forgot'){
+            $user = User::findOrFail(Input::all()['user']['userId']);
+            $user->remember_token = str_random(15);
+            $user->save();
             $key = $user->remember_token;
         }else{
             $key = "";
         }
-
-        $sent = Mail::send($email_type, array('key' => $key, 'name'=> Input::all()['name']), function($message)
+        $sent = Mail::send(Input::all()['type'], array('key' => $key, 'name'=> Input::all()['user']['name']), function($message)
         {
             $message->from('uuorkstore.inc@gmail.com');
-            $message->to(Input::all()['email'], Input::all()['name'])->subject(Input::all()['title']);
+            // $message->embed('/images/default_picture.png');
+            $message->to(Input::all()['user']['email'], Input::all()['user']['name'])->subject(Input::all()['title']);
         });
 
         if($sent){

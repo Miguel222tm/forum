@@ -18,8 +18,12 @@ var SettingsCtrl = ['$rootScope','$scope','RootService', function($rootScope, sc
 	scope.update = function(){
 		console.log('currentUser', $rootScope.currentUser);
 		$rootScope.currentUser.name = $rootScope.currentUser.firstName + " " + $rootScope.currentUser.lastName;
-		
-		var request = clubService.sendRequest('PUT', '/member/'+$rootScope.currentUser.memberId, $rootScope.currentUser);
+		if($rootScope.currentUser.memberId){
+			var request = clubService.sendRequest('PUT', '/member/'+$rootScope.currentUser.memberId, $rootScope.currentUser);
+		}
+		if($rootScope.currentUser.vendorId){
+			var request = clubService.sendRequest('PUT', '/vendor/'+$rootScope.currentUser.vendorId, $rootScope.currentUser);
+		}
 		request.then(function(response){
 			console.log('response', response);
 			$rootScope.currentUser.firstName = response.firstName;

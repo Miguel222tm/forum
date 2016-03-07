@@ -153,7 +153,10 @@ var RootService = ['$http', '$q', function ($http, $q){
   			type: type,
   			style: style
   		};
-      	this.notifications[i] = notification;
+  		if(this.notifications)
+      		this.notifications[i] = notification;
+      	else
+      		this.notifications = [notification];
       	console.log('notifications ',this.notifications);
 	};
 

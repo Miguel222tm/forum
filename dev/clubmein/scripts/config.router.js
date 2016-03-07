@@ -664,13 +664,15 @@
             })
             .state('access.forgot-password', {
               url: '/forgot-password',
-              templateUrl: 'views/misc/forgot-password.html'
+              templateUrl: 'views/misc/forgot-password.html', 
+              controller: 'forgotPasswordCtrl'
             })
             .state('change-password', {
               url: '/change-password/:code',
               templateUrl: 'views/pages/change-password.html',
               controller: 'forgotPasswordCtrl'
             })
+            
 
             .state('access.lockme', {
               url: '/lockme',

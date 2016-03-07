@@ -10,6 +10,8 @@ use App\models\Vendor;
 use App\User;
 use Input;
 use App\models\VendorProduct;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 class vendorController extends Controller
 {
     /**
@@ -111,7 +113,7 @@ class vendorController extends Controller
     {
         try{
             $Vendor = Vendor::findOrFail($id);
-            $userv = User::findOrFail($js->userId);
+            $user = User::findOrFail($js->userId);
             $user->delete();
             $Vendor->delete();
 
@@ -124,10 +126,13 @@ class vendorController extends Controller
 
 
 
-    public function products($id){
+    public function products(){
 
         try {
-            $vendor = Vendor::findOrFail($id);
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $vendor = $user->vendor()->first();
             $products = $vendor->products()->get();
         } catch (Exception $ex) {
             return response()->json($ex);
@@ -156,4 +161,19 @@ class vendorController extends Controller
         }
         return response()->json($product);
     }
+
+    public function showBids(){
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $vendor = $user->vendor()->first();
+            $bids = $vendor->bids()->get();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($bids);
+    }
+
+
 }

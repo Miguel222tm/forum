@@ -118,28 +118,36 @@ class AuthenticateController extends Controller
     {
         $credentials= $request->only('name', 'firstName','lastName', 'email', 'password');
         try{
-            $user= new User();
-            $user->firstName = $credentials['firstName'];
-            $user->lastName = $credentials['lastName'];
-            $user->name = $credentials['name'];
-            $user->email = $credentials['email'];
-            $user->password = Hash::make($credentials['password']);
-            $user->remember_token = str_random(15);
-            $user->active = false;
-            $user->save();
+            if ($user = User::where('email','=',$credentials['email'])->first()) {
+                
+            }
+            if(!isset($user->userId)){
+                $user= new User();
+                $user->firstName = $credentials['firstName'];
+                $user->lastName = $credentials['lastName'];
+                $user->name = $credentials['name'];
+                $user->email = $credentials['email'];
+                $user->password = Hash::make($credentials['password']);
+                $user->remember_token = str_random(15);
+                $user->active = false;
+                $user->save();
 
-            $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
-            {
-                $message->from('uuorkstore.inc@gmail.com');
-                $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
-            });
+                $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
+                {
+                    $message->from('uuorkstore.inc@gmail.com');
+                    $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
+                });
 
+                if($sent)
+                    return response()->json($user);
+            }else{
+                return "account already created";
+            }
 
         } catch(Exception $ex){
             return response()->json($ex);
         }
-        if($sent)
-            return response()->json($user);
+        
     }
     
     

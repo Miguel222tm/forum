@@ -52,9 +52,15 @@
         <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md" ng-click="signUp()">Sign up</button>
       
       </form>
+      <!-- Display first notification -->
+      <div ng-repeat="(id, notification) in notifications track by id">
+        <growl-notification style="{{notification.style}}">
+          {{notification.text}}
+        </growl-notification>
+      </div>  
     </div>
 
-     <!-- email confirmation here -->
+       <!-- email confirmation here -->
     <div class="p-a-md box-color r box-shadow-z1 text-color m-a" ng-if="bEmailConfirmation"> 
       <div class="" align="center">
         We just sent you an email to {{user.email}}

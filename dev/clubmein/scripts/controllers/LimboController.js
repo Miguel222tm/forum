@@ -30,6 +30,14 @@ var LimboCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state
 		console.log('type', type);
 	};
 
+    scope.isEmployee = function(){
+        if($rootScope.limboUser.email.match('@clubmein.com')){
+            return true;
+        }else{
+            return false;
+        }
+    };
+
 
 
     scope.showAdvanced = function(ev, code, type) {

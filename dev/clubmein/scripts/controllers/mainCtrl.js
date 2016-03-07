@@ -1,4 +1,4 @@
-var MainController = [ '$http','$auth', '$rootScope','$state','RootService','$scope', function ($http, $auth, $rootScope, $state, $RootService, scope) {
+var MainController = ['$auth', '$rootScope','$state','RootService','$scope', function ( $auth, $rootScope, $state, $RootService, scope) {
 	var vm = this;
         
     vm.user = null;

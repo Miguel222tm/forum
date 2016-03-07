@@ -20,7 +20,7 @@ var limboLocationCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth'
             }else{
                 $rootScope.currentUser = response;
                 console.log('rootscope.currentUser', $rootScope.currentUser);
-                $state.go('app.dashboard');
+                $state.go('app.home');
             }
         }, function(error){
             vm.error= error;
@@ -28,11 +28,23 @@ var limboLocationCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth'
     };
 
 	scope.save = function(){
+		scope.bSave = false;
 		console.log('enter on save', scope.country, scope.state, scope.city, scope.limboUser);
-		if(scope.country && scope.state && scope.city && scope.limboUser.title && scope.limboUser.telephone && scope.limboUser.address && scope.limboUser.zip_code && scope.limboUser.website){
+		if($rootScope.limboUser.code === 'ven' && scope.country && scope.state && scope.city && scope.limboUser.title && scope.limboUser.telephone && scope.limboUser.address && scope.limboUser.zip_code && scope.limboUser.website){
 
 			if(scope.limboUser.address_second_line)	
 				scope.limboUser.address += scope.limboUser.address_second_line;
+
+			scope.bSave = true;
+		}
+
+		if($rootScope.limboUser.code === 'mem' && scope.country && scope.state && scope.city){
+			scope.bSave = true;
+		}
+		if($rootScope.limboUser.email.match('@clubmein.com') && $rootScope.limboUser.code === "emp"){
+			scope.bSave = true;
+		}
+		if(scope.bSave){
 			var location = {
 				country: scope.country, 
 				state: scope.state, 
@@ -58,6 +70,7 @@ var limboLocationCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth'
 				RootService.addNotification('error saving your location', 'error');
 			});
 		}
+		
 	};
 
 	scope.setCountry = function(country){

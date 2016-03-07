@@ -3,15 +3,14 @@ var forgotPasswordCtrl = ['$state','$stateParams','RootService','$scope','$rootS
 
 
 	scope.init = function(){
-		
+		scope.notifications = $RootService.getNotifications();
 		if($stateParams.code){
-			scope.bForm = true;
-			scope.bConfirmation = false;
 			scope.getUser();
 		}
+        scope.bForm = true;
+        scope.bConfirmation = false;
 	};
 
-	
 
 
 	scope.getUser = function(){
@@ -46,7 +45,33 @@ var forgotPasswordCtrl = ['$state','$stateParams','RootService','$scope','$rootS
     	}, function(error){
     		$RootService.addNotification('error changing password', 'error');
     	});
+    };
 
+    scope.forgotPassword = function(){
+        if(scope.email){
+            var config = {
+                email: scope.email
+            };
+            var request = $RootService.sendRequest('PUT', '/forgot-password', config);
+            request.then( function(response){
+                var data ={
+                    type: 'emails.forgot',
+                    title: 'Forgot password - ClubMeIn.com',
+                    user: response
+                };
+                var secondRequest =  $RootService.sendRequest('POST', '/send-email', data);
+                secondRequest.then(function(response){
+                    console.log('response emaikl', response);
+                    scope.bConfirmation = true;
+                    scope.bForm = false;
+                }, function(error){
+                    $RootService.addNotification('error sending email', 'error');
+                });
+               
+            }, function(error){
+                $RootService.addNotification('user not found', 'error');
+            });
+        }
     };
 
 

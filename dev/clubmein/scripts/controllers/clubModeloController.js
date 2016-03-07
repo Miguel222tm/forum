@@ -41,6 +41,15 @@ var clubModeloCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'Members
 		scope.clubModelo.items = array;
 	};
 
+	scope.haveItem = function(){
+		console.log('user memberId', $rootScope.currentUser.memberId);
+		var booleano = false;
+		angular.forEach(scope.clubModelo.items, function(item, key){
+			if(item.memberId === $rootScope.currentUser.memberId)
+				booleano = true;
+		});
+		return booleano;
+	};
 
 
 	scope.init();
