@@ -237,7 +237,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				}
 				if(bSave){
 					if(scope.isItemRepeated(scope.item)){
-
+						clubService.addNotification('You cannot add a repeated item', 'error');
 					}else{
 
 						scope.item.memberId = $rootScope.currentUser.memberId;
@@ -263,10 +263,13 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 			};
 
 			scope.isItemRepeated = function(item){
-				var booleano = true;
+				var booleano = false;
 				scope.allItems = membersService.getItems();
 				console.log('all items', scope.allItems);
-
+				angular.forEach(scope.allItems, function(arrayItem, key){
+					if(arrayItem.itemId && arrayItem.brand_name === item.brand_name && arrayItem.model_name ===  item.model_name)
+						booleano = true;
+				});
 				return booleano;
 			};
 
