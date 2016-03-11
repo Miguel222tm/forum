@@ -95,7 +95,7 @@
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Description</label>
               <div class="col-sm-9">
-                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
+                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="Description" ng-model="item.description"> </textarea>
               </div>
             </div> 
 
@@ -194,7 +194,7 @@
               </div>
             </div>
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label class="col-sm-3 form-control-label">Location</label>
               <div class="col-sm-9">
                 <div class="checkbox">
@@ -203,16 +203,16 @@
                   </label>
                 </div>
               </div>
-            </div>
+            </div> -->
 
-            <div ng-if="item.otherLocation">
+            <!-- <div ng-if="item.otherLocation">
               <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
               
             </div>
-
+ -->
           </div>
           <div class="dker p-a text-right" >
-            <button type="submit" class="btn info" ng-show="item.itemId != 'clubIn'" ng-click="edit()">Edit</button>
+            <button type="submit" class="btn info" ng-show="item.itemId != 'clubIn'" ng-click="edit()">Save</button>
             <button type="submit" ng-show="item.itemId === 'clubIn'" class="btn info" ng-click="save()">Save</button>
             <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
 

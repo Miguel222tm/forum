@@ -1,6 +1,6 @@
 <!-- only need a height for layout 4 -->
 <div>
-	<div class="col-xs-6 col-sm-12 col-md-6" ng-repeat="modelo in clubModelos">
+	<div class="col-xs-6 col-sm-12 col-md-6" ng-repeat="modelo in clubModelos | unique: 'modelId' ">
 		<div class="box">
 		    <div class="item">
 			    <div class="item-bg">

@@ -22,7 +22,7 @@ class vendorController extends Controller
     public function index()
     {
         try{
-            $Vendor = Vendor::all();
+            $Vendor = Vendor::with('user')->get();
         }catch(Exception $ex){
             return response()->json($ex);
         }

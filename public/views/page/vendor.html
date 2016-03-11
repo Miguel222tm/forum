@@ -1,0 +1,140 @@
+<div ng-if="vendor" ng-class="{'i-not-active': !vendor.user.active}" >
+  <li class="list-item">
+    <a herf class="list-left" ng-click="showDetails()">
+      <img src="{{vendor.picture_url}}" ng-if="vendor.picture_url" width="45" height="45">
+      <img src="/images/default_picture.png" ng-if="!vendor.picture_url" width="45" height="45">
+    </a>
+    <div class="list-body" >
+      <div class="m-y-sm pull-right">
+        <a href class="btn red" ng-click="activateUser(false)" ng-if="vendor.user.active"> <i class="fa fa-product-hunt"></i>Unactivate</a>
+        <a href class="btn  color-three" ng-click="activateUser(true)" ng-if="!vendor.user.active"> <i class="fa fa-product-hunt"></i>Activate</a>
+         <a href class="btn white" ng-click="showDetails()">Details</a>
+        
+      </div>
+      <div>
+        <a href>{{vendor.name}}</a>
+      </div>
+      <div class="text-sm">
+        <span class="text-muted"><strong>email </strong>{{vendor.email}} </span> 
+        <span class="label green" ng-if="vendor.user.active">ACTIVE</span>
+        <span class="label red" ng-if="vendor.vendorId &&!vendor.user.active">INACTIVE </span>
+      </div>
+    </div>
+    <div class="col-sm-12 m-t" ng-if="bShowEdit">
+      <form ui-jp="parsley">
+        <div class="box">
+          <div class="box-header">
+            <h2>vendor information</h2>
+          </div>
+          <div class="box-body">
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">ID</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Name" ng-model="vendor.vendorId"  ng-disabled="true">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Title</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Code" ng-model="vendor.title" ng-disabled="true"> 
+              </div>
+            </div>                    
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Frist name</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Name" ng-model="vendor.firstName"  ng-disabled="true">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Last name</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Last name" ng-model="vendor.lastName" ng-disabled="true"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Email" ng-model="vendor.email" ng-disabled="true"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Telephone</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="telephone" ng-disabled="true" ng-model="vendor.telephone"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Ext</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="ext" ng-disabled="true" ng-model="vendor.ext"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">address</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="address" ng-disabled="true" ng-model="vendor.address"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Zip code</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="zip code" ng-disabled="true" ng-model="vendor.zip_code"> 
+              </div>
+            </div>
+            <p><b> lternative information </b></p>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Title</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="title" ng-disabled="true" ng-model="vendor.alternative_title"> 
+              </div>
+            </div>                    
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Frist name</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="First name" ng-disabled="true" ng-model="vendor.alternative_first_name" >
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Last name</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Last name" ng-disabled="true" ng-model="vendor.alternative_last_name"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="
+                Email" ng-disabled="true" ng-model="vendor.alternative_email" ng-disabled="true"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Telephone</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="Telephone" ng-disabled="true" ng-model="vendor.alternative_telephone"> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Ext</label>
+              <div class="col-sm-9">
+                <input type="text" data-parsley-type="text" class="form-control" placeholder="ext" ng-disabled="true" ng-model="vendor.alternative_ext"> 
+              </div>
+            </div>
+
+            <!-- <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Active</label>
+              <div class="col-sm-9">
+                <input type="checkbox" ng-model="vendor.active" ng-checked="vendor.active"> {{vendor.active}}
+              </div>
+            </div> -->
+          </div>
+          
+        </div>
+      </form>
+    </div> 
+
+
+    
+    </li>
+
+    
+</div>
