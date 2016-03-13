@@ -198,6 +198,20 @@
               data: { title: 'Vendors' } ,
               controller: 'vendorsListCtrl',  
             })
+            .state('app.employees', {
+              url: '/users/employees',
+              templateUrl: 'views/page/employees.html', 
+              data: { title: 'Employees' } ,
+              controller: 'employeesListCtrl',  
+            })
+
+            //fees
+            .state('app.fees', {
+              url: '/fees',
+              templateUrl: 'views/page/fees.html', 
+              data: { title: 'Fees' } ,
+              controller: 'feeListCtrl',  
+            })
 
 
 

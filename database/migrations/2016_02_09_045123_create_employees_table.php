@@ -19,9 +19,8 @@ class CreateEmployeesTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
-            $table->string('second_email');
+            $table->string('gender');
             $table->string('picture_url');
-            $table->integer('vendorId');
             $table->string('unique_code');
             $table->integer('access_level');
             $table->timestamps();

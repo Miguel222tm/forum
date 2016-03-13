@@ -10,7 +10,7 @@ use Mail;
 use Input;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\USer;
+use App\User;
 use Hash;
 class emailController extends Controller
 {

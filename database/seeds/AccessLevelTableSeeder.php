@@ -22,10 +22,10 @@ class AccessLevelTableSeeder extends Seeder
 					$al->addFunctionalities([1,2,6, 13]);
 					break;
 				case 3: 
-					$al->addFunctionalities([1,7,8, 9,10, 11, 12]);
+					$al->addFunctionalities([1,7,8, 9,10, 11]);
 					break;
 				case 4: 
-					$al->addFunctionalities([1,2]);
+					$al->addFunctionalities([1,7,8,9,10,11,12]);
 					break;
 				
 			}

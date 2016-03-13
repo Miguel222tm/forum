@@ -19,6 +19,9 @@ class UserTableSeeder extends Seeder
                 ['name' => 'Miguel Trevino','firstName'=>'Miguel','lastName'=>'Trevino', 'email' => 'miguel@gmail.com', 'password' => Hash::make('xelha110'), 'type' =>0, 'active'=>true],
                 ['name' => 'Miguel Trevino','firstName'=>'Miguel','lastName'=>'Trevino', 'email' => 'miguel@clubmein.com', 'password' => Hash::make('xelha110'), 'type' =>0, 'active'=>true],
 
+                ['name' => 'Roger Silva','firstName'=>'Roger','lastName'=>'Silva', 'email' => 'rsilva@clubmein.com', 'password' => Hash::make('clubmein2016'), 'type' =>0, 'active'=>true],
+                ['name' => 'Roger Silva','firstName'=>'Roger','lastName'=>'Silva', 'email' => 'roger.silva@clubmein.com', 'password' => Hash::make('clubmein2016'), 'type' =>0, 'active'=>true],
+
         );
             
         // Loop through each user above and create the record for them in the database

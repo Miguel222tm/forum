@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\models\Employee;
-use App\User;
-use Input;
-class employeesController extends Controller
+
+class feesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +16,7 @@ class employeesController extends Controller
      */
     public function index()
     {
-        try{
-            $Employee = Employee::with('user')->get();
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($Employee);
+        //
     }
 
     /**
@@ -44,14 +37,7 @@ class employeesController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $Employee = new Employee();
-            $Employee->fill(Input::all());
-            $Employee->save();
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($Employee);
+        //
     }
 
     /**
@@ -62,12 +48,7 @@ class employeesController extends Controller
      */
     public function show($id)
     {
-        try{
-            $Employee = Employee::findOrFail($id);
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($Employee);
+        //
     }
 
     /**
@@ -90,14 +71,7 @@ class employeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            $Employee = Employee::findOrFail($id);
-            $Employee->fill(Input::all());
-            $Employee->save();
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($Employee);
+        //
     }
 
     /**
@@ -108,15 +82,6 @@ class employeesController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $Employee = Employee::findOrFail($id);
-            $user = User::findOrFail($js->userId);
-            $user->delete();
-            $Employee->delete();
-
-        }catch(Exception $ex){
-            return response()->json($ex);
-        }
-        return response()->json($Employee);
+        //
     }
 }

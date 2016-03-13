@@ -865,8 +865,10 @@ a.list-group-item {
     content: '/ '; }
 
 .navbar {
+
   border: none;
   margin: 0;
+  margin-right: 40px;
   padding: 0 1rem;
   flex-shrink: 0;
   min-height: 3.5rem; }
@@ -1095,8 +1097,8 @@ a.list-group-item {
     padding-right: 0; }
 
 .row {
-  margin-left: -12px;
-  margin-right: -12px; }
+  margin-left: 0px;
+  margin-right: 60px; }
   .row [class*="col-"] {
     padding-left: 12px;
     padding-right: 12px; }

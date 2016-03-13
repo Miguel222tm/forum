@@ -70,10 +70,12 @@ class FunctionalityTableSeeder extends Seeder
                 'code' => 'fn_users_employees'
             ]);
 
-        App\models\Functionality::create([//6
+        App\models\Functionality::create([//13
             'name' => 'My Bids',
             'code' => 'fn_my_bids'
         ]);
+
+        
             
     }
 }

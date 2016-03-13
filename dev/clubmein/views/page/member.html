@@ -6,7 +6,7 @@
     </a>
     <div class="list-body" >
     	<div class="m-y-sm pull-right">
-        <a href class="btn red" ng-click="activateUser(false)" ng-if="member.user.active"> <i class="fa fa-product-hunt"></i>Unactivate</a>
+        <a href class="btn red" ng-click="desactivate()" ng-if="member.user.active"> <i class="fa fa-product-hunt"></i>Unactivate</a>
         <a href class="btn  color-three" ng-click="activateUser(true)" ng-if="!member.user.active"> <i class="fa fa-product-hunt"></i>Activate</a>
          <a href class="btn white" ng-click="showDetails()">Details</a>
       	
@@ -58,12 +58,6 @@
                 <input type="text" data-parsley-type="text" class="form-control" placeholder="Gender" ng-model="member.gender" ng-disabled="true"> 
               </div>
             </div>
-            <!-- <div class="form-group row">
-              <label class="col-sm-3 form-control-label">rating</label>
-              <div class="col-sm-9">
-                <input type="text" data-parsley-type="text" class="form-control" placeholder="Gender" ng-model="member.gender" ng-disabled="true"> 
-              </div>
-            </div> -->
 
           </div>
           <div class="dker p-a text-right">
@@ -74,14 +68,28 @@
       </form>
     </div> 
 
-    <div class="col-sm-12 m-t" ng-if="bShowChild">
-      <div ng-repeat="product in member.products">
-        <product product="product" member="member" user="user"> </product>
-      </div>
-      <div class="col-sm-12 col-md-12">
-        <button class="btn btn-fw blue col-sm-12 col-md-12" ng-click="addProduct()">Add a new product</button>
-      </div>
+    <div class="col-sm-12 m-t" ng-if="bDesactivate">
+      <form ui-jp="parsley">
+        <div class="box">
+          <div class="box-header">
+            <h2>Desactivate Account</h2>
+          </div>
+          <div class="box-body">
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Reason</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" ng-model="member.user.reason" rows="4"></textarea>
+              </div>
+            </div>                    
+          </div>
+          <div class="dker p-a text-right" ng-if="bDesactivate">            
+            <button type="submit" class="btn info" ng-click="activateUser(false)">Desactivate</button>
+            <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
+          </div>
+        </div>
+      </form>
     </div>
+
     
     </li>
 

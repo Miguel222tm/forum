@@ -1,0 +1,39 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>User registration</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon  aria-label="Close dialog">close </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+    <div >
+      <div class="md-dialog-content">
+        <div class="clearfix m-b-lg">
+          <form role="form" class="col-md-6 p-a-0">
+            <div class="form-group row" ng-if="limboUser.code === 'ven'">
+              <label class="col-sm-3 form-control-label">Reason</label>
+              <div class="col-sm-9">
+                <textarea rows="4" ng-model="reason" ></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>     
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      
+      <span flex></span>
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <md-button ng-click="save()" style="margin-right:20px;">
+        Desactivate
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

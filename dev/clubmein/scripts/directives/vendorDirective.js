@@ -23,11 +23,20 @@ var vendor = ['$state','RootService','$rootScope','$mdDialog','$timeout','adminS
 				scope.bShowEdit = false;
 			};
 
+			scope.cancel = function(){
+				scope.bShowEdit = false;
+				scope.bDesactivate = false;
+			};
+
 			scope.activateUser = function(booleano){
-				if(booleano)
+				if(booleano){
 					scope.vendor.user.active = true;
-				else
+					scope.vendor.user.reason = "";
+				}
+				else{
 					scope.vendor.user.active = false;
+					console.log('reason', scope.vendor.user.reason);
+				}
 				var request = clubService.sendRequest('PUT','/users/'+scope.vendor.user.userId+'/activate', scope.vendor.user);
 				request.then(function(response){
 					scope.vendor.user = response;
@@ -40,7 +49,9 @@ var vendor = ['$state','RootService','$rootScope','$mdDialog','$timeout','adminS
 				});
 			};
 
-
+			scope.desactivate = function(){
+				scope.bDesactivate = true;
+			};
 
 
 

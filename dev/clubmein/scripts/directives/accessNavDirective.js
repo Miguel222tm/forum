@@ -164,6 +164,16 @@ var accessNav = ['$state', function($state){
 									state: 'app.vendors'
 								});
 							break;
+							case "fn_users_employees":
+								scope.submenu.push({
+									hierarchy: 5,
+									level: 1,
+									hidden: false,
+									icon: 'fa fa-users',
+									label: 'Employees',
+									state: 'app.employees'
+								});
+							break;
 
 
 					}

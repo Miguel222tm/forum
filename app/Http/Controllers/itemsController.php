@@ -137,7 +137,6 @@ class itemsController extends Controller
                 $itemLocation->city = Input::all()['modifyLocation']['city'];
                 $itemLocation->save();
             }
-
             $item->location = $item->location()->get();
 
         }catch(Exception $ex){
