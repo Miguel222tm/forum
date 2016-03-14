@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\models\Fee;
+use Input;
 class feesController extends Controller
 {
     /**
@@ -15,19 +16,16 @@ class feesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        try{
+            $fees = Fee::all();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($fees);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +35,14 @@ class feesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $fee = new Fee();
+            $fee->fill(Input::all());
+            $fee->save();   
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($fee);
     }
 
     /**
@@ -48,19 +53,15 @@ class feesController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $fee= Fee::findOrFail($id);
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($fee);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -71,7 +72,14 @@ class feesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $fee = Fee::findOrFail($id);
+            $fee->fill(Input::all());
+            $fee->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($fee);
     }
 
     /**
@@ -82,6 +90,12 @@ class feesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $fee = Fee::findOrFail($id);
+            $fee->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($fee);
     }
 }

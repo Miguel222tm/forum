@@ -75,7 +75,10 @@ class FunctionalityTableSeeder extends Seeder
             'code' => 'fn_my_bids'
         ]);
 
-        
+        App\models\Functionality::create([//14
+            'name' => 'Fees',
+            'code' => 'fn_fees'
+        ]);
             
     }
 }

@@ -10,6 +10,6 @@ class Fee extends Model
 
     protected $primaryKey = "feeId";
 
-    protected $fillable = ['code', 'name', 'description', 'default', 'active'];
+    protected $fillable = ['code', 'name', 'description','from','to','percentage', 'default', 'active'];
 
 }

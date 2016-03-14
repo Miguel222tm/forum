@@ -109,7 +109,7 @@ var accessNav = ['$state', function($state){
 				=            employee				          =
 				=============================================*/
 				
-				if(scope.user.access_level === 3){
+				if(scope.user.access_level === 3 || scope.user.access_level === 4){
 					switch(func.code){
 						
 						case "fn_categories":
@@ -164,18 +164,34 @@ var accessNav = ['$state', function($state){
 									state: 'app.vendors'
 								});
 							break;
-							case "fn_users_employees":
-								scope.submenu.push({
-									hierarchy: 5,
-									level: 1,
-									hidden: false,
-									icon: 'fa fa-users',
-									label: 'Employees',
-									state: 'app.employees'
-								});
-							break;
+						case "fn_fees":
+							scope.menu.push({
+								hierarchy: 6,
+								level: 0,
+								hidden: false,
+								icon: 'fa fa-credit-card',
+								label: 'Fees',
+								state: 'app.fees'
+							});
+						break;
+							
 
 
+					}
+				}
+
+				if(scope.user.access_level === 4){
+					switch(func.code){
+						case "fn_users_vendors":
+							scope.submenu.push({
+								hierarchy: 5,
+								level: 1,
+								hidden: false,
+								icon: 'fa fa-users',
+								label: 'Employees',
+								state: 'app.employees'
+							});
+						break;
 					}
 				}
 

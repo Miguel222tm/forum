@@ -19,11 +19,19 @@ var employee = ['$state','RootService','$rootScope','$mdDialog','$timeout','admi
 					scope.bShowEdit = true;
 			};
 
+			scope.cancel = function(){
+				scope.bShowEdit = false;
+				scope.bDesactivate = false;
+			};
+
 			scope.activateUser = function(booleano){
-				if(booleano)
+				if(booleano){
 					scope.employee.user.active = true;
-				else
+					scope.employee.user.reason = "";
+				}else{
 					scope.employee.user.active = false;
+					console.log('reason ', scope.employee.user.reason);
+				}
 				var request = clubService.sendRequest('PUT','/users/'+scope.employee.user.userId+'/activate', scope.employee.user);
 				request.then(function(response){
 					scope.employee.user = response;
@@ -31,9 +39,14 @@ var employee = ['$state','RootService','$rootScope','$mdDialog','$timeout','admi
 						clubService.addNotification(scope.employee.name+' activated', 'success');
 					else
 						clubService.addNotification(scope.employee.name+ ' disactivated', 'success');
+					scope.bDesactivate = false;
 				}, function(error){
 					clubService.addNotification('error changing status to '+ scope.employee.name, 'error');
 				});
+			};
+
+			scope.desactivate = function(){
+				scope.bDesactivate = true;
 			};
 
 			scope.init();

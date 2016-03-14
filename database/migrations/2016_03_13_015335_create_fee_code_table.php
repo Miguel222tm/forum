@@ -17,6 +17,9 @@ class CreateFeeCodeTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('description');
+            $table->integer('from');
+            $table->integer('to');
+            $table->double('percentage');
             $table->boolean('default');
             $table->boolean('active');
             $table->timestamps();

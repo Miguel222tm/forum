@@ -152,6 +152,12 @@
               data: { title: 'My products' } ,
               controller: 'myProductsCtrl',  
             })
+            .state('app.bidingSection', {
+              url: '/product/:id',
+              templateUrl: 'views/page/biding-section.html', 
+              data: { title: 'Biding Section' } ,
+              controller: 'bidSectionCtrl',  
+            })
 
             .state('app.mybids', {
               url: '/mybids',
