@@ -24,7 +24,7 @@ class CreateMembersTable extends Migration
             $table->string('unique_code');
             $table->integer('access_level');
             $table->string('rating');
-
+            $table->boolean('active');
             $table->timestamps();
         });
     }

@@ -20,13 +20,15 @@ var clubCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServic
 	function getModels(){
 		scope.clubModelos = [];
 		angular.forEach(scope.club.items, function(item, key){
+			//console.log('items', item);
 			if(scope.clubModelos.indexOf(item.model_name) === -1){
+				console.log('its not repeated', item);
 				scope.clubModelos.push({brand: item.brand_name , modelo: item.model_name });
 			}
 		});
-		//console.log('scope.clubModelos!!!',scope.clubModelos);
 		asignItemsToModel(scope.clubModelos);
 	}
+
 
 
 

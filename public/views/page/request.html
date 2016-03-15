@@ -1,3 +1,107 @@
-<div> 
-	Request
+<div ng-if="request && !request.active">
+	<li class="list-item">
+    <a herf class="list-left" ng-click="showContent()">
+    	<span class="w-40 r-2x _600 text-lg accent">
+      	{{request.model_name[0]}}  
+      </apan>
+    </a>
+    <div class="list-body" >
+    	<div class="m-y-sm pull-right" ng-if="request.itemId">
+        Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
+      	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
+  	  </div>
+      <div>
+        <a href>{{request.brand_name}} - {{request.model_name}}</a>
+      </div>
+      <div class="text-sm">
+      	<span class="text-muted"><strong>Quantity</strong> {{request.quantity}}, <strong>Price</strong> {{request.price}}</span> 
+      </div>
+    </div>
+    <div class="col-sm-12 m-t" ng-if="bContent">
+      <form ui-jp="parsley">
+        <div class="box">
+          <div class="box-header">
+            <h2>Item information</h2>
+          </div>
+          <div class="box-body" >                    
+            <div class="form-group row" >
+              <label class="col-sm-3 form-control-label b-p-top">Category</label>
+              <div class="col-sm-9">
+               <select  class="form-control c-select m-y" ng-model="$parent.category" ng-options="category as category.name for category in categories | filter: {active : 1}" ng-change="setCategory(category)"
+                 placeholder="select a category"
+                
+                >
+                <option value="">{{ request.category_name }}</option>
+                </select> 
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Product</label>
+              <div class="col-sm-9">
+                <select  class="form-control c-select m-y" ng-model="$parent.product" ng-options="product as product.name for product in category.products | filter: {active : 1}" ng-change="setProduct(product)"
+                 placeholder="select a product"
+                
+                >
+                <option value="">{{ request.product_name }}</option>
+                </select> 
+              </div>
+            </div>
+            <div class="form-group row" >
+              <label class="col-sm-3 form-control-label b-p-top">Brand</label>
+              <div class="col-sm-9">
+               <select  class="form-control c-select m-y" ng-model="$parent.brand" ng-options="brand as brand.name for brand in product.brands | filter: {active : 1}" ng-change="setBrand(brand)"
+                 placeholder="select a brand"   
+                >
+                <option value="">{{ request.brand_name }}</option>
+                </select> 
+              </div>
+            </div>
+            <div class="form-group row" >
+              <label class="col-sm-3 form-control-label b-p-top">model</label>
+              <div class="col-sm-9">
+               <select  class="form-control c-select m-y" ng-model="$parent.model" ng-options="model as model.name for model in brand.models | filter: {active : 1}" ng-change="setModel(model)"
+                 placeholder="select a model"   
+                >
+                <option value="">{{ request.model_name }}</option>
+                </select> 
+              </div>
+            </div>
+            
+            
+            
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Quantity</label>
+              <div class="col-sm-9">
+                <input type="number" min="1" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="request.quantity">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Price</label>
+              <div class="col-sm-9">
+                <input type="number" min="0" required data-parsley-type="number" class="form-control" placeholder="number" ng-model="request.price">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Description</label>
+              <div class="col-sm-9">
+                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="Description" ng-model="request.description"> </textarea>
+              </div>
+            </div> 
+          </div>
+          <div class="dker p-a text-right">
+            <button type="submit" class="btn info" ng-click="save()">Save</button>
+            <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- --------------------------------------------------------- -->
+
+    </li>
+
+    
 </div>

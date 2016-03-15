@@ -42,9 +42,13 @@ Route::get('/app', function(){
 =====================================*/
 
 Route::post('/signup', 'AuthenticateController@registerUserByEmail');
+
 Route::post('/authenticate', 'AuthenticateController@authenticate');
+
 Route::post('/auth/google', 'socialAuthController@google');
+
 Route::post('/auth/linkedin', 'socialAuthController@linkedin');
+
 Route::post('/auth/facebook', 'socialAuthController@facebook');
 
 
@@ -61,6 +65,15 @@ Route::group(['middleware' => 'jwt.auth'], function()
 });
 
 
+Route::get('/fees',  'feesController@index');
+
+Route::get('/fee/{id}', 'feesController@show');
+
+Route::post('/fees', 'feesController@store');
+
+Route::put('/fee/{id}', 'feesController@update');
+
+Route::delete('/fee/{id}', 'feesController@destroy');
 
 
 
@@ -115,6 +128,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/vendor/products', 'vendorController@products');
 
   Route::get('/vendor/bids',  'vendorController@showBids');
+
+  Route::get('/vendor/biding-section', 'vendorController@bidingSection');
+
+  Route::post('/vendor/bids', 'vendorController@storeBid');
 
   Route::post('/vendor/product', 'vendorController@storeProduct');
 
@@ -276,6 +293,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/items', 'itemsController@index');
 
   Route::get('/item/{id}',  'itemsController@show');
+
+  Route::get('/item/{id}/bids', 'itemsController@showBids');
 
   Route::post('/item', 'itemsController@store');
 

@@ -99,7 +99,7 @@
             dashboard = 'views/dashboard/dashboard.'+l+'html';
 
         $urlRouterProvider
-          .otherwise('/app/dashboard');
+          .otherwise('/app/home');
         $stateProvider
           .state('app', {
             abstract: true,
@@ -152,6 +152,12 @@
               data: { title: 'My products' } ,
               controller: 'myProductsCtrl',  
             })
+            .state('app.bidingSection', {
+              url: '/product/:id',
+              templateUrl: 'views/page/biding-section.html', 
+              data: { title: 'Biding Section' } ,
+              controller: 'bidSectionCtrl',  
+            })
 
             .state('app.mybids', {
               url: '/mybids',
@@ -197,6 +203,20 @@
               templateUrl: 'views/page/vendors.html', 
               data: { title: 'Vendors' } ,
               controller: 'vendorsListCtrl',  
+            })
+            .state('app.employees', {
+              url: '/users/employees',
+              templateUrl: 'views/page/employees.html', 
+              data: { title: 'Employees' } ,
+              controller: 'employeesListCtrl',  
+            })
+
+            //fees
+            .state('app.fees', {
+              url: '/fees',
+              templateUrl: 'views/page/fees.html', 
+              data: { title: 'Fees' } ,
+              controller: 'feeListCtrl',  
             })
 
 

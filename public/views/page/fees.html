@@ -1,0 +1,23 @@
+<div> 
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+	    	<div class="box">
+	    		<div class="box-header">
+	    			<h3>Fees <span class="label warning"></span></h3>
+	    			<small>.</small>
+	    		</div>
+		    	<ul class="list inset" ng-repeat="fee in feeList" >
+			        <fee fee="fee" fees="feeList"></fee>
+			    </ul>
+		    </div>
+	    </div>
+      	<hr>
+      	
+
+	    <div class="col-sm-12 col-md-12">
+        	<button class="btn btn-fw color-two col-sm-12 col-md-12" ng-click="addFee()">Add a new Fee</button>
+      	</div>
+
+	</div>
+
+</div>

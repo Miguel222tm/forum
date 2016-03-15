@@ -35,6 +35,19 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					scope.bContent = true;
 			};
 
+			scope.loadBids = function(){
+				if(!scope.bids){
+					var request = clubService.sendRequest('GET', '/item/'+scope.item.itemId+'/bids');
+					request.then(function(response){
+						console.log('bids ---- ', response);
+						scope.bids = response;
+						scope.bBidsSection = true;
+					}, function(error){
+						clubService.sendRequest('error getting bids', 'error');
+					});
+				}
+			}
+
 			scope.addOther = function(parent, type){
 				var array = [];
 				angular.forEach(parent, function(element, key){

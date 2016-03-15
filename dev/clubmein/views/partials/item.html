@@ -7,6 +7,7 @@
     </a>
     <div class="list-body" >
     	<div class="m-y-sm pull-right" ng-if="item.itemId && item.memberId === user.memberId">
+        <a href class="btn color-four b-space" ng-click="loadBids()"> <i class="fa fa-product-hunt"></i>Show Bids</a>
         Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
       	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
   	  </div>
@@ -95,7 +96,7 @@
             <div class="form-group row">
               <label class="col-sm-3 form-control-label">Description</label>
               <div class="col-sm-9">
-                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="number" ng-model="item.description"> </textarea>
+                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="Description" ng-model="item.description"> </textarea>
               </div>
             </div> 
 
@@ -193,32 +194,19 @@
                 <input type="text" class="form-control" ng-value="location.state +', '+ location.city+ ', ' + location.country " ng-disabled="true">
               </div>
             </div>
-
-            <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Location</label>
-              <div class="col-sm-9">
-                <div class="checkbox">
-                  <label class="checkbox ui-check">
-                    <input type="checkbox" ng-model="item.otherLocation" ng-init="item.otherLocation = false" ng-checked="item.otherLocation" ng-click="otherLocation()" ><i></i>  modify your second location
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div ng-if="item.otherLocation">
-              <ng-include src="'views/partials/country-state-city.html'" ></ng-include>
-              
-            </div>
-
           </div>
           <div class="dker p-a text-right" >
-            <button type="submit" class="btn info" ng-show="item.itemId != 'clubIn'" ng-click="edit()">Edit</button>
+            <button type="submit" class="btn info" ng-show="item.itemId != 'clubIn'" ng-click="edit()">Save</button>
             <button type="submit" ng-show="item.itemId === 'clubIn'" class="btn info" ng-click="save()">Save</button>
             <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
 
           </div>
         </div>
       </form>
+    </div>
+
+    <div class="col-sm-12 m-t" ng-if="item.itemId && bBidsContent">
+      
     </div>
     </li>
 

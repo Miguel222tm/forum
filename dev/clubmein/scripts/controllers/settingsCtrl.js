@@ -24,10 +24,12 @@ var SettingsCtrl = ['$rootScope','$scope','RootService', function($rootScope, sc
 		if($rootScope.currentUser.vendorId){
 			var request = clubService.sendRequest('PUT', '/vendor/'+$rootScope.currentUser.vendorId, $rootScope.currentUser);
 		}
+		if($rootScope.currentUser.employeeId){
+			var request = clubService.sendRequest('PUT', '/employee/'+$rootScope.currentUser.employeeId, $rootScope.currentUser);
+		}
 		request.then(function(response){
 			console.log('response', response);
-			$rootScope.currentUser.firstName = response.firstName;
-			$rootScope.currentUser.lastName = response.lastName;
+			$rootScope.currentUser = response;
 			clubService.addNotification('profile updated', 'success');
 
 		}, function(error){

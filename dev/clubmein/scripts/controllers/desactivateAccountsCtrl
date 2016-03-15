@@ -1,0 +1,21 @@
+var desactivateCtrl = ['$rootScope','$scope','RootService','$mdDialog','$auth','$state','$mdMedia', function($rootScope, scope, RootService, $mdDialog, $auth, $state, $mdMedia){
+
+	console.log('desactivateCtrl!');
+
+	scope.cancel = function(){
+		$mdDialog.hide();
+	};
+
+	scope.getUser = function() {
+    };
+
+	scope.save = function(){
+		
+	};
+
+
+}];
+
+
+angular.module('app')
+	.controller('desactivateCtrl', desactivateCtrl);

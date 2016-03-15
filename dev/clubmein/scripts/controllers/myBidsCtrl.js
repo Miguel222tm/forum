@@ -6,8 +6,6 @@ var myBidsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorService
 
 	};
 
-
-
 	function getBids(){
 		var request = clubService.sendRequest('GET', '/vendor/bids');
 		request.then(function(response){

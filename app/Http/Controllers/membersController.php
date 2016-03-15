@@ -22,7 +22,7 @@ class membersController extends Controller
     public function index()
     {
         try{
-            $member = Member::all();
+            $member = Member::with('user')->get();
         }catch(Exception $ex){
             return response()->json($ex);
         }
@@ -155,4 +155,6 @@ class membersController extends Controller
         }
         return response()->json($items);
     }
+
+    
 }

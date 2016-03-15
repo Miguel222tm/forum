@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Input;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\models\Bid;
 class bidsController extends Controller
 {
     /**
@@ -16,7 +19,7 @@ class bidsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -37,7 +40,15 @@ class bidsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $bid = new Bid();
+            $bid->vendorId = $vendor->vendorId;
+            $bid->fill(Input::all());
+            $bid->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($bid);
     }
 
     /**

@@ -19,7 +19,7 @@ class employeesController extends Controller
     public function index()
     {
         try{
-            $Employee = Employee::all();
+            $Employee = Employee::with('user')->get();
         }catch(Exception $ex){
             return response()->json($ex);
         }
