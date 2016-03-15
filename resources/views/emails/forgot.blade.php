@@ -10,7 +10,7 @@ There is no fee to join and your information is anonymous and confidential. Club
 </p>
 <p>
 	To activate your account click on this link
-	<a href="http://localhost:8000/app#/change-password/{{$key}}">http://clubmein.com/change-password?code={{$key}}</a> 
+	<a href="http://162.243.46.22/app#/change-password/{{$key}}">http://clubmein.com/change-password?code={{$key}}</a> 
 </p>
 
 <p>Please help us promote this community website and enable us to see what types of things people want to group for.
