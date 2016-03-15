@@ -1,21 +1,26 @@
 <div>
- 	<div class="row">
+ 	<div class="row" ng-if="!bBiding && !mBiding">
  		<div class="col-sm-12 col-md-12">
-	    	<div class="box">
+	    	<div class="box" layout="row" layout-align="space-between center">
 	    		<div class="box-header">
-	    			<h3>Biding Section <span class="label warning"></span></h3>
-	    			<small>Please select your options to send your bid for this product, please mark every checkbox to do it.</small>
+	    			<h3>
+	    				<strong>Brand: </strong>{{buyersList.model.brand_name}} <br><strong>Model: </strong>{{buyersList.model.name}}
+	    			</h3>
+	    		</div>
+	    		<div class="b-space">
+	    			<button type="submit" class="btn color-two" ng-click="bidModel()">Make a bid</button>
+            		
 	    		</div>
 		    </div>
 	    </div>
       	<hr>
 	 	<div class="col-sm-12">
-	      	<p> <strong>Model: </strong>{{buyersList.model.name}}</p>
+	      	<p> </p>
 	      	<div class="box">
 		        <ul class="list inset m-a-0">
 		          <li class="list-item">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox" aria-label="checkbox" ng-model="buyersList.model.city.checked" ng-disabled="!buyersList.model.city.length"> </md-checkbox>
 		            </a>
 		            <div class="list-body">
 		              <div><a href>City</a></div>
@@ -24,7 +29,7 @@
 		          </li>
 		          <li class="list-item">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox"aria-label="checkbox" ng-model="buyersList.model.state.checked" ng-disabled="!buyersList.model.state.length" > </md-checkbox>
 		            </a>
 		            <div class="list-body">
 		              <div><a href>State</a></div>
@@ -33,32 +38,48 @@
 		          </li>
 		          <li class="list-item">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox"aria-label="checkbox" ng-model="buyersList.model.country.checked" ng-disabled="!buyersList.model.country.length"  > </md-checkbox>
 		            </a>
 		            <div class="list-body">
 		              <div><a href>Country</a></div>
 		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{buyersList.model.country.length}}</small>
+		            </div>
+		          </li>
+
+		          <li class="list-item">
+		            <a herf class="list-left">
+		              <md-checkbox type="checkbox"aria-label="checkbox" ng-model="buyersList.model.world.checked" ng-disabled="!buyersList.model.world.length"  > </md-checkbox>
+		            </a>
+		            <div class="list-body">
+		              <div><a href>World</a></div>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{buyersList.model.world.length}}</small>
 		            </div>
 		          </li>	          
 		        </ul>
 	      	</div>
 	    </div>
 	    <div class="col-sm-12 col-md-12">
-	    	<div class="box">
+	    	<div class="box" layout="row" layout-align="space-between center">
 	    		<div class="box-header">
-	    			<h3>Other models <span class="label warning"></span></h3>
-	    			<small></small>
+	    			<h3>
+	    				<strong>Other brands </strong>
+	    			</h3>
+	    		</div>
+	    		<div class="b-space">
+	    			<button type="submit" class="btn color-two" ng-click="bidBrand()">Make a bid</button>
+            		
 	    		</div>
 		    </div>
 	    </div>
       	<hr>
 	    <div class="col-sm-12" ng-repeat="otherModel in buyersList.brand" ng-if="otherModel.name">
-	      	<p> <strong>Model: </strong>{{otherModel.name}}</p>
-	      	<div class="box">
+	      	
+	      	<div class="box" ng-if="otherModel.city.length || otherModel.state.length || otherModel.country.length || otherModel.world.length">
+	      		<p> <strong>Model: </strong>{{otherModel.name}}</p>
 		        <ul class="list inset m-a-0">
-		          <li class="list-item">
+		          <li class="list-item" ng-if="otherModel.city.length">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox" ng-model="otherModel.city.checked" aria-label="checkbox"  > </md-checkbox>
 		            </a>
 		            <div class="list-body">
 		              <div><a href>City</a></div>
@@ -66,27 +87,46 @@
 		            </div>
 		          </li>
 
-		          <li class="list-item">
+		          <li class="list-item" ng-if="otherModel.state.length">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox" ng-model="otherModel.state.checked" aria-label="checkbox" > </md-checkbox>
 		            </a>
 		            <div class="list-body">
-		              <div><a href>City</a></div>
+		              <div><a href>State</a></div>
 		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.state.length}}</small>
 		            </div>
 		          </li>
 
-		          <li class="list-item">
+		          <li class="list-item" ng-if="otherModel.country.length">
 		            <a herf class="list-left">
-		              <md-checkbox type="checkbox" > </md-checkbox>
+		              <md-checkbox type="checkbox" ng-model="otherModel.country.checked" aria-label="checkbox"  > </md-checkbox>
 		            </a>
 		            <div class="list-body">
-		              <div><a href>City</a></div>
+		              <div><a href>Country</a></div>
 		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.country.length}}</small>
+		            </div>
+		          </li>
+		          <li class="list-item" ng-if="otherModel.world.length">
+		            <a herf class="list-left">
+		              <md-checkbox type="checkbox" ng-model="otherModel.world.checked" aria-label="checkbox" > </md-checkbox>
+		            </a>
+		            <div class="list-body">
+		              <div><a href>World</a></div>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.world.length}}</small>
 		            </div>
 		          </li>
 		        </ul>
 		    </div>
 	    </div>
+	</div>
+
+
+	<div ng-if="mBiding">
+		<bid brand-id="buyersList.model.brandId" brand-name="buyersList.model.brand_name" model-id="buyersList.model.id" model-name="buyersList.model.name" total-items="totalItems" final-biding-list="finalBidingList" min="min" max="max" average="average">
+		</bid>
+	</div>
+	<div ng-if="bBiding">
+		<bid ng-repeat="finalBidingList in brandList" brand-id="finalBidingList.brandId" brand-name="finalBidingList.brand_name" model-id="finalBidingList.modelId" model-name="finalBidingList.model_name" total-items="finalBidingList.totalItems" final-biding-list="finalBidingList" min="finalBidingList.min" max="finalBidingList.max" average="finalBidingList.average">
+		</bid>
 	</div>
 </div>

@@ -15,7 +15,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use App\models\Brand;
 use App\models\Item;
 use App\models\ItemLocation;
-
+use App\models\Bid;
 class vendorController extends Controller
 {
     /**
@@ -240,7 +240,16 @@ class vendorController extends Controller
                     array_push($itemsCountry, $location->item);
             }
 
-            $modelList = ['name' => $mainItem->model_name, 'id' => $mainItem->modelId, 'brand_name' => $mainItem->brand_name, 'brandId' => $mainItem->brandId,  'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry];
+            $itemLocationWorld = ItemLocation::where('country', '!=', $userLocation->country)->with(['item' => function($query){
+                $query->where('modelId', '=', Input::all()['id']);
+            }])->get();
+            $itemsWorld = [];
+            foreach ($itemLocationWorld as $location) {
+                if($location->item){
+                    array_push($itemsWorld, $location->item);
+                }
+            }
+            $modelList = ['name' => $mainItem->model_name, 'id' => $mainItem->modelId, 'brand_name' => $mainItem->brand_name, 'brandId' => $mainItem->brandId,  'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry, 'world' => $itemsWorld];
         
             //***   ******************************************
             //other models
@@ -274,7 +283,17 @@ class vendorController extends Controller
                     if($location->item)
                         array_push($itemsCountry, $location->item);
                 }
-                $temp = ['name' =>$otherModel->name,'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry];
+
+                $itemLocationWorld = ItemLocation::where('country', '!=', $userLocation->country)->with(['item' => function($query) use($otherModel){
+                    $query->where('modelId', '=', $otherModel->modelId);
+                }])->get();
+                $itemsWorld = [];
+                foreach ($itemLocationWorld as $location) {
+                    if($location->item)
+                        array_push($itemsWorld, $location->item);
+                }
+
+                $temp = ['id'=> $otherModel->modelId, 'name' =>$otherModel->name,'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry, 'world'=> $itemsWorld];
                 array_push($brandList, $temp);
             }
             $All = ['model'=> $modelList, 'brand' => $brandList];
@@ -286,6 +305,27 @@ class vendorController extends Controller
         return response()->json();
 
     }
+
+
+    public function storeBid(Request $request){
+       try{
+             if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $vendor = $user->vendor()->first();
+
+            $bid = new Bid();
+            $bid->vendorId = $vendor->vendorId;
+            $bid->fill(Input::all());
+            $bid->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($bid);     
+    }
+
+
+
 
 
 }

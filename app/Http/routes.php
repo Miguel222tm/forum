@@ -131,6 +131,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::get('/vendor/biding-section', 'vendorController@bidingSection');
 
+  Route::post('/vendor/bids', 'vendorController@storeBid');
+
   Route::post('/vendor/product', 'vendorController@storeProduct');
 
   Route::get('/vendor/{id}', 'vendorController@show');
@@ -291,6 +293,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/items', 'itemsController@index');
 
   Route::get('/item/{id}',  'itemsController@show');
+
+  Route::get('/item/{id}/bids', 'itemsController@showBids');
 
   Route::post('/item', 'itemsController@store');
 

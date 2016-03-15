@@ -11,6 +11,7 @@ use Input;
 use App\models\ItemLocation;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\models\Bid;
 class itemsController extends Controller
 {
     /**
@@ -156,7 +157,7 @@ class itemsController extends Controller
         try{
             $item = Item::find($id);
             $locations = $item->location()->get();
-            if(isset($locations)){
+            if($locations){
                 foreach ($locations as $location) {
                     $location->delete();
                 }
@@ -166,5 +167,17 @@ class itemsController extends Controller
             return response()->json($ex);
         }
         return response()->json($item);
+    }
+
+    public function showBids($id){
+        try{
+            $item = Item::find($id);
+            $modelBids = Bid::where('modelId', '=', $item->modelId)->get();
+
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelBids);
     }
 }

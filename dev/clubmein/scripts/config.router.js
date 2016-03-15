@@ -99,7 +99,7 @@
             dashboard = 'views/dashboard/dashboard.'+l+'html';
 
         $urlRouterProvider
-          .otherwise('/app/dashboard');
+          .otherwise('/app/home');
         $stateProvider
           .state('app', {
             abstract: true,

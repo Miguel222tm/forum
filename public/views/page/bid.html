@@ -1,0 +1,94 @@
+<div class="row b-space-all" ng-if="!bSent">
+			<div class="col-sm-12 col-md-12">
+		    	<div class="box" layout="row" layout-align="space-between center">
+		    		<div class="box-header">
+		    			<h3>
+		    				Biding information
+		    			</h3>
+		    		</div>
+			    </div>
+		    </div>
+
+		    <div class="col-sm-12 col-md-12">
+		    	<div class="box" layout="row" layout-align="start start">
+		    		<div class="box-header col-sm-6 col-md-6">
+		    			<table class="table m-b-none" ui-jp="footable">
+					        <thead>
+					          
+					        </thead>
+					        <tbody>
+					          	<tr ng-if="finalBidingList.city.length">
+					              	<td>City</td>
+					              	<td>{{finalBidingList.city.length}}</td>
+					          	</tr>
+					          	<tr ng-if="finalBidingList.state.length">
+					              	<td>State</td>
+					              	<td>{{finalBidingList.state.length}}</td>
+					              
+					          	</tr>
+					          	<tr ng-if="finalBidingList.country.length">
+					              	<td>Country</td>
+					              	<td>{{finalBidingList.country.length}}</td>
+					              
+					          	</tr>
+					          	<tr ng-if="finalBidingList.world.length">
+					              	<td>World</td>
+					              	<td>{{finalBidingList.world.length}}</td>       
+					          	</tr>
+					          	<tr>
+					              	<td><strong>Total</td>
+					              	<td>{{totalItems}} Item(s)</strong></td>	              
+					          	</tr>
+					          	<tr>
+					              	<td><strong>Member's item budget</td>    
+					          	</tr>
+					          	<tr>
+					              	<td>Minimum</td>
+					              	<td>{{min}}</strong></td>					              
+					          	</tr>
+					          	<tr>
+					              	<td>Maximum</td>
+					              	<td>{{max}}</strong></td>					              
+					          	</tr>
+					          	<tr>
+					              	<td>Avarage</td>
+					              	<td>{{average}}</strong></td>				              
+					          	</tr>
+					        </tbody>
+				      	</table>
+		    		</div>
+		    		<div class="box col-sm-6 col-md-6">
+			          	<div class="box-header">
+			            	<h2>Biding Information</h2>
+			            	<small>{{brandName}} - {{modelName}}</small>
+			          	</div>
+			          	<div class="box-body" >                    
+				                      
+				            <div class="form-group row">
+				              <label class="col-sm-3 form-control-label">Offer</label>
+				              <div class="col-sm-9">
+				                <input type="number" min="1" required data-parsley-type="number"class="form-control" placeholder="offer" ng-model="$parent.offer" ng-disabled="bidId">
+				              </div>
+				            </div> 
+          				</div>
+				        <div class="dker p-a text-right" ng-if="!bidId">
+				            <button type="submit" class="btn color-five" ng-click="sendBid()">Send bid</button>
+				            
+
+				        </div>
+        			</div>
+			    </div>
+		    </div>
+</div>
+
+<div ng-if="bSent">
+	<div class="col-sm-12 col-md-12">
+    	<div class="box" layout="row" layout-align="space-between center">
+    		<div class="box-header">
+    			<h3>
+    				Bid sent!, you can see your bids in the menu 'My bids'.
+    			</h3>
+    		</div>
+	    </div>
+    </div>
+</div>
