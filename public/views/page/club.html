@@ -1,6 +1,6 @@
 <!-- only need a height for layout 4 -->
 <div>
-	<div class="col-xs-6 col-sm-12 col-md-6" ng-repeat="modelo in clubModelos | unique: 'modelId' ">
+	<!-- <div class="col-xs-6 col-sm-12 col-md-6" ng-repeat="modelo in clubModelos | unique: name ">
 		<div class="box">
 		    <div class="item">
 			    <div class="item-bg">
@@ -19,5 +19,27 @@
 		    	</div>
 		    </div>
 		</div>	
+	</div> -->
+	<div class="col-xs-6 col-sm-12 col-md-3" ng-repeat="modelo in clubModelos | unique: name ">
+		<div class="box">
+			<div class="item">
+				<img src="../images/nearby.png" class="w-full">
+			</div>
+			<div class="p-a" align="center">
+				<div class="m-b ">
+					<strong>{{modelo.brand}} {{modelo.modelo}}</strong>
+				</div>
+				<div>
+					items: <strong>{{modelo.items.length}}</strong></em>
+				</div>	
+				<div>
+					<a href class="btn btn-sm {{app.setting.theme.primary}}" ng-click="goToClubModelo(modelo)">
+			    		Club me in
+			    	</a>
+			    </div>
+			</div>
+		</div>
 	</div>
 </div>
+
+

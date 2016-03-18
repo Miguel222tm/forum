@@ -23,7 +23,7 @@ var accessNav = ['$state', function($state){
 							state: 'app.home'
 						});	
 						break;
-					case "fn_search":
+					/*case "fn_search":
 						scope.menu.push({
 							hierarchy: 2,
 							level: 0,
@@ -32,7 +32,7 @@ var accessNav = ['$state', function($state){
 							label: 'Search',
 							state: 'app.search'
 						});
-						break;
+						break;*/
 					
 
 				}

@@ -21,4 +21,9 @@ class Bid extends Model
     	$foreignKey = 'bidId';
     	return $this->hasMany('App\models\BidLocation', $foreignKey);
     }
+
+    public function bidRecord(){
+        $foreignKey = 'bidId';
+        return $this->hasMany('App\models\ItemBidRecord', $foreignKey);
+    }
 }
