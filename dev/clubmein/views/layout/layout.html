@@ -1,15 +1,18 @@
   <!-- aside -->
   <div id="aside" class="app-aside modal fade nav-dropdown" ng-class="{'folded': app.setting.folded}">
   	<!-- fluid app aside -->
+    <!-- menu on the top -->
     <div class="left navside white dk" layout="column">
   	  <div class="navbar no-radius">
         <div ui-include="'../views/blocks/navbar.brand.html'"></div>
       </div>
+      <!-- menu on the left side -->
       <div flex class="hide-scroll">
           <nav class="scroll nav-light">
             <div ui-include="'../views/blocks/nav.html'"></div>
           </nav>
       </div>
+     
       <div flex-no-shrink class="b-t">
         <div ui-include="'../views/blocks/aside.top.0.html'"></div>
       </div>
@@ -47,6 +50,7 @@
   
   <!-- content -->
   <div id="content" class="app-content box-shadow-z0" role="main">
+     <!-- name and photo -->
     <div class="app-header white box-shadow">
         <div ui-include="'../views/blocks/header.html'"></div>
     </div>

@@ -62,6 +62,13 @@ class User extends Model implements AuthenticatableContract,
         $foreignKey = 'userId';
         return $this->hasOne('App\models\UserLocation', $foreignKey);
     }
+
+    public function rates(){
+        $foreignKey = 'userId';
+        return $this->hasMany('App\models\Rate', $foreignKey);
+    }
+
+    
     
 
 }
