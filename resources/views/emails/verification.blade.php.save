@@ -1,0 +1,6 @@
+<h2>Hi, {{$name}}</h2>
+<br>
+<p>
+	Please confirm your account, click on this link 
+	<a href=http://162.243.46.22/app#/access/signin"http://162.243.46.22/access/confirm/{{$key}}">http://clubmein.app/confirmation?code={{$key}}</a> 
+</p>
