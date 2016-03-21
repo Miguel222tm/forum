@@ -25,6 +25,7 @@
 }
 
 
+
 .button {
     -moz-appearance: button;
     /* Firefox */
@@ -83,7 +84,9 @@
     padding: 10px;
 }
 
-
+.b-p-top{
+    padding-top: 20px;
+}
 
 
 .i-not-active{
@@ -106,7 +109,9 @@
     background-color: #559946 !important;
 }
 
-
+.b-bold{
+    font-weight: bold;
+}
 
 
 

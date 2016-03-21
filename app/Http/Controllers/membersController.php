@@ -11,7 +11,8 @@ use App\User;
 use Input;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+use App\models\Bid;
+use App\models\ItemBidRecord;
 class membersController extends Controller
 {
     /**
@@ -147,6 +148,10 @@ class membersController extends Controller
             if(isset($items)){
                 foreach ($items as $item) {
                     $item['location'] = $item->location()->get();
+                    $modelBids = Bid::where('modelId', '=', $item->modelId)->with('vendor')->get();
+                    $item->bids = $modelBids;
+                    $item->records = ItemBidRecord::where('itemId', '=', $item->itemId)->get();
+
                 }
             }
 

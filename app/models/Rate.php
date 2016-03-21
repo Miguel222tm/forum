@@ -10,7 +10,7 @@ class Rate extends Model
 
     protected $primaryKey = 'rateId';
 
-    protected $fillable = ['userId', 'rate'];
+    protected $fillable = ['userId', 'rate', 'memberId', 'vendorId'];
 
 
 

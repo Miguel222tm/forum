@@ -1098,7 +1098,7 @@ a.list-group-item {
 
 .row {
   margin-left: 0px;
-  margin-right: 60px; }
+  margin-right: 0px; }
   .row [class*="col-"] {
     padding-left: 12px;
     padding-right: 12px; }

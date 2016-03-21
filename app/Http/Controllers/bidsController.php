@@ -10,6 +10,8 @@ use Input;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\models\Bid;
+use App\models\VendorProduct;
+use App\models\Rate;
 class bidsController extends Controller
 {
     /**
@@ -59,7 +61,24 @@ class bidsController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $member = $user->member()->first();
+            $bid = Bid::where('bidId','=',$id)->with(['vendor' => function($query){
+                $query->with('user');
+            }])->first();
+
+            $bid->vendor->user->location = $bid->vendor->user->location()->first();
+            $bid->vendor->user->rates = Rate::where('userId', '=', $bid->vendor->user->userId)->get();
+            $bid->rate = Rate::where('userId', '=', $bid->vendor->user->userId)->where('memberId','=', $member->memberId)->first();
+            $bid->vendor->products = VendorProduct::where('vendorId', '=', $bid->vendor->vendorId)->get();
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($bid);
     }
 
     /**

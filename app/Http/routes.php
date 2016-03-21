@@ -29,6 +29,8 @@ Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
 Route::put('/change-password', 'UsersController@changePassword');
 Route::put('/forgot-password', 'UsersController@forgotPassword');
 Route::put('/users/{id}/activate', 'UsersController@activateAccount');
+//disable account
+Route::get('/disable-account', 'UsersController@disableAccount');
 
 /**
  *  System.
@@ -87,7 +89,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::post('/users', 'UsersController@store');
 
-  Route::post('user/location', 'userLocationController@store');
+  Route::post('/user/location', 'userLocationController@store');
 
   Route::put('/user/location', 'userLocationController@update');
 
@@ -98,6 +100,21 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::delete('/users/{id}', 'UsersController@destroy');  
   /*=====  End of users  ======*/
  
+  /*=============================
+  =            rates            =
+  =============================*/
+  Route::get('/rates', 'rateController@index');
+
+  Route::get('/rate/{id}', 'rateController@show');
+
+  Route::post('/rates', 'rateController@store');
+
+  Route::put('/rate/{id}', 'rateController@update');
+
+  
+  
+  /*=====  End of rates  ======*/
+  
 
   /*====================================
   =            users profile            =
@@ -278,7 +295,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   
   Route::get('/bids', 'bidsController@index');
 
-  Route::get('/bids/{id}',  'bidsController@show');
+  Route::get('/bid/{id}',  'bidsController@show');
 
   Route::post('/bids', 'bidsController@store');
 
@@ -295,6 +312,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/item/{id}',  'itemsController@show');
 
   Route::get('/item/{id}/bids', 'itemsController@showBids');
+
+  Route::put('/item/{id}/record', 'itemsController@storeBidRecord');
 
   Route::post('/item', 'itemsController@store');
 
@@ -370,6 +389,11 @@ Route::get('/near', 'nearByController@index');
 
   Route::delete('/access-level/{id}', 'AccessLevelController@destroy');
   
+
+
+  Route::get('/email', function(){
+    return view('emails.verification');
+  });
   /*=====  End of access level  ======*/
   
 

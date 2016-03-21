@@ -160,7 +160,7 @@
           </div>
 
           <p><strong>Delete account?</strong></p>
-          <button class="btn btn-danger m-t" data-toggle="modal" data-target="#modal" ng-disabled="true" >Delete Account</button>
+          <button class="btn btn-danger m-t" data-toggle="modal" data-target="#modal" >Delete Account</button>
 
         </div>
       </div>
@@ -181,7 +181,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn white p-x-md" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-danger p-x-md" data-dismiss="modal">Yes</button>
+            <button type="button" class="btn btn-danger p-x-md" data-dismiss="modal" ng-click="disableAccount()">Yes</button>
           </div>
         </div><!-- /.modal-content -->
       </div>

@@ -1,0 +1,163 @@
+<div> 
+	<div class="item">
+	    <div class="item-bg">
+	      <img src="images/vendor.jpg" class="blur opacity-3">
+	    </div>
+	    <div class="p-a-md">
+	      	<div class="row m-t">
+	        	<div class="col-sm-7">
+	          		<div class="clear m-b">
+	            		<h3 class="m-a-0 m-b-xs">{{bidInformation.vendor.company_name}}</h3>
+	            		<p class="text-muted"><span class="m-r">{{bidInformation.vendor.name}}</span> <small><i class="fa fa-map-marker m-r-xs"></i>{{bidInformation.vendor.user.location.city}},{{bidInformation.vendor.user.location.state}}, {{bidInformation.vendor.user.location.country}}</small></p>
+	            		<div class="block clearfix m-b">
+			              	<a href="" class="btn btn-icon btn-social rounded white btn-sm">
+			                	<i class="fa fa-facebook"></i>
+			                	<i class="fa fa-facebook indigo"></i>
+			              	</a>
+				            <a href="" class="btn btn-icon btn-social rounded white btn-sm">
+				               <i class="fa fa-twitter"></i>
+				               <i class="fa fa-twitter light-blue"></i>
+				            </a>
+	              			<a href="" class="btn btn-icon btn-social rounded white btn-sm">
+	                			<i class="fa fa-google-plus"></i>
+	                			<i class="fa fa-google-plus red"></i>
+	              			</a>
+	              			<a href="" class="btn btn-icon btn-social rounded white btn-sm">
+	                			<i class="fa fa-linkedin"></i>
+	                			<i class="fa fa-linkedin cyan-600"></i>
+	              			</a>
+	            		</div>
+	            		<button class="btn color-two m-t" data-toggle="modal" data-target="#modal" >Rate</button>
+	          		</div>
+
+	        	</div>
+	        	<div class="col-sm-5">
+	        		<p>Brand: <strong>{{bidInformation.brand_name}}</strong></p>
+	        		<p>Model: <strong>{{bidInformation.model_name}}</strong></p>
+		          	<h2 class="text-md profile-status" ng-init="user.status='I am feeling good!'" ng-binding="user.status">Offer: <strong>${{bidInformation.offer}}</strong></h2>
+		          	
+		        </div>
+	      	</div>
+	    </div>
+	</div>
+	<div class="dker p-x">
+	    <div class="row">
+	      	<div class="col-sm-6 col-sm-push-6">
+	        	<div class="p-y text-center text-sm-right">
+	          	<a href class="inline p-x text-center">
+	            	<span class="h4 block m-a-0">{{averageRate}}</span>
+	            	<small class="text-xs text-muted">Rate</small>
+	          	</a>
+	          
+	        	</div>
+	     	</div>
+	      	<div class="col-sm-6 col-sm-pull-6">
+	        	<div class="p-y-md clearfix nav-active-{{app.setting.theme.primary}}">
+	          		<ul class="nav nav-pills nav-sm">
+			            <li class="nav-item active">
+			              <a class="nav-link" href data-toggle="tab" data-target="#tab_1">Contact information</a>
+			            </li>
+			            <li class="nav-item">
+			              <a class="nav-link" href data-toggle="tab" data-target="#tab_2">Products</a>
+			            </li>
+	          		</ul>
+	        	</div>
+	      	</div>
+	    </div>
+	</div>
+	<div class="padding">
+    	<div class="row">
+      		<div class="col-sm-8 col-lg-9">
+        		<div class="tab-content">
+        			<div class="tab-pane p-v-sm active" id="tab_1" >
+        				<div class="row m-b">
+        					<div class="col-xs-6">
+			                	<small class="text-muted">Company</small>
+			                	<div class="_500">{{bidInformation.vendor.company_name}}</div>
+			              	</div>
+        				</div>
+			            <div class="row m-b">
+			              	
+			              	<div class="col-xs-6">
+			                	<small class="text-muted">Phone</small>
+			                	<div class="_500">{{bidInformation.vendor.telephone}}</div>
+			              	</div>
+			              	<div class="col-xs-6">
+			                	<small class="text-muted">Address</small>
+			                	<div class="_500">{{bidInformation.vendor.address}} - Postal Code {{bidInformation.vendor.zip_code}}</div>
+			              	</div>
+			            </div>
+			            <div class="row m-b">
+			              	<div class="col-xs-6">
+			                	<small class="text-muted">Email</small>
+			                	<div class="_500">{{bidInformation.vendor.email}}</div>
+			              	</div>
+			              	<div class="col-xs-6">
+				                <small class="text-muted">Website</small>
+				                <div class="_500">{{bidInformation.vendor.website}}</div>
+			              	</div>
+			            </div>
+			            <strong ng-if="bidInformation.vendor.alternative_email || bidInformation.vendor.alternative_telephone">Alternative Contact:</strong>
+			            <div class="row m-b">
+			              	<div class="col-xs-6" ng-if="bidInformation.vendor.alternative_email">
+			                	<small class="text-muted">Email</small>
+			                	<div class="_500">{{bidInformation.vendor.alternative_email}}</div>
+			              	</div>
+			              	<div class="col-xs-6" ng-if="bidInformation.vendor.alternative_telephone">
+				                <small class="text-muted">Telephone</small>
+				                <div class="_500">{{bidInformation.vendor.alternative_telephone}}</div>
+			              	</div>
+			              	<div class="col-xs-6" ng-if="bidInformation.vendor.alternative_last_name">
+				                <small class="text-muted">Name</small>
+				                <div class="_500">{{bidInformation.vendor.alternative_first_name}} {{bidInformation.vendor.alternative_last_name}}</div>
+			              	</div>
+			            </div>
+			            
+			        </div>
+
+			        <div class="tab-pane p-v-sm" id="tab_2">
+			            <div>
+			              	<small class="text-muted">Products</small>
+			              	
+			              	<ul class="list inset" ng-repeat="vproduct in bidInformation.vendor.products" >
+						        <vendor-product  vproduct="vproduct" user="currentUser" categories="categories"> </vendor-product>
+						    </ul>
+			            </div>
+			        </div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<!-- .modal -->
+<div id="modal" class="modal fade animate black-overlay" data-backdrop="false">
+  	<div class="row-col h-v">
+	    <div class="row-cell v-m">
+	      	<div class="modal-dialog modal-sm">
+	        	<div class="modal-content flip-y">
+	          		<div class="modal-body text-center">          
+	            		<p>Please select an option describing how satisfied were you with this vendor.</p>
+	          		</div>
+	          		<div class="modal-body text-center">          
+	            		<div class="form-group">
+				    		<label>Please select one option</label>
+				    		<select name="rate" class="form-control c-select m-y" ng-model="rate">
+					      		<option value="1" ng-selected="bidInformation.rate.rate === 1">Very poor</option>
+					      		<option value="2" ng-selected="bidInformation.rate.rate === 2">Poor</option>
+					      		<option value="3" ng-selected="bidInformation.rate.rate === 3">Good</option>
+					      		<option value="4" ng-selected="bidInformation.rate.rate === 4">Very good</option>
+					      		<option value="5" ng-selected="bidInformation.rate.rate === 5">Excelent</option>
+				    		</select>
+	        	 		</div>
+	        	 	</div>	
+		          	<div class="modal-footer">
+		            	<button type="button" class="btn color-two p-x-md" data-dismiss="modal" ng-click="rateVendor()">Rate</button>
+		            	<button type="button" class="btn btn-danger p-x-md" data-dismiss="modal" >Cancel</button>
+		          	</div>
+	        	</div><!-- /.modal-content -->
+	      	</div>
+	    </div>
+  	</div>
+</div>
+<!-- / .modal -->

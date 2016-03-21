@@ -14,6 +14,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\models\Brand;
 use App\models\Item;
+use App\models\Modelo;
 use App\models\ItemLocation;
 use App\models\Bid;
 class vendorController extends Controller
@@ -146,14 +147,14 @@ class vendorController extends Controller
     }
 
     public function storeProduct(){
-        
-
         try {
+
             if(Input::all()['modelId'] === 'All'){
+
                 $brand = Brand::where('brandId', '=', Input::all()['brandId'])->with('models')->first();
                 $array = [];
                 foreach($brand->models as $model) {
-                    $server = VendorProduct::where('modelId', '=', $model->modelId)->first();
+                    $server = VendorProduct::where('modelId', '=', $model->modelId)->where('vendorId', '=', Input::all()['vendorId'])->first();
                     if(!$server){
                         $product = new VendorProduct();
                         $product->fill(Input::all());
@@ -165,9 +166,9 @@ class vendorController extends Controller
                 }
                 return response()->json($array);
             }else{
-            $product = new VendorProduct();
-            $product->fill(Input::all());
-            $product->save();
+                $product = new VendorProduct();
+                $product->fill(Input::all());
+                $product->save();
             }
         } catch (Exception $e) {
             return response()->json($e);
@@ -207,49 +208,59 @@ class vendorController extends Controller
             $itemsList = [];
             $All = [];
             $modelList = [];
-            $brandList = ['name' => $mainItem->brand_name, 'id' => $mainItem->brandId];
+            if($mainItem){
+                $brandList = ['name' => $mainItem->brand_name, 'id' => $mainItem->brandId];
+            }else{
+                $model = Modelo::find(Input::all()['id']);
+                $brand = $model->brand()->first();
+                $mainItem = (object) [];
+                $mainItem->brand_name = $brand->name;
+                $mainItem->brandId = $brand->brandId;
+                $brandList = ['name' => $mainItem->brand_name, 'id' => $mainItem->brandId];
+            }
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
             $userLocation = $user->location()->first();
 
             $vendor = $user->vendor()->first();
-
-            $itemLocationCity = ItemLocation::where('city', '=', $userLocation->city)->with(['item' => function($query){
-                $query->where('modelId', '=', Input::all()['id']);
-            }])->get();
-            $itemsCity = [];
-            foreach ($itemLocationCity as $location) {
-                if($location->item)
-                    array_push($itemsCity, $location->item);
-            }
-            $itemLocationState = ItemLocation::where('state', '=', $userLocation->state)->where('city', '!=', $userLocation->city)->with(['item' => function($query){
-                $query->where('modelId', '=', Input::all()['id']);
-            }])->get();
-            $itemsState = [];
-            foreach ($itemLocationState as $location) {
-                if($location->item)
-                    array_push($itemsState, $location->item);
-            }
-            $itemLocationCountry = ItemLocation::where('country', '=', $userLocation->country)->where('state', '!=', $userLocation->state)->with(['item' => function($query){
-                $query->where('modelId', '=', Input::all()['id']);
-            }])->get();
-            $itemsCountry = [];
-            foreach ($itemLocationCountry as $location) {
-                if($location->item)
-                    array_push($itemsCountry, $location->item);
-            }
-
-            $itemLocationWorld = ItemLocation::where('country', '!=', $userLocation->country)->with(['item' => function($query){
-                $query->where('modelId', '=', Input::all()['id']);
-            }])->get();
-            $itemsWorld = [];
-            foreach ($itemLocationWorld as $location) {
-                if($location->item){
-                    array_push($itemsWorld, $location->item);
+            if(isset($mainItem->modelId)){
+                $itemLocationCity = ItemLocation::where('city', '=', $userLocation->city)->with(['item' => function($query){
+                    $query->where('modelId', '=', Input::all()['id']);
+                }])->get();
+                $itemsCity = [];
+                foreach ($itemLocationCity as $location) {
+                    if($location->item)
+                        array_push($itemsCity, $location->item);
                 }
+                $itemLocationState = ItemLocation::where('state', '=', $userLocation->state)->where('city', '!=', $userLocation->city)->with(['item' => function($query){
+                    $query->where('modelId', '=', Input::all()['id']);
+                }])->get();
+                $itemsState = [];
+                foreach ($itemLocationState as $location) {
+                    if($location->item)
+                        array_push($itemsState, $location->item);
+                }
+                $itemLocationCountry = ItemLocation::where('country', '=', $userLocation->country)->where('state', '!=', $userLocation->state)->with(['item' => function($query){
+                    $query->where('modelId', '=', Input::all()['id']);
+                }])->get();
+                $itemsCountry = [];
+                foreach ($itemLocationCountry as $location) {
+                    if($location->item)
+                        array_push($itemsCountry, $location->item);
+                }
+
+                $itemLocationWorld = ItemLocation::where('country', '!=', $userLocation->country)->with(['item' => function($query){
+                    $query->where('modelId', '=', Input::all()['id']);
+                }])->get();
+                $itemsWorld = [];
+                foreach ($itemLocationWorld as $location) {
+                    if($location->item){
+                        array_push($itemsWorld, $location->item);
+                    }
+                }
+                $modelList = ['name' => $mainItem->model_name, 'id' => $mainItem->modelId, 'brand_name' => $mainItem->brand_name, 'brandId' => $mainItem->brandId,  'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry, 'world' => $itemsWorld];
             }
-            $modelList = ['name' => $mainItem->model_name, 'id' => $mainItem->modelId, 'brand_name' => $mainItem->brand_name, 'brandId' => $mainItem->brandId,  'city'=>$itemsCity,'state'=>$itemsState, 'country'=> $itemsCountry, 'world' => $itemsWorld];
         
             //***   ******************************************
             //other models

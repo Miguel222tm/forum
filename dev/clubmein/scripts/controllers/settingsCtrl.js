@@ -1,4 +1,4 @@
-var SettingsCtrl = ['$rootScope','$scope','RootService', function($rootScope, scope , clubService){
+var SettingsCtrl = ['$rootScope','$scope','RootService','$state',  function($rootScope, scope , clubService, $state){
 	console.log('settingsCtrl', $rootScope.currentUser);
 
 	scope.init = function(){
@@ -83,6 +83,17 @@ var SettingsCtrl = ['$rootScope','$scope','RootService', function($rootScope, sc
 		}
 	};
 
+
+	scope.disableAccount = function(){
+		var request = clubService.sendRequest('GET', '/disable-account');
+		request.then(function(response){
+			$state.go('access.signin');
+			$rootScope.currentUser = null;
+			$rootScope.authenticated = false;
+		}, function(error){
+			clubService.addNotification('error disabling your account, please try again later', 'error');
+		});
+	};
 	
 
 

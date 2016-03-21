@@ -1,5 +1,11 @@
 <div>
   <div class="form-group row">
+    <label class="col-sm-3 form-control-label">Company</label>
+    <div class="col-sm-9">
+      <input type="text"  data-parsley-type="text" class="form-control" placeholder="Company" ng-model="currentUser.company_name" >
+    </div>
+  </div>
+  <div class="form-group row">
     <label class="col-sm-3 form-control-label">Title</label>
     <div class="col-sm-9">
       <input type="text"  data-parsley-type="text" class="form-control" placeholder="Title" ng-model="currentUser.title" >
@@ -43,12 +49,12 @@
     </div>
   </div>
 
-  <div class="form-group row"  >
+  <!-- <div class="form-group row"  >
     <label class="col-sm-3 form-control-label">Address line 2</label>
     <div class="col-sm-9">
       <input type="text"   data-parsley-type="text" class="form-control" placeholder="Extra address line" ng-model="currentUser.address_second_line" >
     </div>
-  </div>
+  </div> -->
   <div class="form-group row" >
     <label class="col-sm-3 form-control-label">Zip code</label>
     <div class="col-sm-9">

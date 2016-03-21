@@ -85,11 +85,13 @@ class UsersController extends Controller
             if($credentials['code'] === 'mem'){
                 $user->type = 1;
                 $js = new Member();
+                $js->fill(Input::all());
                 $js->userId = $user->userId;
                 $js->name = $user->name;
                 $js->firstName = $user->firstName;
                 $js->lastName = $user->lastName;
                 $js->email = $user->email;
+                $js->gender = $user->gender;
                 $js->access_level = 1;
                 $js->picture_url = $user->picture_url;
                 $js->unique_code = str_random(20);
@@ -98,6 +100,7 @@ class UsersController extends Controller
             if($credentials['code'] === 'ven'){
                 $user->type=2;
                 $hrm = new Vendor();
+                $hrm->fill(Input::all());
                 $hrm->userId=$user->userId;
                 $hrm->name= $user->name;
                 $hrm->firstName= $user->firstName;
@@ -111,13 +114,16 @@ class UsersController extends Controller
             if($credentials['code'] === 'emp'){
                 $user->type=3;
                 $cmp = new Employee();
+                $cmp->fill(Input::all());
                 $cmp->userId=$user->userId;
                 $cmp->name= $user->name;
                 $cmp->firstName= $user->firstName;
                 $cmp->lastName = $user->lastName;
                 $cmp->email = $user->email;
                 $cmp->access_level = 3;
+                $cmp->gender = $user->gender;
                 $cmp->picture_url = $user->picture_url;
+
                 $cmp->unique_code = str_random(20);
                 $cmp->save();
             }
@@ -205,6 +211,22 @@ class UsersController extends Controller
         
     }
 
+
+    public function disableAccount(){
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $user->active = false;
+            $user->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($user);
+    }
+
+
+    
 
     
 }

@@ -185,12 +185,14 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 					}
 				}
 				if(bSave){
+					console.log('reADY TO SAVE!', scope.vproduct);
 					if(scope.isRepeatedProduct(scope.vproduct)){
 						clubService.addNotification('sorry, you already have this product in your list', 'error');
 					}else{
 						scope.vproduct.vendorId = scope.user.vendorId;
 						var request = clubService.sendRequest('POST', '/vendor/product', scope.vproduct);
 						request.then(function(response){
+							console.log('store vproduct', response);
 							if(!response.length){
 								scope.vproduct = null;
 								clubService.addNotification('cannot add more models with the  settings you selected');

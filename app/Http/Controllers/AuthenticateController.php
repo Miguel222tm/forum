@@ -134,7 +134,7 @@ class AuthenticateController extends Controller
 
                 $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
                 {
-                    $message->from('uuorkstore.inc@gmail.com');
+                    $message->from('membership.relations@clubmein.com');
                     $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
                 });
 

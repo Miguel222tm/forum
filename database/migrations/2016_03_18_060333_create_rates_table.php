@@ -16,6 +16,8 @@ class CreateRatesTable extends Migration
             $table->increments('rateId');
             $table->integer('userId');
             $table->integer('rate');
+            $table->integer('memberId');
+            $table->integer('vendorId');
             $table->timestamps();
         });
     }

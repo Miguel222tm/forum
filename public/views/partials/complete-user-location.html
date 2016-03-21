@@ -15,31 +15,47 @@
         <div class="clearfix m-b-lg">
           <form role="form" class="col-md-6 p-a-0">
             <div class="form-group row" ng-if="limboUser.code === 'ven'">
-              <label class="col-sm-3 form-control-label">Title</label>
+              <label class="col-sm-3 form-control-label">Company *</label>
+              <div class="col-sm-9">
+                <input type="text" required data-parsley-type="text" class="form-control" placeholder="Company name" ng-model="limboUser.company_name" >
+              </div>
+            </div>
+            <div class="form-group row" ng-if="limboUser.code === 'ven'">
+              <label class="col-sm-3 form-control-label">Title *</label>
               <div class="col-sm-9">
                 <input type="text" required data-parsley-type="text" class="form-control" placeholder="Title" ng-model="limboUser.title" >
               </div>
             </div>
             <div class="form-group row" >
-              <label class="col-sm-3 form-control-label">First name</label>
+              <label class="col-sm-3 form-control-label">First name *</label>
               <div class="col-sm-9">
                 <input type="text" required data-parsley-type="text" class="form-control" placeholder="First name" ng-model="limboUser.firstName" >
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Last name</label>
+              <label class="col-sm-3 form-control-label">Last name *</label>
               <div class="col-sm-9">
                 <input type="text" required data-parsley-type="text" class="form-control" placeholder="Last name" ng-model="limboUser.lastName">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">Email</label>
+              <label class="col-sm-3 form-control-label">Email *</label>
               <div class="col-sm-9">
                 <input type="text" required data-parsley-type="text" class="form-control" placeholder="Email" ng-model="limboUser.email" ng-disabled = true>
               </div>
             </div>
+            <div class="form-group row" ng-if="limboUser.code === 'emp' || limboUser.code === 'mem'">
+              <label class="col-sm-3 form-control-label b-p-top">Gender *</label>
+              <div class="col-sm-9">
+                <select name="gender" class="form-control c-select m-y" ng-model="limboUSer.gender">
+                  <option value="">Select a gender</option>
+                  <option value="Male" ng-selected="limboUSer.gender === 'Male'">Male</option>
+                  <option value="Female" ng-selected="limboUSer.gender === 'Female'">Female</option>
+                </select>
+              </div>
+            </div>
             <div class="form-group row" ng-if="limboUser.code === 'ven'">
-              <label class="col-sm-3 form-control-label">Telephone</label>
+              <label class="col-sm-3 form-control-label">Telephone *</label>
               <div class="col-sm-9">
                 <input type="phone" required data-parsley-type="text" class="form-control" placeholder="Telephone" ng-model="limboUser.telephone" >
               </div>
@@ -51,7 +67,7 @@
               </div>
             </div>
             <div class="form-group row" >
-              <label class="col-sm-3 form-control-label">Country</label>
+              <label class="col-sm-3 form-control-label b-p-top">Country *</label>
               <div class="col-sm-9">
                 <select name="country" class="countries form-control c-select m-y" id="countryId" ng-model="country" ng-change="setCountry(country)">
                   <option value="" >Select Country</option>
@@ -59,7 +75,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">State</label>
+              <label class="col-sm-3 form-control-label b-p-top">State *</label>
               <div class="col-sm-9">
                 <select name="state" class="states form-control c-select m-y" id="stateId" ng-model="state" ng-change="setState(state)" >
                   <option value="">Select State</option>
@@ -67,7 +83,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 form-control-label">City</label>
+              <label class="col-sm-3 form-control-label b-p-top">City *</label>
               <div class="col-sm-9">
                 <select name="city" class="cities form-control c-select m-y" id="cityId" ng-model="city" ng-change="setCity(city)">
                   <option value="">Select City</option>
@@ -76,26 +92,19 @@
             </div>
 
             <div class="form-group row" ng-if="limboUser.code === 'ven'">
-              <label class="col-sm-3 form-control-label">Address line 1</label>
+              <label class="col-sm-3 form-control-label">Address line 1 *</label>
               <div class="col-sm-9">
                 <input type="text" required data-parsley-type="text" class="form-control" placeholder="Int / Num / Street " ng-model="limboUser.address" >
               </div>
             </div>
-
-            <div class="form-group row" ng-if="limboUser.code === 'ven'" >
-              <label class="col-sm-3 form-control-label">Address line 2</label>
-              <div class="col-sm-9">
-                <input type="text"   data-parsley-type="text" class="form-control" placeholder="Extra address line" ng-model="limboUser.address_second_line" >
-              </div>
-            </div>
             <div class="form-group row" ng-if="limboUser.code === 'ven'">
-              <label class="col-sm-3 form-control-label">Zip code</label>
+              <label class="col-sm-3 form-control-label">Zip code *</label>
               <div class="col-sm-9">
                 <input type="text" data-parsley-type="text" class="form-control" placeholder="Zip code" ng-model="limboUser.zip_code" >
               </div>
             </div>
             <div class="form-group row" ng-if="limboUser.code === 'ven'">
-              <label class="col-sm-3 form-control-label">Website</label>
+              <label class="col-sm-3 form-control-label">Website *</label>
               <div class="col-sm-9">
                 <input type="text" data-parsley-type="text" class="form-control" placeholder="Website" ng-model="limboUser.website" >
               </div>

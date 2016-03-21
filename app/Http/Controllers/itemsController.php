@@ -12,6 +12,7 @@ use App\models\ItemLocation;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\models\Bid;
+use App\models\ItemBidRecord;
 class itemsController extends Controller
 {
     /**
@@ -26,6 +27,7 @@ class itemsController extends Controller
              $items = Item::where('active', '=', false)->get();
             }else{
                 $items = Item::all();
+                
             }
 
         }catch(Exception $ex){
@@ -62,22 +64,24 @@ class itemsController extends Controller
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
-            $userLocation = $user->location()->first();
-
-            $itemLocation = new ItemLocation();
-            $itemLocation->itemId = $item->itemId;
-            $itemLocation->country = $userLocation->country;
-            $itemLocation->state = $userLocation->state;
-            $itemLocation->city = $userLocation->city;
             
-            $itemLocation->save();
 
-            if(isset(Input::all()['location'])){
+            if(Input::all()['location']){
                 $itemLocation = new ItemLocation();
                 $itemLocation->itemId = $item->itemId;
                 $itemLocation->country = Input::all()['location']['country'];
                 $itemLocation->state = Input::all()['location']['state'];
                 $itemLocation->city = Input::all()['location']['city'];
+                $itemLocation->save();
+            }else{
+                //your current location
+                $userLocation = $user->location()->first();
+                $itemLocation = new ItemLocation();
+                $itemLocation->itemId = $item->itemId;
+                $itemLocation->country = $userLocation->country;
+                $itemLocation->state = $userLocation->state;
+                $itemLocation->city = $userLocation->city;
+                
                 $itemLocation->save();
             }
 
@@ -179,5 +183,21 @@ class itemsController extends Controller
             return response()->json($ex);
         }
         return response()->json($modelBids);
+    }
+
+    public function storeBidRecord($id){
+        try{
+            $bidRecord = ItemBidRecord::where('itemId', '=', $id)->where('bidId', '=', Input::all()[0])->get();
+            //return sizeof($bidRecord);
+            if(sizeof($bidRecord) === 0){
+                //return Input::all()[0];
+                $ItemBidRecord = ItemBidRecord::create(['itemId'=>$id, 'bidId'=> Input::all()[0]]);
+            }else{
+                return response()->json($bidRecord);
+            }
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($ItemBidRecord);
     }
 }

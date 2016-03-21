@@ -12,6 +12,7 @@ use Input;
 use DB;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\models\Bid;
 class nearByController extends Controller
 {
     /**
@@ -32,6 +33,14 @@ class nearByController extends Controller
                     $query->where('active','=', true);
                 
             }])->get();
+
+            foreach ($items as $item) {
+                $modelBids = Bid::where('modelId', '=', $item->item->modelId)->with('vendor')->get();
+                $item->item->bids = $modelBids;
+            
+            }
+
+
             
         }catch(Exception $ex){
             return response()->json($ex);

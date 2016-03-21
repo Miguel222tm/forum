@@ -21,7 +21,7 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 			request.then(function(response){
 				scope.items = response;
 				membersService.setItems(response);
-				//console.log('scope.items', scope.items);
+				console.log('scope.items', scope.items);
 				
 			}, function(error){
 				clubService.addNotification("error getting member's items", 'error');

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Input;
+use App\models\Rate;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 class rateController extends Controller
 {
     /**
@@ -37,7 +40,19 @@ class rateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $member = $user->member()->first();
+            $rate = new Rate();
+            $rate->fill(Input::all());
+            $rate->memberId = $member->memberId;
+            $rate->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($rate);
     }
 
     /**
@@ -71,7 +86,14 @@ class rateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $rate = Rate::find($id);
+            $rate->fill(Input::all());
+            $rate->save();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($rate);
     }
 
     /**

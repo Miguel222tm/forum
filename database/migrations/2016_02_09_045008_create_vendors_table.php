@@ -33,7 +33,7 @@ class CreateVendorsTable extends Migration
             $table->string('alternative_title');
             $table->string('alternative_telephone');
             $table->string('alternative_ext');
-
+            $table->string('company_name');
             $table->string('website');
 
             $table->timestamps();

@@ -10,7 +10,7 @@ class Item extends Model
 
     protected $primaryKey = 'itemId';
 
-    protected $fillable = ['memberId','categoryId', 'productId', 'brandId', 'modelId', 'category_name', 'product_name', 'brand_name', 'model_name', 'quantity', 'price', 'description', 'active'];
+    protected $fillable = ['memberId','categoryId', 'productId', 'brandId', 'modelId', 'category_name', 'product_name', 'brand_name', 'model_name', 'quantity', 'price', 'description', 'active', 'notification_brand', 'notification_model'];
 
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -26,7 +26,7 @@ class Item extends Model
 
     public function bidRecord(){
         $foreignKey = 'itemId';
-        return $this->hasMany('App\model\ItemBidRecord', $foreignKey);
+        return $this->hasMany('App\models\ItemBidRecord', $foreignKey);
     }
 
 }

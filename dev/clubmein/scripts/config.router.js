@@ -158,6 +158,12 @@
               data: { title: 'Biding Section' } ,
               controller: 'bidSectionCtrl',  
             })
+            .state('app.bidInformation', {
+              url: '/bid/:id',
+              templateUrl: 'views/page/bid-information.html', 
+              data: { title: 'Bid information' } ,
+              controller: 'bidInformationCtrl',  
+            })
 
             .state('app.mybids', {
               url: '/mybids',

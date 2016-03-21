@@ -23,16 +23,16 @@ var accessNav = ['$state', function($state){
 							state: 'app.home'
 						});	
 						break;
-					/*case "fn_search":
+					case "fn_search":
 						scope.menu.push({
 							hierarchy: 2,
 							level: 0,
 							hidden: false,
-							icon: 'fa fa-search',
-							label: 'Search',
-							state: 'app.search'
+							icon: 'fa fa-envelope',
+							label: 'Invite',
+							state: 'app.invite'
 						});
-						break;*/
+						break;
 					
 
 				}
