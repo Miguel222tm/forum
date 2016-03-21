@@ -104,7 +104,7 @@ class emailController extends Controller
         }
         $sent = Mail::send(Input::all()['type'], array('key' => $key, 'name'=> Input::all()['user']['name']), function($message)
         {
-            $message->from('uuorkstore.inc@gmail.com');
+            $message->from('membership.relations@clubmein.com');
             // $message->embed('/images/default_picture.png');
             $message->to(Input::all()['user']['email'], Input::all()['user']['name'])->subject(Input::all()['title']);
         });
@@ -138,6 +138,24 @@ class emailController extends Controller
             return response()->json($e);
         }
         return response()->json($user);
+    }
+
+    public function sendInvite(){
+        try {
+            $sent = Mail::send('emails.invitation', array('from' => Input::all()['from'], 'to'=> Input::all()['to']), function($message)
+            {
+                $message->from('membership.relations@clubmein.com');
+                $message->to(Input::all()['user']['email'], Input::all()['to'])->subject('Join ClubMeIn.com community!');
+            });
+
+            if($sent){
+                return response()->json('email sent', 200);      
+            }
+        }catch (Exception $e) {
+            return response()->json($e);
+        }
+
+
     }
 
 

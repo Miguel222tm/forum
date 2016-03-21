@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::get('/test', 'testController@index');
 
 Route::post('/send-email', 'emailController@sendEmail');
+
+Route::post('/send-invitation', 'emailController@sendInvite');
+
 Route::get('/verify-user', 'emailController@verifyUser');
 
 //reset password

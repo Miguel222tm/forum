@@ -342,9 +342,8 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 		    		scope.deleteItem();
 		    	
 			    }, function() {
-			      console.log('canceled');
+			      	console.log('canceled');
 			    });
-		    
 			};
 			scope.deleteItem = function(){
 				if(scope.item.itemId){
