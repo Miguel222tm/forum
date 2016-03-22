@@ -139,6 +139,10 @@ class vendorController extends Controller
             }
             $vendor = $user->vendor()->first();
             $products = $vendor->products()->get();
+            foreach ($products as $product) {
+                $product->buyers = Item::where('modelId', '=', $product->modelId)->get();
+            }
+
         } catch (Exception $ex) {
             return response()->json($ex);
         }

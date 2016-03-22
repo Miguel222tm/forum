@@ -45,8 +45,8 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 						array.push(element);
 					}
 				});
-				var nuevo = {name:"Other", active: 1};
-				array.push(nuevo);
+				/*var nuevo = {name:"Other", active: 1};
+				array.push(nuevo);*/
 				
 				
 				console.log('array ',type );

@@ -1,4 +1,4 @@
-var employeesListCtrl = ['$state', '$scope','RootService', function($state, scope, clubService){
+var employeesListCtrl = ['$state', '$scope','RootService','$rootScope', function($state, scope, clubService, $rootScope){
 	//	console.log('membersListCtrl' );
 
 	scope.init = function(){
