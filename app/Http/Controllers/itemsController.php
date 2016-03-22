@@ -13,6 +13,8 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\models\Bid;
 use App\models\ItemBidRecord;
+use App\models\VendorProduct;
+use Mail;
 class itemsController extends Controller
 {
     /**
@@ -58,6 +60,7 @@ class itemsController extends Controller
             //return Input::all()['location'];
             $item = new Item();
             $item->fill(Input::all());
+            //return $item;
             $item->save();
 
 
@@ -87,6 +90,61 @@ class itemsController extends Controller
 
             $item->location = $item->location()->get();
 
+            //send email to vendors and other members
+            $allItems = array();
+            $brand = Item::where('notification_brand', '=', true)->where('brandId', '=', $item->brandId)->with('member')->get();
+            foreach ($brand as $bra) {
+                array_push($allItems, $bra->member->email);
+            }
+            $model = Item::where('notification_model', '=', true)->where('modelId', '=', $item->modelId)->with('member')->get();
+            foreach ($model as $mo) {
+                array_push($allItems, $mo->member->email);
+            }
+            $preMembers = array_unique($allItems);
+            $members = array();
+            foreach ($preMembers as $member) {
+                if($member != $user->email){
+                    array_push($members, $member);
+                }
+            }
+            //return $members;
+
+            $allProducts = VendorProduct::where('categoryId', '=', $item->categoryId)->with('vendor')->get();
+            $preVendors = array();
+            foreach ($allProducts as $product) {
+                array_push($preVendors, $product->vendor->email);
+            }
+            $vendors = array_unique($preVendors);
+            if($vendors){
+                foreach ($vendors as $vendor) {
+                    $sent = Mail::send('emails.vendor-alert', array('key' => ''), function($message) use($vendor)
+                    {
+                        $message->from('membership.relations@clubmein.com');
+                        // $message->embed('/images/default_picture.png');
+                        $message->to($vendor, 'Vendor')->subject('Members interested in your products');
+                    });
+
+                    if($sent){
+                        //return response()->json('email sent', 200);      
+                    }     
+                }
+            }
+            if($members){
+                foreach ($members as $member) {
+                    $sent = Mail::send('emails.member-alert', array('key' => ''), function($message) use($member)
+                    {
+                        $message->from('membership.relations@clubmein.com');
+                        $message->to($member, 'Member')->subject('Members interested in the same brands as you!');
+                    });
+
+                    if($sent){
+                        //return response()->json('email sent', 200);      
+                    }  
+                }
+            }
+            
+
+            
         }catch(Exception $ex){
             return response()->json($ex);
         }

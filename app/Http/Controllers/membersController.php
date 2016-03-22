@@ -150,7 +150,11 @@ class membersController extends Controller
                     $item['location'] = $item->location()->get();
                     $modelBids = Bid::where('modelId', '=', $item->modelId)->with('vendor')->get();
                     $item->bids = $modelBids;
-                    $item->records = ItemBidRecord::where('itemId', '=', $item->itemId)->get();
+                    $item->records = ItemBidRecord::where('itemId', '=', $item->itemId)->with(['bid' => function($query){
+                        $query->with(['vendor' => function($query){
+                            $query->with('user');
+                        }]);
+                    }])->get();
 
                 }
             }

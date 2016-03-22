@@ -142,10 +142,13 @@ class emailController extends Controller
 
     public function sendInvite(){
         try {
-            $sent = Mail::send('emails.invitation', array('from' => Input::all()['from'], 'to'=> Input::all()['to']), function($message)
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $sent = Mail::send('emails.invitation', array('from' => $user->name, 'to'=> Input::all()['to']), function($message) use ($user)
             {
                 $message->from('membership.relations@clubmein.com');
-                $message->to(Input::all()['user']['email'], Input::all()['to'])->subject('Join ClubMeIn.com community!');
+                $message->to(Input::all()['email'], Input::all()['to'])->subject('Join ClubMeIn.com community!');
             });
 
             if($sent){

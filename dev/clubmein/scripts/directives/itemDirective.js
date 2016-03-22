@@ -268,7 +268,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 						scope.bContent = false;
 						var request = clubService.sendRequest('POST', '/item', scope.item);
 						request.then(function(response){
-							
+							console.log('response from saving item', response);
 							scope.item.itemId= response.itemId;
 							scope.item.location = response.location;
 							scope.safeItem = angular.copy(scope.item);
@@ -346,6 +346,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 			    });
 			};
 			scope.deleteItem = function(){
+				console.log('scope.item', scope.item);
 				if(scope.item.itemId){
 					var request = clubService.sendRequest('DELETE', '/item/'+scope.item.itemId);
 					request.then(function(response){
@@ -358,6 +359,23 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				}else{
 					scope.item = null;
 				}
+			};
+
+
+			scope.rateAndDelete = function(){
+				var rates = [];
+				angular.forEach(scope.item.records, function(record, key){
+					//console.log('record', record.rate);
+					rates.push({rate: record.rate, userId: record.bid.vendor.user.userId});
+				});
+				console.log('rates', rates);
+				var request = clubService.sendRequest('POST', '/rates', rates);
+				request.then(function(response){
+					console.log('response from rating multiple', response);
+					scope.deleteItem();
+				}, function(error){
+					clubService.addNotification('error rating the vendors', 'error');
+				});
 			};
 
 			

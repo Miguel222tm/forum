@@ -1,7 +1,7 @@
 <div ng-if="item" ng-class="{'i-not-active': !item.active}">
 	<li class="list-item">
     <a herf class="list-left" ng-click="showBids()" >
-    	<span class="w-40 r-2x _600 text-lg accent">
+    	<span class="w-40 r-2x _600 text-lg color-two">
       	{{item.bids.length}}
       </apan>
     </a>
@@ -9,7 +9,8 @@
     	<div class="m-y-sm pull-right" ng-if="item.itemId && item.memberId === user.memberId">
         <!-- <a href class="btn color-four b-space" ng-click="loadBids()"> <i class="fa fa-product-hunt"></i>Show Bids</a> -->
         Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
-      	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
+      	Delete <a href class="btn btn-xs white btn-icon" data-toggle="modal" data-target="#modal{{item.itemId}}" ><i class="fa fa-trash"></i></a>
+        
   	  </div>
       <div>
         <a href>{{item.brand_name}} - {{item.model_name}}</a>
@@ -237,7 +238,7 @@
                 </div>
                 <div class="box-body dker">
                   <p class="m-a-0" align="center">
-                    <strong> Company: </strong> {{bid.vendor.name}}
+                    <strong> Company: </strong> {{bid.vendor.company_name}}
                     <br>
                     <a href class="btn color-five b-space" ng-click="bidDetails(bid)"> <i class="fa fa-product-hunt"></i>More details</a> 
                   </p>
@@ -253,4 +254,43 @@
   </li>
 
     
+
+
+
+    <!-- .modal -->
+<div id="modal{{item.itemId}}" class="modal fade animate black-overlay" data-backdrop="false" >
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content flip-y">
+            <div class="modal-body text-center">          
+              <p ng-if="item.records.length">Please select an option describing how satisfied were you with the following vendor(s).</p>
+              <p ng-if="!item.records.length">Are you sure, you want to delete this item?</p>
+            </div>
+            <div class="modal-body text-center" ng-repeat="record in item.records">          
+              <div class="form-group">
+                <label>{{record.bid.vendor.company_name}}</label><br>
+                <label>Offer: {{record.bid.offer}}</label>
+                <select name="rate" class="form-control c-select m-y" ng-model="record.rate">
+                  <option value="1" >Very poor</option>
+                  <option value="2" >Poor</option>
+                  <option value="3" >Good</option>
+                  <option value="4" >Very good</option>
+                  <option value="5" >Excelent</option>
+                </select>
+              </div>
+            </div>  
+            <div class="modal-footer">
+              <button type="button" class="btn color-two p-x-md" data-dismiss="modal" ng-click="rateAndDelete()" ng-if="item.records.length">Rate and Delete</button>
+              <button type="button" class="btn color-two p-x-md" data-dismiss="modal" ng-click="deleteItem()" ng-if="!item.records.length">Delete</button>
+              <button type="button" class="btn btn-danger p-x-md" data-dismiss="modal" >Cancel</button>
+            </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
 </div>
+<!-- / .modal -->
+</div>
+
+

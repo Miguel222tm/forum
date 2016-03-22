@@ -42,17 +42,37 @@ class rateController extends Controller
     {
         try{
             if (! $user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['user_not_found'], 404);
+                    return response()->json(['user_not_found'], 404);
             }
             $member = $user->member()->first();
-            $rate = new Rate();
-            $rate->fill(Input::all());
-            $rate->memberId = $member->memberId;
-            $rate->save();
+            if(is_array(Input::all())){
+                
+                foreach (Input::all() as $element){
+                    //return $element;
+                    $rate = Rate::where('userId','=',$element['userId'])->where('memberId', '=', $member->memberId)->first();
+                    if($rate){
+                        $rate->fill($element);
+                        $rate->save();
+                    }else{
+                        $rate = new Rate();
+                        $rate->fill($element);
+                        $rate->memberId = $member->memberId;
+                        $rate->save();
+                    }
+                }
+            }
+            else{
+                
+                
+                $rate = new Rate();
+                $rate->fill(Input::all());
+                $rate->memberId = $member->memberId;
+                $rate->save();
+            }
         }catch(Exception $ex){
             return response()->json($ex);
         }
-        return response()->json($rate);
+        return response()->json(['response'=>'Ok', 200]);
     }
 
     /**

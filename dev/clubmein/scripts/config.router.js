@@ -125,6 +125,13 @@
               data: { title: 'Home' } ,
               controller: 'homeCtrl',  
             })
+            .state('app.invite', {
+              url: '/invite',
+              templateUrl: 'views/page/invite.html', 
+              data: { title: 'Invite' } ,
+              controller: 'InviteCtrl',  
+            })
+
             .state('app.items', {
               url: '/items',
               templateUrl: 'views/page/items.html', 
