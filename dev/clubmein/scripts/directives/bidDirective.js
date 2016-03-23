@@ -14,7 +14,8 @@ var bid = ['$rootScope', '$state', 'RootService','vendorService','$stateParams',
 			min: '=',
 			max: '=',
 			average: '=',
-			offer: '='
+			offer: '=',
+			payment: '='
 		},
 		link: function(scope, element, attrs){
 			

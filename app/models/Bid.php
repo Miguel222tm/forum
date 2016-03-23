@@ -10,7 +10,7 @@ class Bid extends Model
 
     protected $primaryKey = 'bidId';
 
-    protected $fillable = ['vendorId', 'type','brandId', 'modelId', 'brand_name', 'model_name', 'total_items', 'min_price', 'max_price', 'average_price', 'offer'];
+    protected $fillable = ['vendorId', 'type','brandId', 'modelId', 'brand_name', 'model_name', 'total_items', 'min_price', 'max_price', 'average_price', 'offer', 'payment'];
 
     public function vendor(){
     	$foreignKey = 'vendorId';

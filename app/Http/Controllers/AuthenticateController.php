@@ -62,6 +62,7 @@ class AuthenticateController extends Controller
                 $functionalities = $access_level->getFunctionality()->get();
                 $employee->functionalities = $functionalities;
                 $employee->user= $user;
+                $employee->location = $location;
                 return response()->json($employee);
             }
 

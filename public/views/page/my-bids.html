@@ -7,7 +7,7 @@
 	    			<small></small>
 	    		</div>
 		    	<ul class="list inset" ng-if="bids.length" >
-			        <bid ng-repeat="finalBidingList in bids | unique: modelId" bid-id="finalBidingList.bidId" brand-id="finalBidingList.brandId" brand-name="finalBidingList.brand_name" model-id="finalBidingList.modelId" model-name="finalBidingList.model_name" total-items="finalBidingList.total_items" final-biding-list="finalBidingList" min="finalBidingList.min_price" max="finalBidingList.max_price" average="finalBidingList.average_price" offer="finalBidingList.offer">
+			        <bid ng-repeat="finalBidingList in bids | unique: modelId" bid-id="finalBidingList.bidId" brand-id="finalBidingList.brandId" brand-name="finalBidingList.brand_name" model-id="finalBidingList.modelId" model-name="finalBidingList.model_name" total-items="finalBidingList.total_items" final-biding-list="finalBidingList" min="finalBidingList.min_price" max="finalBidingList.max_price" average="finalBidingList.average_price" offer="finalBidingList.offer" payment="finalBidingList.payment">
 			    </ul>
 			    <br>
 			    

@@ -62,26 +62,35 @@
 					          	<tr>
 					              	<td><strong>Payment Section:</td>  </strong>   
 					          	</tr>
-					          	<tr>
-					              	<td>Fee</td>
-					              	<td>{{selectedFee.percentage}}</td>				              
-					          	</tr>
-					          	<tr>
-					              	<td>Publish Time</td>
-					              	<td>{{publishTime}}</td>				              
-					          	</tr>
-					          	<tr>
-					              	<td>Member Factor</td>
-					              	<td>0.05%</td>				              
-					          	</tr>
-					          	<tr>
-					              	<td>Buyers</td>
-					              	<td>{{totalItems}}</td>				              
-					          	</tr>
-					          	<tr>
-					              	<td><strong>Total</td>
-					              	<td>{{calculateTotalToPay()}} </strong></td>	              
-					          	</tr>
+					          	
+
+						          	<tr ng-if="!bidId">
+						              	<td>Fee</td>
+						              	<td>{{selectedFee.percentage}}</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId">
+						              	<td>Publish Time</td>
+						              	<td>{{publishTime}}</td>				              
+						          	</tr ng-if="!bidId">
+						          	<tr ng-if="!bidId">
+						              	<td>Member Factor</td>
+						              	<td>0.05%</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId"> 
+						              	<td>Buyers</td>
+						              	<td>{{totalItems}}</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId">
+					              		<td><strong>Total</td>
+					              		<td>{{calculateTotalToPay()}} </strong></td>	              
+					          		</tr>
+					          	<div ng-if="payment">
+					          		<tr>
+					              		<td><strong>Total</td>
+					              		<td>{{payment}} </strong></td>	              
+					          		</tr>
+					          	</div>
+					          	
 
 
 					        </tbody>
@@ -100,7 +109,7 @@
 				                <input type="number" min="1" required data-parsley-type="number"class="form-control" placeholder="offer" ng-model="$parent.offer" ng-disabled="bidId">
 				              </div>
 				            </div> 
-				            <div class="form-group row">
+				            <div class="form-group row" ng-hide="bidId">
 				              <label class="col-sm-3 form-control-label">Publish time</label>
 				              <div class="col-sm-9">
 				                <select name="gender" class="form-control c-select m-y" ng-model="$parent.publishTime" ng-init="$parent.publishTime = 1">
