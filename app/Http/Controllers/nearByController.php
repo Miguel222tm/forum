@@ -33,11 +33,11 @@ class nearByController extends Controller
                     $query->where('active','=', true);
                 
             }])->get();
-
+            
             foreach ($items as $item) {
                 $modelBids = Bid::where('modelId', '=', $item->item->modelId)->with('vendor')->get();
                 $item->item->bids = $modelBids;
-            
+
             }
 
 
