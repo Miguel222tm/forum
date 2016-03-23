@@ -156,10 +156,10 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				scope.model = model;
 				console.log('modelo', scope.model);
 				if(scope.model){
-					if(scope.model.modelId){
-						scope.bOModel = false;
-					}else{
+					if(!scope.model.modelId){
 						scope.bOModel = true;
+					}else{
+						scope.bOModel = false;
 					}
 					scope.item.model_name = null;
 				}
@@ -218,6 +218,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					bSave = true;
 				}
 				else if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) ){
+					console.log('scope.bOModel', scope.model);
 					if(scope.category){
 						if(scope.category.categoryId)
 							scope.item.categoryId = scope.category.categoryId;
@@ -227,20 +228,23 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					if(scope.product){
 						if(scope.product.productId)
 							scope.item.productId = scope.product.productId;
-						if(scope.product.name)
+						if(scope.product.productId && scope.product.name)
 							scope.item.product_name = scope.product.name;
 					}
 					if(scope.brand){
 						if(scope.brand.brandId)
 							scope.item.brandId = scope.brand.brandId;
-						if(scope.brand.name)
+						if(scope.brand.brandId &&scope.brand.name)
 							scope.item.brand_name = scope.brand.name;
 					}
 					if(scope.model){
-						if(scope.model.modelId)
+						if(scope.model.modelId){
 							scope.item.modelId = scope.model.modelId;
-						if(scope.model.name)
+						}
+						if(scope.modelId && scope.model.name){
 							scope.item.model_name = scope.model.name;
+							console.log('scope.item.model_name', scope.item.model_name);
+						}
 					}
 
 					scope.item.active = false;

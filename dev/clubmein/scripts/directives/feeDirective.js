@@ -69,6 +69,43 @@ var fee = ['$state','RootService','$rootScope','$mdDialog','$timeout','adminServ
 				scope.closeDetails();
 			};
 
+			scope.showConfirm = function(ev, code, type){
+				 // Appending dialog to document.body to cover sidenav in docs app
+			   var confirm = $mdDialog.confirm()
+			          .title('Do you really want delete this fee ?')
+			          .textContent('Please confirm your answer.')
+			          .ariaLabel('Lucky day')
+			          .targetEvent(ev)
+			          .ok('Yes!')
+			          .cancel("Cancel");
+
+			   $mdDialog.show(confirm).then(function() {
+		    		scope.deleteFee();
+		    	
+			    }, function() {
+			      console.log('canceled');
+			    });
+		    
+			};
+
+			scope.deleteFee = function(){
+				if(scope.fee.feeId){
+					var request = clubService.sendRequest('DELETE', '/fee/'+scope.fee.feeId);
+					request.then(function(response){
+						scope.fee = null;
+						scope.bContent = false;
+
+					}, function(error){
+						clubService.addNotification('error deleting the fee', 'error');
+					});
+				}else{
+					scope.fee = null;
+					scope.bContent = false;
+				}
+			};
+
+
+
 			scope.init();
 
 		}

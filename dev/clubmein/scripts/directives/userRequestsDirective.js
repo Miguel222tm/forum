@@ -116,6 +116,42 @@ var userRequest = ['$state','RootService','$rootScope','$mdDialog','$timeout','a
 				}
 			};
 
+			scope.showConfirm = function(ev, code, type){
+				 // Appending dialog to document.body to cover sidenav in docs app
+			   var confirm = $mdDialog.confirm()
+			          .title('Do you really want delete this item ?')
+			          .textContent('Please confirm your answer.')
+			          .ariaLabel('Lucky day')
+			          .targetEvent(ev)
+			          .ok('Yes!')
+			          .cancel("Cancel");
+
+			   $mdDialog.show(confirm).then(function() {
+		    		scope.deleteItem();
+		    	
+			    }, function() {
+			      	console.log('canceled');
+			    });
+			};
+
+
+			scope.deleteItem = function(){
+				console.log('scope.item', scope.request);
+				if(scope.request.itemId){
+					var request = clubService.sendRequest('DELETE', '/item/'+scope.request.itemId);
+					request.then(function(response){
+						scope.request = null;
+						scope.bContent = false;
+					}, function(error){
+						clubService.addNotification('error deleting the item', 'error');
+					});
+				}else{
+					scope.request = null;
+				}
+			};
+
+
+
 			scope.init();
 
 		}

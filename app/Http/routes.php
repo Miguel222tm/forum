@@ -302,7 +302,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::post('/bids', 'bidsController@store');
 
-  Route::delete('/bids/{id}', 'bidsController@destroy');
+  Route::delete('/bid/{id}', 'bidsController@destroy');
   
   /*=====  End of bids  ======*/
   

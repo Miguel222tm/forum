@@ -229,6 +229,14 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 				return booleano;
 			};
 
+			scope.totalItems = function(){
+				var total =0;
+				angular.forEach(scope.vproduct.buyers, function(buyer, key){
+					total += buyer.quantity;
+				});
+				return total;			
+			}
+
 			scope.cancel = function (){
 				scope.bContent = false;
 				scope.vproduct = angular.copy(scope.safeProduct);

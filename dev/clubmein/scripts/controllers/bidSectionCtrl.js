@@ -6,6 +6,7 @@ var bidSectionCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 			scope.bBiding = false;
 			scope.mBiding = false;
 			scope.search();
+			
 		}
 	};
 
@@ -14,10 +15,72 @@ var bidSectionCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 		request.then(function(response){
 			scope.buyersList = response;
 			console.log('response buyersList', response);
+			setTotalItems();
 		}, function(error){
 			clubService.addNotification('error getting your potential buyers', 'error');
 		});
 	};
+
+	
+
+
+	function setTotalItems (){
+		scope.totalCity = 0;
+		scope.totalState = 0;
+		scope.totalCountry = 0;
+		scope.totalWorld = 0;
+
+		scope.model = scope.buyersList.model;
+
+		if(scope.model.city.length){
+			angular.forEach(scope.model.city, function(city, key){
+				scope.totalCity += city.quantity;
+			});
+		}
+		if(scope.model.state.length){
+			angular.forEach(scope.model.state, function(state, key){
+				scope.totalState += state.quantity;
+			});
+		}
+		if(scope.model.country.length){
+			angular.forEach(scope.model.world, function(country, key){
+				scope.totalCountry += country.quantity;
+			});
+		}
+		if(scope.model.world.length){
+			angular.forEach(scope.model.world, function(world, key){
+				scope.totalWorld += world.quantity;
+			});	
+		}
+
+		angular.forEach(scope.buyersList.brand, function(model, key){
+			model.totalCity = 0;
+			model.totalState = 0;
+			model.totalCountry = 0;
+			model.totalWorld = 0;
+			if(model.city.length){
+				angular.forEach(model.city, function(city, key){
+					model.totalCity += city.quantity;
+				});
+			}
+			if(model.state.length){
+				angular.forEach(model.state, function(state, key){
+					model.totalState += state.quantity;
+				});
+			}
+			if(model.country.length){
+				angular.forEach(model.world, function(country, key){
+					model.totalCountry += country.quantity;
+				});
+			}
+			if(model.world.length){
+				angular.forEach(model.world, function(world, key){
+					model.totalWorld += world.quantity;
+				});	
+			}
+			
+		});
+	}
 
 	scope.bidModel = function(){
 		scope.bBid = false;
@@ -45,6 +108,10 @@ var bidSectionCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 		}
 		if(scope.bBid){
 			scope.mBiding = true;
+			scope.finalBidingList.totalCity = scope.totalCity;
+			scope.finalBidingList.totalState = scope.totalState;
+			scope.finalBidingList.totalCountry = scope.totalCountry;
+			scope.finalBidingList.totalWorld = scope.totalWorld;
 			console.log('finalBidingList', scope.finalBidingList);
 			scope.calculateBid();
 		}
@@ -55,7 +122,7 @@ var bidSectionCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 		var prices = [];
 		if(scope.finalBidingList.city.length){
 			angular.forEach(scope.finalBidingList.city, function(cityPrices, key){
-				prices.push(cityPrices.price);
+				prices.push(cityPrices.price);0
 			});
 		}
 		if(scope.finalBidingList.state.length){
@@ -112,29 +179,38 @@ var bidSectionCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorSer
 			if(otherModel.city && otherModel.city.checked){
 				scope.tempBidingList.city = otherModel.city;
 				booleano = true;
+				scope.tempBidingList.totalCity = 0;
 				angular.forEach(scope.tempBidingList.city, function(element, key){
+					console.log('city element', element);
 					prices.push(element.price);
+					scope.tempBidingList.totalCity += element.quantity;
 				});
 			}
 			if(otherModel.state && otherModel.state.checked){
 				scope.tempBidingList.state = otherModel.state;
 				booleano = true;
+				scope.tempBidingList.totalState = 0;
 				angular.forEach(scope.tempBidingList.state, function(element, key){
 					prices.push(element.price);
+					scope.tempBidingList.totalState += element.quantity;
 				});
 			}
 			if(otherModel.country && otherModel.country.checked){
 				scope.tempBidingList.country = otherModel.country;
 				booleano = true;
+				scope.tempBidingList.totalCountry = 0;
 				angular.forEach(scope.tempBidingList.country, function(element, key){
 					prices.push(element.price);
+					scope.tempBidingList.totalCountry += element.quantity;
 				});
 			}
 			if(otherModel.world && otherModel.world.checked){
 				scope.tempBidingList.world = otherModel.world;
 				booleano = true;
+				scope.tempBidingList.totalWorld = 0;
 				angular.forEach(scope.tempBidingList.world, function(element, key){
 					prices.push(element.price);
+					scope.tempBidingList.totalWorld += element.quantity;
 				});
 			}
 			if(scope.tempBidingList.city.length || scope.tempBidingList.state.length || scope.tempBidingList.country.length || scope.tempBidingList.world.length){

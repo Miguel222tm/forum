@@ -25,6 +25,7 @@ class CreateVendorBidsTable extends Migration
             $table->integer('max_price');
             $table->integer('average_price');
             $table->integer('offer');
+            $table->integer('payment');
             $table->timestamps();
         });
     }

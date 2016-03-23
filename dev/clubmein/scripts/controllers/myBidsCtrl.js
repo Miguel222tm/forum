@@ -15,7 +15,7 @@ var myBidsCtrl = ['$rootScope', '$state', '$scope', 'RootService','vendorService
 			clubService.addNotification('error getting your bids', 'error');
 		});
 	}
-
+	
 
 
 

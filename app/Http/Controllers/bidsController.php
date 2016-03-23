@@ -112,6 +112,12 @@ class bidsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $bid = Bid::findOrFail($id);
+            $bid->delete();
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($bid);
     }
 }

@@ -24,7 +24,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>City</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{buyersList.model.city.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{totalCity}}</small>
 		            </div>
 		          </li>
 		          <li class="list-item">
@@ -33,7 +33,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>State</a></div>
-		              <small class="text-muted text-ellipsis"> <strong>Total: </strong> {{buyersList.model.state.length}}</small>
+		              <small class="text-muted text-ellipsis"> <strong>Total: </strong> {{totalState}}</small>
 		            </div>
 		          </li>
 		          <li class="list-item">
@@ -42,7 +42,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>Country</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{buyersList.model.country.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{totalCountry}}</small>
 		            </div>
 		          </li>
 
@@ -52,7 +52,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>World</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{buyersList.model.world.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{totalWorld}}</small>
 		            </div>
 		          </li>	          
 		        </ul>
@@ -83,7 +83,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>City</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.city.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.totalCity}}</small>
 		            </div>
 		          </li>
 
@@ -93,7 +93,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>State</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.state.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.totalState}}</small>
 		            </div>
 		          </li>
 
@@ -103,7 +103,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>Country</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.country.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.totalCountry}}</small>
 		            </div>
 		          </li>
 		          <li class="list-item" ng-if="otherModel.world.length">
@@ -112,7 +112,7 @@
 		            </a>
 		            <div class="list-body">
 		              <div><a href>World</a></div>
-		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.world.length}}</small>
+		              <small class="text-muted text-ellipsis"><strong>Total: </strong>{{otherModel.totalWorld}}</small>
 		            </div>
 		          </li>
 		        </ul>
