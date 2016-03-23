@@ -40,7 +40,8 @@ var bidInformationCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stat
 	scope.rateVendor = function(){
 		var data = {
 				rate: scope.rate,
-				userId: scope.bidInformation.vendor.user.userId
+				userId: scope.bidInformation.vendor.user.userId,
+				individual: true
 		};
 		if(scope.bidInformation.rate){
 			var request = clubService.sendRequest('PUT', '/rate/'+scope.bidInformation.rate.rateId, data);
@@ -50,6 +51,7 @@ var bidInformationCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stat
 		request.then( function(response){
 			scope.bidInformation.rate = response;
 			console.log('rate ressponse', response);
+			clubService.addNotification('thank you for your rating!', 'success');
 		}, function(error){
 			clubService.addNotification('error rating the vendor', 'error');
 		});

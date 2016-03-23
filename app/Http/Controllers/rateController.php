@@ -45,10 +45,9 @@ class rateController extends Controller
                     return response()->json(['user_not_found'], 404);
             }
             $member = $user->member()->first();
-            if(is_array(Input::all())){
+            if(!isset(Input::all()['individual'])) {
                 
                 foreach (Input::all() as $element){
-                    //return $element;
                     $rate = Rate::where('userId','=',$element['userId'])->where('memberId', '=', $member->memberId)->first();
                     if($rate){
                         $rate->fill($element);
@@ -62,8 +61,6 @@ class rateController extends Controller
                 }
             }
             else{
-                
-                
                 $rate = new Rate();
                 $rate->fill(Input::all());
                 $rate->memberId = $member->memberId;
