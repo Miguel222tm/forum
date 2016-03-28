@@ -14,7 +14,9 @@
         <a href>{{request.brand_name}} - {{request.model_name}}</a>
       </div>
       <div class="text-sm">
-      	<span class="text-muted"><strong>Quantity</strong> {{request.quantity}}, <strong>Price</strong> {{request.price}}</span> 
+      	<span class="text-muted"><strong>Quantity</strong> {{request.quantity}}, <strong>Price</strong> {{request.price}}</span>
+        <br>
+        <span class="text-muted"><strong>Member's Email </strong>{{request.member.email}}, <strong>Member's name </strong>{{request.member.name}} </span>
       </div>
     </div>
     <div class="col-sm-12 m-t" ng-if="bContent">

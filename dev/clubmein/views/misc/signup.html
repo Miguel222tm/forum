@@ -46,7 +46,8 @@
         </div>
         <div class="m-b-md">
           <label class="md-check">
-            <input type="checkbox" ng-model="agree" required><i class="indigo"></i> Agree the <a href>terms and policy</a>
+            <input type="checkbox" ng-model="agree" required><i class="indigo"></i> <a href="http://clubmein.com/terms/">Terms of Use and policy</a>
+
           </label>
         </div>
         <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md" ng-click="signUp()">Sign up</button>
@@ -63,11 +64,18 @@
        <!-- email confirmation here -->
     <div class="p-a-md box-color r box-shadow-z1 text-color m-a" ng-if="bEmailConfirmation"> 
       <div class="" align="center">
-        We just sent you an email to {{user.email}}
-        <br>
-        Please click on the link inside the email to confirm your account.
+        We just sent you an email to {{user.email}}. . If no mail received within 2 minutes, please check your spam box and confirm as a no-spam mail. Once confirmation mail is received, please click on the link inside the email to confirm your account.
       </div>
-    </div> 
+    </div>
+       <!-- email confirmation here -->
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a" ng-if="bResent"> 
+      <div class="" align="center">
+        {{user.email}} its already registered, we just sent you again the activation email. If no mail received within 2 minutes, please check your spam box and confirm as a no-spam mail. Once confirmation mail is received, please click on the link inside the email to confirm your account.
+        <br>
+      </div>
+    </div>
+
+
 
     <div class="p-v-lg text-center">
       <div>Already have an account? <a ui-sref="access.signin" href="#/access/signin" class="text-primary _600">Sign in</a></div>

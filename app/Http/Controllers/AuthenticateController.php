@@ -142,7 +142,19 @@ class AuthenticateController extends Controller
                 if($sent)
                     return response()->json($user);
             }else{
-                return "account already created";
+                if(!$user->active){
+                $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
+                {
+                    $message->from('membership.relations@clubmein.com');
+                    $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
+                });
+
+                if($sent)
+                    return "account already created";
+                }else{
+                    return "account activated";
+                }
+                
             }
 
         } catch(Exception $ex){

@@ -123,13 +123,13 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
               console.log('registration response: ', response);
               if(response === 'account already created'){
                 $RootService.addNotification('account already created', 'error');
+                scope.bResent = true;
               }else{
                 $RootService.addNotification('registration completed!', 'success');
                 scope.bForm = false;
                 scope.bEmailConfirmation = true;
                 scope.loading = false;  
-              }
-              
+              }    
               
           }, function(error){
               $RootService.addNotification(error.error, 'error');

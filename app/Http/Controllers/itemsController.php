@@ -26,7 +26,7 @@ class itemsController extends Controller
     {
         try{
             if(Input::has('active') && Input::all()['active'] === "false"){
-             $items = Item::where('active', '=', false)->get();
+             $items = Item::where('active', '=', false)->with('member')->get();
             }else{
                 $items = Item::all();
                 

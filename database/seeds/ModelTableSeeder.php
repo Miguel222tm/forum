@@ -11,450 +11,308 @@ class ModelTableSeeder extends Seeder
      */
     public function run()
     {
-        $models = array(
-
-        	["name"=>"Macbook 1000","brandId"=>"10","description"=>"Macbook 1000","date_of_creation"=>"2014-03-28","active"=> true],
-        	["name"=>"Optiplex 450","brandId"=>"2","description"=>"Optiplex 450","date_of_creation"=>"2014-03-30","active"=> true],
-        	["name"=>"iPhone","brandId"=>"11","description"=>"Furris","date_of_creation"=>"2014-03-30","active"=> true],
-        	["name"=>"Satellite L450D","brandId"=>"5","description"=>"Laptop Satellite","date_of_creation"=>"2014-03-31","active"=> true],
-        	["name"=>"TestM","brandId"=>"21","description"=>"null","date_of_creation"=>"2014-04-11","active"=> true],
-        	["name"=>"ILX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MDX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RDX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"TL","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"TSX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ZDX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RLX","brandId"=>"29","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A3","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A4","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A6","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A7","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A8","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"A8 L","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q7","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RS5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S4","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S6","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S7","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S8","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"TT","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"TT RS","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"TTS","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"allroad","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"R8","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RS 5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RS 7","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S5 Cabriolet","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S5 Coupe","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SQ5","brandId"=>"30","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"128i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"131i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"320i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"320i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"328i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"328i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"328i xDrive Classic Line","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"331i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"331i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"331is","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"528i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"528i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"531i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"531i xDrive Gran Turismo","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"550i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"550i xDrive Gran Turismo","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"650i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"650i xDrive Gran Coupe","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"740Li xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"750Li xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"750i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"731Li","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ALPINA B7 LWB xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ALPINA B7 xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ActiveHybrid 3","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ActiveHybrid 5","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ActiveHybrid 7 L","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"M Models","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X1 xDrive28i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X1 xDrive31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X3 xDrive28i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X3 xDrive31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X5 xDrive31d","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X5 xDrive31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X5 xDrive50i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X6 xDrive31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X6 xDrive50i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 sDrive28i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 sDrive31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 sDrive31is","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"228i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"328d xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"328i xDrive Gran Turismo","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"331i xDrive Gran Turismo","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"428i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"428i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"431i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"431i xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"531d xDrive","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"640i xDrive Gran Coupe","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"M231i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 28i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 31i","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Z4 31is","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"i3","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"X3 xDrive28d","brandId"=>"31","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Enclave","brandId"=>"32","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Encore","brandId"=>"32","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LaCrosse","brandId"=>"32","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Regal","brandId"=>"32","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Verano","brandId"=>"32","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ATS","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CTS Coupe","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CTS Sedan","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CTS Wagon","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Escalade","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Escalade ESV","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Escalade EXT","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SRX","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"V-Series","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XTS","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CTS-V Wagon","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ELR","brandId"=>"33","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Black Diamond Avalanche","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Camaro","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Corvette","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cruze","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Equinox","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Express Cargo Van","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Express Commercial Cutaway","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Express Passenger","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Impala","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Malibu","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Orlando","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Silverado 1500","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Silverado 2500HD","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Silverado 3400HD","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sonic","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Spark","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Suburban","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tahoe","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Traverse","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Trax","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Volt","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Corvette Stingray","brandId"=>"34","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"200","brandId"=>"35","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"300","brandId"=>"35","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Town & Country","brandId"=>"35","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Avenger","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Challenger","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Charger","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Dart","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Durango","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Grand Caravan","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Journey","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SRT Viper","brandId"=>"36","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"500","brandId"=>"37","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"500c","brandId"=>"37","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"500L","brandId"=>"37","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C-Max Energi","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C-Max Hybrid","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Econoline Cargo Van","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Econoline Commercial Chassis","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Econoline Commercial Cutaway","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Econoline Wagon","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Edge","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Escape","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Expedition","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Expedition Max","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Explorer","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"F-150","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fiesta","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Flex","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Focus","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Focus Electric","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fusion","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fusion Hybrid","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fusion Plug-In Hybrid","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mustang","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-250 SRW","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-350 DRW","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-350 SRW","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-450 DRW","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-53 Motorhome","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-550 DRW","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Super Duty F-59 Stripped Chas","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Taurus","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Connect","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Connect Wagon","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fusion Energi","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Cargo Van","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Chassis Cab","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Cutaway","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Transit Wagon","brandId"=>"38","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Acadia","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Savana Cargo Van","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Savana Commercial Cutaway","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Savana Passenger","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sierra 1500","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sierra 2500HD","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sierra 6000HD","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Terrain","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Yukon","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Yukon XL","brandId"=>"39","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Accord Coupe","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Accord Crosstour","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Accord Sedan","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CR-V","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CR-Z","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Civic Coupe","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Civic Sedan","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Fit","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Odyssey","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Pilot","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Ridgeline","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Accord","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Civic Hybrid","brandId"=>"40","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Accent","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Elantra","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Elantra Coupe","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Elantra GT","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Equus","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Genesis Coupe","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Genesis Sedan","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Santa Fe","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sonata","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sonata Hybrid","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tucson","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Veloster","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Santa Fe Sport","brandId"=>"41","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q50","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q60 Convertible","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q60 Coupe","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Q70","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"QX50","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"QX60","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"QX70","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"QX80","brandId"=>"42","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XF","brandId"=>"43","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XJ","brandId"=>"43","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XK","brandId"=>"43","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"F-TYPE","brandId"=>"43","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Compass","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Grand Cherokee","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Patriot","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Wrangler","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Wrangler Unlimited","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cherokee","brandId"=>"44","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Forte","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Forte 5-Door","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Forte Koup","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Optima","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Optima Hybrid","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Rio","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sorento","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Soul","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sportage","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cadenza","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Rondo","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sedona","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"K900","brandId"=>"45","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LR2","brandId"=>"46","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LR4","brandId"=>"46","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Range Rover","brandId"=>"46","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Range Rover Evoque","brandId"=>"46","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Range Rover Sport","brandId"=>"46","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CT 200h","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ES 300h","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ES 600","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GS 600","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GS 450h","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GX 460","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"IS 250","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"IS 250C","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"IS 600","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"IS 600C","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"IS F","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LS 460","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LS 600h L","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LX 570","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RX 600","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RX 450h","brandId"=>"47","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MKS","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MKT","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MKX","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MKZ","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Navigator","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Navigator L","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MKC","brandId"=>"48","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Clubman","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Convertible","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Countryman","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Coupe","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Hardtop","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Paceman","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Roadster","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cooper Clubvan","brandId"=>"49","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CX-9","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"MX-5","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mazda2","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mazda3","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mazda5","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mazda6","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CX-5","brandId"=>"50","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"AMG","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"B250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C300","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CL550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CL600","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CLS550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CLS63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E300","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"G550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"G63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GL350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GL450","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GL550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GLK-Class","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GLK350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ML350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ML550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ML63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"R350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S400","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S600","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S65","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SL550","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SL63AMG","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SL65AMG","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLK250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLK350","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLK55","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLS","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sprinter Cargo Vans","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sprinter Chassis-Cabs","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sprinter Passenger Vans","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CL63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CL65","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CLA250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CLA45","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"E400","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GL63 AMG","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GLK250","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SL63","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SL65","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLS AMG","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SLS AMG Black Series","brandId"=>"51","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Lancer","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Lancer Evolution","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Lancer Sportback","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Outlander","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RVR","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"i-MiEV","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Mirage","brandId"=>"52","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"370Z","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Altima","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Armada","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Frontier","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"GT-R","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"JUKE","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"LEAF","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Maxima","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Murano","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"NV","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"NV200","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"NVP","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Pathfinder","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Rogue","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sentra","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Titan","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Versa","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Versa Note","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Xterra","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Micra","brandId"=>"53","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"1500","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"2500","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"6000","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"4500","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"5500","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Cargo Van","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"ProMaster","brandId"=>"54","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"FR-S","brandId"=>"55","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"iQ","brandId"=>"55","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"tC","brandId"=>"55","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"xB","brandId"=>"55","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"xD","brandId"=>"55","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"fortwo","brandId"=>"56","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"fortwo electric drive","brandId"=>"56","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"BRZ","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Forester","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Impreza","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Legacy","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Outback","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tribeca","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"WRX","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XV Crosstrek","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XV Crosstrek Hybrid","brandId"=>"57","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Grand Vitara","brandId"=>"58","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Kizashi","brandId"=>"58","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SX4 Hatchback","brandId"=>"58","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"SX4 Sedan","brandId"=>"58","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"4Runner","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Avalon","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Camry","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Camry Hybrid","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Corolla","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"FJ Cruiser","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Highlander","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Highlander Hybrid","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Matrix","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Prius","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Prius Plug-In","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Prius c","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Prius v","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"RAV4","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sequoia","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Sienna","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tacoma","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tundra","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Venza","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Yaris","brandId"=>"59","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Beetle Convertible","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Beetle Coupe","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"CC","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Eos","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Golf","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Golf GTI","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Golf R","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Golf Wagon","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Jetta GLI","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Jetta Sedan","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Passat","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Tiguan","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"Touareg","brandId"=>"60","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C30","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"C70","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S60","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"S80","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XC60","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XC70","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"XC90","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true],
-        	["name"=>"V60","brandId"=>"61","description"=>"no description","date_of_creation"=>"2014-04-28","active"=> true]
+        $chevrolet = array(
+            "Black Diamond Avalanche", "Camaro", "Corvette", "Cruze", "Equinox", "Express Cargo Van", "Express Commercial Cutaway", "Express Passenger", "Impala", "Malibu", "Orlando", "Silverado 1500", "Silverado 2500HD", "Silverado 3500HD", "Sonic", "Spark", "Suburban", "Tahoe", "Traverse", "Trax", "Volt", "Corvette Stingray"
         );
-		foreach ($models as $modelo) {
-			App\models\Modelo::create($modelo);
-		}
+
+        $chevroletBrandId = App\models\Brand::where('name', '=', 'Chevrolet')->first();
+        foreach ($chevrolet as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $chevroletBrandId->brandId]);
+        }
+
+
+        $mercedes = array("AMG", "B250", "C250", "C300", "C350", "CL550", "CL600", "CLS550", "CLS63", "E300", "E350", "E550", "E63", "G550", "G63", "GL350", "GL450", "GL550", "GLK-Class", "GLK350", "ML350", "ML550", "ML63", "R350", "S350", "S400", "S550", "S600", "S63", "S65", "SL550", "SL63AMG", "SL65AMG", "SLK250", "SLK350", "SLK55", "SLS", "Sprinter Cargo Vans", "Sprinter Chassis-Cabs", "Sprinter Passenger Vans", "C63", "CL63", "CL65", "CLA250", "CLA45", "E250", "E400", "GL63 AMG", "GLK250", "SL63", "SL65", "SLS AMG", "SLS AMG Black Series");
+
+        $mercedesBrandId = App\models\Brand::where('name', '=', 'Mercedes Benz')->first();
+        foreach ($mercedes as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $mercedesBrandId->brandId]);
+        }
+
+
+        $volkswagen = array("Beetle Convertible", "Beetle Coupe", "CC", "Eos", "Golf", "Golf GTI", "Golf R", "Golf Wagon", "Jetta GLI", "Jetta Sedan", "Passat", "Tiguan", "Touareg");
+
+
+        $volkswagenBrandId = App\models\Brand::where('name', '=', 'Volkswagen')->first();
+        foreach ($volkswagen as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $volkswagenBrandId->brandId]);
+        }
+        /**
+         * [$suzuki description]
+         * @var array
+         */
+        $suzuki = array("Grand Vitara", "Kizashi", "SX4 Hatchback", "SX4 Sedan");
+
+        $suzukiBrand = App\models\Brand::where('name', '=', 'Suzuki')->first();
+        foreach ($suzuki as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $suzukiBrand->brandId]);
+        }
+        /**
+         * [$smart description]
+         * @var array
+         */
+        $smart = array("fortwo", "fortwo electric drive");
+        $smartBrand = App\models\Brand::where('name', '=', 'Smart')->first();
+        foreach ($smart as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $smartBrand->brandId]);
+        }
+        /**
+         * [$dodge description]
+         * @var array
+         */
+        $dodge = array("Avenger", "Challenger", "Charger", "Dart", "Durango", "Grand Caravan", "Journey", "SRT Viper");
+        $dodgeBrand = App\models\Brand::where('name', '=', 'Dodge')->first();
+        foreach ($dodge as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $dodgeBrand->brandId]);
+        }
+
+        /**
+         * [$scion description]
+         * @var array
+         */
+        $scion = array("FR-S", "iQ", "tC", "xB", "xD");
+        $scionBrand = App\models\Brand::where('name', '=', 'Scion')->first();
+        foreach ($scion as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $scionBrand->brandId]);
+        }
+
+        /**
+         * [$cadillac description]
+         * @var array
+         */
+        $cadillac = array("ATS", "CTS Coupe", "CTS Sedan", "CTS Wagon", "Escalade", "Escalade ESV", "Escalade EXT", "SRX", "V-Series", "XTS", "CTS-V Wagon", "ELR");
+        $cadillacBrand = App\models\Brand::where('name', '=', 'Cadillac')->first();
+        foreach ($cadillac as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $cadillacBrand->brandId]);
+        }
+        /**
+         * [$Honda description]
+         * @var array
+         */
+        $honda = array("Accord Coupe", "Accord Crosstour", "Accord Sedan", "CR-V", "CR-Z", "Civic Coupe", "Civic Sedan", "Fit", "Odyssey", "Pilot", "Ridgeline", "Accord", "Civic Hybrid");
+        $hondaBrand = App\models\Brand::where('name', '=', 'Honda')->first();
+        foreach ($honda as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $hondaBrand->brandId]);
+        }
+        /**
+         * [$hyundai description]
+         * @var array
+         */
+        $hyundai = array("Accent", "Elantra", "Elantra Coupe", "Elantra GT", "Equus", "Genesis Coupe", "Genesis Sedan", "Santa Fe", "Sonata", "Sonata Hybrid", "Tucson", "Veloster", "Santa Fe Sport");
+        $hyundaiBrand = App\models\Brand::where('name', '=', 'Hyundai')->first();
+        foreach ($hyundai as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $hyundaiBrand->brandId]);
+        }
+
+        /**
+         * [$ford description]
+         * @var array
+         */
+        $ford = array("C-Max Energi", "C-Max Hybrid", "Econoline Cargo Van", "Econoline Commercial Chassis", "Econoline Commercial Cutaway", "Econoline Wagon", "Edge", "Escape", "Expedition", "Expedition Max", "Explorer", "F-150", "Fiesta", "Flex", "Focus", "Focus Electric", "Fusion", "Fusion Hybrid", "Fusion Plug-In Hybrid", "Mustang", "Super Duty F-250 SRW", "Super Duty F-350 DRW", "Super Duty F-350 SRW", "Super Duty F-450 DRW", "Super Duty F-53 Motorhome", "Super Duty F-550 DRW", "Super Duty F-59 Stripped Chassis", "Taurus", "Transit Connect", "Transit Connect Wagon", "Fusion Energi", "Transit Cargo Van", "Transit Chassis Cab", "Transit Cutaway", "Transit Wagon");
+        $fordBrand = App\models\Brand::where('name', '=', 'Ford')->first();
+        foreach ($ford as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $fordBrand->brandId]);
+        }
+        /**
+         * [$mazda description]
+         * @var array
+         */
+        $mazda = array("CX-9", "MX-5", "Mazda2", "Mazda3", "Mazda5", "Mazda6", "CX-5");
+        $mazdaBrand = App\models\Brand::where('name', '=', 'Mazda')->first();
+        foreach ($mazda as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $mazdaBrand->brandId]);
+        }
+        /**
+         * [$jeep description]
+         * @var array
+         */
+        $jeep = array("Compass", "Grand Cherokee", "Patriot", "Wrangler", "Wrangler Unlimited", "Cherokee");
+        $jeepBrand = App\models\Brand::where('name', '=', 'Jeep')->first();
+        foreach ($jeep as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $jeepBrand->brandId]);
+        }
+        /**
+         * [$infiniti description]
+         * @var array
+         */
+        $infiniti = array("Q50", "Q60 Convertible", "Q60 Coupe", "Q70", "QX50", "QX60", "QX70", "QX80");
+        $infinitiBrand = App\models\Brand::where('name', '=', 'Infiniti')->first();
+        foreach ($infiniti as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $infinitiBrand->brandId]);
+        }
+        /**
+         * [$landRover description]
+         * @var array
+         */
+        $landRover = array("LR2", "LR4", "Range Rover", "Range Rover Evoque", "Range Rover Sport");
+        $landRoverBrand = App\models\Brand::where('name', '=', 'Land Rover')->first();
+        foreach ($landRover as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $landRoverBrand->brandId]);
+        }
+        /**
+         * [$kia description]
+         * @var array
+         */
+        $kia = array("Forte", "Forte 5-Door", "Forte Koup", "Optima", "Optima Hybrid", "Rio", "Sorento", "Soul", "Sportage", "Cadenza", "Rondo", "Sedona", "K900");
+        $kiaBrand = App\models\Brand::where('name', '=', 'Kia')->first();
+        foreach ($kia as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $kiaBrand->brandId]);
+        }
+        /**
+         * [$mitsubishi description]
+         * @var array
+         */
+        $mitsubishi = array("Lancer", "Lancer Evolution", "Lancer Sportback", "Outlander", "RVR", "i-MiEV", "Mirage");
+        $mitsubishiBrand = App\models\Brand::where('name', '=', 'Mitsubishi')->first();
+        foreach ($mitsubishi as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $mitsubishiBrand->brandId]);
+        }
+        /**
+         * [$bmw description]
+         * @var array
+         */
+        $bmw = array("128i", "135i", "320i", "320i xDrive", "328i", "328i xDrive", "328i xDrive Classic Line", "335i", "335i xDrive", "335is", "528i", "528i xDrive", "535i xDrive", "535i xDrive Gran Turismo", "550i xDrive", "550i xDrive Gran Turismo", "650i xDrive", "650i xDrive Gran Coupe", "740Li xDrive", "750Li xDrive", "750i xDrive", "760Li", "ALPINA B7 LWB xDrive", "ALPINA B7 xDrive", "ActiveHybrid 3", "ActiveHybrid 5", "ActiveHybrid 7 L", "M Models", "X1 xDrive28i", "X1 xDrive35i", "X3 xDrive28i", "X3 xDrive35i", "X5 xDrive35d", "X5 xDrive35i", "X5 xDrive50i", "X6 xDrive35i", "X6 xDrive50i", "Z4 sDrive28i", "Z4 sDrive35i", "Z4 sDrive35is", "228i", "328d xDrive", "328i xDrive Gran Turismo", "335i xDrive Gran Turismo", "428i", "428i xDrive", "435i", "435i xDrive", "535d xDrive", "640i xDrive Gran Coupe", "M235i", "Z4 28i", "Z4 35i", "Z4 35is", "i3", "X3 xDrive28d");
+        $bmwBrand = App\models\Brand::where('name', '=', 'BMW')->first();
+        foreach ($bmw as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $bmwBrand->brandId]);
+        }
+        /**
+         * [$mini description]
+         * @var array
+         */
+        $mini = array("Cooper Clubman", "Cooper Convertible", "Cooper Countryman", "Cooper Coupe", "Cooper Hardtop", "Cooper Paceman", "Cooper Roadster", "Cooper Clubvan");
+        $miniBrand = App\models\Brand::where('name', '=', 'MINI')->first();
+        foreach ($mini as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $miniBrand->brandId]);
+        }
+        /**
+         * [$lincon description]
+         * @var array
+         */
+        $lincon = array("MKS", "MKT", "MKX", "MKZ", "Navigator", "Navigator L", "MKC");
+        $linconBrand = App\models\Brand::where('name', '=', 'Lincoln')->first();
+        foreach ($lincon as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $linconBrand->brandId]);
+        }
+        /**
+         * [$acura description]
+         * @var array
+         */
+        $acura = array("ILX", "MDX", "RDX", "TL", "TSX", "ZDX", "RLX");
+        $acuraBrand = App\models\Brand::where('name', '=', 'Acura')->first();
+        foreach ($acura as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $acuraBrand->brandId]);
+        }
+        /**
+         * [$jaguar description]
+         * @var array
+         */
+        $jaguar = array("XF", "XJ", "XK", "F-TYPE");
+        $jaguarBrand = App\models\Brand::where('name', '=', 'Jaguar')->first();
+        foreach ($jaguar as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $jaguarBrand->brandId]);
+        }
+        /**
+         * [$gmc description]
+         * @var array
+         */
+        $gmc = array("Acadia", "Savana Cargo Van", "Savana Commercial Cutaway", "Savana Passenger", "Sierra 1500", "Sierra 2500HD", "Sierra 3500HD", "Terrain", "Yukon", "Yukon XL");
+        $gmcBrand = App\models\Brand::where('name', '=', 'GMC')->first();
+        foreach ($gmc as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $gmcBrand->brandId]);
+        }
+        /**
+         * [$nissan description]
+         * @var array
+         */
+        $nissan = array("370Z", "Altima", "Armada", "Frontier", "GT-R", "JUKE", "LEAF", "Maxima", "Murano", "NV", "NV200", "NVP", "Pathfinder", "Rogue", "Sentra", "Titan", "Versa", "Versa Note", "Xterra", "Micra");
+        $nissanBrand = App\models\Brand::where('name', '=', 'Nissan')->first();
+        foreach ($nissan as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $nissanBrand->brandId]);
+        }
+        /**
+         * [$toyota description]
+         * @var array
+         */
+        $toyota = array("4Runner", "Avalon", "Camry", "Camry Hybrid", "Corolla", "FJ Cruiser", "Highlander", "Highlander Hybrid", "Matrix", "Prius", "Prius Plug-In", "Prius c", "Prius v", "RAV4", "Sequoia", "Sienna", "Tacoma", "Tundra", "Venza", "Yaris");
+        $toyotaBrand = App\models\Brand::where('name', '=', 'Toyota')->first();
+        foreach ($toyota as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $toyotaBrand->brandId]);
+        }
+        /**
+         * [$volvo description]
+         * @var array
+         */
+        $volvo = array("C30", "C70", "S60", "S80", "XC60", "XC70", "XC90", "V60");
+        $volvoBrand = App\models\Brand::where('name', '=', 'Volvo')->first();
+        foreach ($volvo as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $volvoBrand->brandId]);
+        }
+        /**
+         * [$chrysler description]
+         * @var array
+         */
+        $chrysler = array("200", "300", "Town & Country");
+        $chryslerBrand = App\models\Brand::where('name', '=', 'Chrysler')->first();
+        foreach ($chrysler as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $chryslerBrand->brandId]);
+        }
+        /**
+         * [$fiat description]
+         * @var array
+         */
+        $fiat = array("500", "500c", "500L");
+        $fiatBrand = App\models\Brand::where('name', '=', 'FIAT')->first();
+        foreach ($fiat as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $fiatBrand->brandId]);
+        }
+        /**
+         * [$ram description]
+         * @var array
+         */
+        $ram = array("1500", "2500", "3500", "4500", "5500", "Cargo Van", "ProMaster");
+        $ramBrand = App\models\Brand::where('name', '=', 'Ram')->first();
+        foreach ($ram as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $ramBrand->brandId]);
+        }
+        /**
+         * [$subaru description]
+         * @var array
+         */
+        $subaru = array("BRZ", "Forester", "Impreza", "Legacy", "Outback", "Tribeca", "WRX", "XV Crosstrek", "XV Crosstrek Hybrid");
+        $subaruBrand = App\models\Brand::where('name', '=', 'Subaru')->first();
+        foreach ($subaru as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $subaruBrand->brandId]);
+        }
+        /**
+         * [$buick description]
+         * @var array
+         */
+        $buick = array("Enclave", "Encore", "LaCrosse", "Regal", "Verano");
+        $buickBrand = App\models\Brand::where('name', '=', 'Buick')->first();
+        foreach ($buick as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $buickBrand->brandId]);
+        }
+        /**
+         * [$lexus description]
+         * @var array
+         */
+        $lexus = array("CT 200h", "ES 300h", "ES 350", "GS 350", "GS 450h", "GX 460", "IS 250", "IS 250C", "IS 350", "IS 350C", "IS F", "LS 460", "LS 600h L", "LX 570", "RX 350", "RX 450h");
+        $lexusBrand = App\models\Brand::where('name', '=', 'Lexus')->first();
+        foreach ($lexus as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $lexusBrand->brandId]);
+        }
+        /**
+         * [$audi description]
+         * @var array
+         */
+        $audi = array("A3", "A4", "A5", "A6", "A7", "A8", "A8 L", "Q5", "Q7", "RS5", "S4", "S5", "S6", "S7", "S8", "TT", "TT RS", "TTS", "allroad", "R8", "RS 5", "RS 7", "S5 Cabriolet", "S5 Coupe", "SQ5");
+        $audiBrand = App\models\Brand::where('name', '=', 'Audi')->first();
+        foreach ($audi as $value) {
+            App\models\Modelo::create(['name'=> $value, 'active'=> true, 'brandId'=> $audiBrand->brandId]);
+        }
+
+
+
+
     }
 }
