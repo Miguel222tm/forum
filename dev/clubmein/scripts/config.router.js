@@ -63,10 +63,10 @@
                // state if one is encountered
                angular.forEach(rejectionReasons, function(value, key) {
                   if(rejection.data){
-                    if(rejection.data.error === value) {
-                      // Send the user to the auth state so they can login
-                      $state.go('access.signin');
-                    }
+                    // if(rejection.data.error === value) {
+                    //   // Send the user to the auth state so they can login
+                    //   $state.go('access.signin');
+                    // }
                   }
                });
                   return $q.reject(rejection);

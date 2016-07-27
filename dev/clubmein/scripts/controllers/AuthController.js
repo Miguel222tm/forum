@@ -41,7 +41,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
             $rootScope.currentUser = response.data;   
             $state.go('app.home');
           }else{
-            $state.go('access.select-user');
+            $state.go('app.home');
           }
       }
     }, function(error){
@@ -90,7 +90,7 @@ var AuthController = ['$auth', '$state','$http','$rootScope','$scope','RootServi
               $rootScope.currentUser = response.data;   
               $state.go('app.home');
             }else{
-              $state.go('access.select-user');
+              $state.go('app.home');
             }
             
           }else if(response.verify){
