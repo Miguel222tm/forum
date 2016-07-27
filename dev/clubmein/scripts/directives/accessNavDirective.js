@@ -10,29 +10,28 @@ var accessNav = ['$state', function($state){
 			scope.submenu =[];
 			scope.topMenu =[];
 
+			scope.menu.push({
+				hierarchy: 1,
+				level: 0,
+				hidden: false,
+				icon: 'fa fa-home',
+				label: 'Home',
+				state: 'app.home'
+			});	
+
+			scope.menu.push({
+				hierarchy: 4,
+				level: 0,
+				hidden: false,
+				icon: 'fa fa-users',
+				label: 'Search',
+				state: 'app.nearby'
+			});
+
 			angular.forEach(scope.user.functionalities, function(func, key){
 				switch(func.code){
 						
-					case "fn_home":
-						scope.menu.push({
-							hierarchy: 1,
-							level: 0,
-							hidden: false,
-							icon: 'fa fa-home',
-							label: 'Home',
-							state: 'app.home'
-						});	
-						break;
-					case "fn_search":
-						scope.menu.push({
-							hierarchy: 2,
-							level: 0,
-							hidden: false,
-							icon: 'fa fa-envelope',
-							label: 'Invite',
-							state: 'app.invite'
-						});
-						break;
+					
 					
 
 				}
@@ -51,14 +50,7 @@ var accessNav = ['$state', function($state){
 						break;
 	
 						case "fn_near_by":
-							scope.menu.push({
-								hierarchy: 4,
-								level: 0,
-								hidden: false,
-								icon: 'fa fa-users',
-								label: 'Near by',
-								state: 'app.nearby'
-							});
+							
 							break;
 						
 					}

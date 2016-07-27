@@ -1,6 +1,29 @@
-<access-nav user="currentUser" ng-if="currentUser">
+<ul class="nav" ui-nav>
+   <li class="nav-header hidden-folded">
+      <small class="text-muted">Menu</small>
+    </li>
+    
+    <li ui-sref-active="active">
+      <a href="dashboard.html" ui-sref="app.home">
+        <span class="nav-icon">
+          <i class="material-icons">&#xe3fc;<span ui-include="'../assets/images/i_0.svg'"></span></i>
+        </span>
+        <span class="nav-text">Home</span>
+      </a>
+    </li>
 
-</access-nav>
+    <li ui-sref-active="active">
+      <a href="dashboard.html" ui-sref="app.search">
+        <span class="nav-icon">
+          <i class="material-icons">&#xe5c3;<span ui-include="'../assets/images/i_1.svg'"></span></i>
+        </span>
+        <span class="nav-text">Search</span>
+      </a>
+    </li>
+
+</ul>
+
+
 
 <ul class="nav" ui-nav>
     <li class="nav-header hidden-folded">

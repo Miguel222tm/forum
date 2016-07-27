@@ -18,7 +18,7 @@
         vm.isSmart = isSmart();
         // config
         vm.app = {
-          name: 'Clubmein',
+          name: 'Forum',
           version: '1.1.0',
           // for chart colors
           color: {
@@ -36,8 +36,8 @@
           },
           setting: {
             theme: {
-              primary: 'primary',
-              accent: 'accent',
+              primary: 'accent',
+              accent: 'info',
               warn: 'warn'
             },
             folded: false,
@@ -48,7 +48,7 @@
           }
         };
 
-        var setting = vm.app.name+'-Setting';
+        var setting = vm.app;
         // save settings to local storage
         if ( angular.isDefined($localStorage[setting]) ) {
           vm.app.setting = $localStorage[setting];
@@ -77,7 +77,7 @@
 
         function setColor(){
           vm.app.setting.color = {
-            primary: getColor(vm.app.setting.theme.primary),
+            primary: getColor(vm.app.setting.theme.accent),
             accent: getColor(vm.app.setting.theme.accent),
             warn: getColor(vm.app.setting.theme.warn)
           };

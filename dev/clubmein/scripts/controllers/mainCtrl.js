@@ -13,7 +13,7 @@ var MainController = ['$auth', '$rootScope','$state','RootService','$scope', fun
             var request= $RootService.sendRequest('get','/session/user');
             request.then( function(response){
                 if(!response.access_level){
-                    $state.go('access.select-user');
+                    // $state.go('access.select-user');
                 }else{
                     $rootScope.currentUser = response;
                     $RootService.setCurrentUser(response);
