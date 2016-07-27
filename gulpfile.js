@@ -100,7 +100,7 @@ gulp.task('clubmein-html', function(){
 
 });
 
-gulp.task('clubmein-dev', ['clubmein-js', 'clubmein-html' , 'clubmein-sass'], function(){
+gulp.task('clubmein-dev', ['clubmein-js' , 'clubmein-sass'], function(){
     gulp.watch(resources.js_src,['clubmein-js']);
     gulp.watch(resources.views.src, ['clubmein-html']);
     gulp.watch(resources.sass_src, ['clubmein-sass']);

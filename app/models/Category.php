@@ -14,8 +14,23 @@ class Category extends Model
 
 
 
-    public function products(){
+    public function posts(){
     	$foreignKey = 'categoryId';
-    	return $this->hasMany('App\models\Product', $foreignKey);
+    	return $this->hasMany('App\models\Post', $foreignKey);
     }
+
+    public function tags()
+    {
+        $foreignKey = 'categoryId';
+        $otherKey = 'tagId';
+        return $this->belongsToMany('App\models\Tag', 'category_tag', $foreignKey , $otherKey);
+    }
+
+    public function addTags($tags)
+    {
+    	$this->tags()->attach($tags);
+    	return $this->tags()->get();
+    }
+
+    
 }

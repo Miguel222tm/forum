@@ -65,6 +65,11 @@ Route::group(['middleware' => 'jwt.auth'], function()
 
 
 Route::group(['middleware' => 'jwt.auth'], function(){
+
+  
+
+
+  
   /*=============================
   =            users            =
   =============================*/

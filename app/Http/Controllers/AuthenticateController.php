@@ -34,7 +34,7 @@ class AuthenticateController extends Controller
             }
             $location = $user->location()->first();
             //return $user;
-            // member
+            // customer
             if($user->type === 1 && $user->active === 1){
                 $member = $user->member()->first();
                 $access_level = AccessLevel::find($member->access_level);
@@ -45,7 +45,7 @@ class AuthenticateController extends Controller
                 return response()->json($member);
 
             }
-            // vendor
+            // support
             else if( $user->type === 2 && $user->active === 1){
                 $vendor = $user->vendor()->first();
                 $access_level = AccessLevel::find($vendor->access_level);
@@ -55,7 +55,7 @@ class AuthenticateController extends Controller
                 $vendor->user= $user;
                 return response()->json($vendor);
             }
-            //employee
+            //dev team or others
             else if ($user->type === 3 && $user->active === 1){
                 $employee = $user->employee()->first();
                 $access_level = AccessLevel::find($employee->access_level);

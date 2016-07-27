@@ -26,19 +26,19 @@
           <label>First name</label>
         </div>
         <div class="md-form-group">
-          <input type="text" class="md-input" ng-model="user.lastName" required>
+          <input type="text" class="md-input" ng-model="$parent.user.lastName" required>
           <label>Last name</label>
         </div>
         <div class="md-form-group">
-          <input type="email" class="md-input" ng-model="user.email" required>
+          <input type="email" class="md-input" ng-model="$parent.user.email" required>
           <label>Email</label>
         </div>
         <div class="md-form-group">
-          <input type="password" class="md-input" ng-model="user.password" minlength=6 required>
+          <input type="password" class="md-input" ng-model="$parent.user.password" minlength=6 required>
           <label>Password</label>
         </div>
         <div class="md-form-group">
-          <input type="password" class="md-input" ng-model="user.repeatPassword" minlength=6 required>
+          <input type="password" class="md-input" ng-model="$parent.user.repeatPassword" minlength=6 required>
           <label>Repeat password</label>
         </div>
         <div class="md-form-group">

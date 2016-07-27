@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('vendorId');
             $table->string('unique_code');
             $table->integer('access_level');
+            $table->integer('type'); // type of employee which can be support/ dev/sales/ what ever
             $table->timestamps();
         });
     }
