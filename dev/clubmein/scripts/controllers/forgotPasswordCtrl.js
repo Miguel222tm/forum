@@ -61,7 +61,7 @@ var forgotPasswordCtrl = ['$state','$stateParams','RootService','$scope','$rootS
                 };
                 var secondRequest =  $RootService.sendRequest('POST', '/send-email', data);
                 secondRequest.then(function(response){
-                    console.log('response emaikl', response);
+                    console.log('response email', response);
                     scope.bConfirmation = true;
                     scope.bForm = false;
                 }, function(error){

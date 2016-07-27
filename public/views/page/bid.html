@@ -1,0 +1,144 @@
+<div class="row b-space-all" ng-if="!bSent && finalBidingList">
+			<div class="col-sm-12 col-md-12">
+		    	<div class="box" layout="row" layout-align="space-between center">
+		    		<div class="box-header">
+		    			<h3>
+		    				Biding information
+
+		    			</h3>
+		    		</div>
+		    		<div class="m-y-sm pull-right" ng-if="bidId">
+			      	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()" ><i class="fa fa-trash"></i></a>
+			        
+			  	  </div>
+			    </div>
+		    </div>
+
+		    <div class="col-sm-12 col-md-12">
+		    	<div class="box" layout="row" layout-align="start start">
+		    		<div class="box-header col-sm-6 col-md-6">
+		    			<table class="table m-b-none" ui-jp="footable">
+					        <thead>
+					          
+					        </thead>
+					        <tbody>
+					          	<tr ng-if="finalBidingList.city.length">
+					              	<td>City</td>
+					              	<td>{{finalBidingList.totalCity}}</td>
+					          	</tr>
+					          	<tr ng-if="finalBidingList.state.length">
+					              	<td>State</td>
+					              	<td>{{finalBidingList.totalState}}</td>
+					              
+					          	</tr>
+					          	<tr ng-if="finalBidingList.country.length">
+					              	<td>Country</td>
+					              	<td>{{finalBidingList.totalCountry}}</td>
+					              
+					          	</tr>
+					          	<tr ng-if="finalBidingList.world.length">
+					              	<td>World</td>
+					              	<td>{{finalBidingList.totalWorld}}</td>       
+					          	</tr>
+					          	<tr>
+					              	<td><strong>Total</td>
+					              	<td>{{totalItems}} Item(s)</strong></td>	              
+					          	</tr>
+					          	<tr>
+					              	<td><strong>Member's item budget</td>  </strong>  
+					          	</tr>
+					          	<tr>
+					              	<td>Minimum</td>
+					              	<td>{{min}}</td>					              
+					          	</tr>
+					          	<tr>
+					              	<td>Maximum</td>
+					              	<td>{{max}}</td>					              
+					          	</tr>
+					          	<tr>
+					              	<td>Avarage</td>
+					              	<td>{{average}}</td>				              
+					          	</tr>
+					          	<tr>
+					              	<td><strong>Payment Section:</td>  </strong>   
+					          	</tr>
+					          	
+
+						          	<tr ng-if="!bidId">
+						              	<td>Fee</td>
+						              	<td>{{selectedFee.percentage}}</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId">
+						              	<td>Publish Time</td>
+						              	<td>{{publishTime}}</td>				              
+						          	</tr ng-if="!bidId">
+						          	<tr ng-if="!bidId">
+						              	<td>Member Factor</td>
+						              	<td>0.05%</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId"> 
+						              	<td>Buyers</td>
+						              	<td>{{totalItems}}</td>				              
+						          	</tr>
+						          	<tr ng-if="!bidId">
+					              		<td><strong>Total</td>
+					              		<td>{{calculateTotalToPay()}} </strong></td>	              
+					          		</tr>
+					          	
+					          		<tr ng-if="payment && bidId">
+					              		<td><strong>Total</td>
+					              		<td>{{payment}} </strong></td>	              
+					          		</tr>
+					         
+					          	
+
+
+					        </tbody>
+				      	</table>
+		    		</div>
+		    		<div class="box col-sm-6 col-md-6">
+			          	<div class="box-header">
+			            	<h2>Biding Information</h2>
+			            	<small>{{brandName}} - {{modelName}}</small>
+			          	</div>
+			          	<div class="box-body" >                    
+				                      
+				            <div class="form-group row">
+				              <label class="col-sm-3 form-control-label">Offer</label>
+				              <div class="col-sm-9">
+				                <input type="number" min="1" required data-parsley-type="number"class="form-control" placeholder="offer" ng-model="$parent.offer" ng-disabled="bidId">
+				              </div>
+				            </div> 
+				            <div class="form-group row" ng-hide="bidId">
+				              <label class="col-sm-3 form-control-label">Publish time</label>
+				              <div class="col-sm-9">
+				                <select name="gender" class="form-control c-select m-y" ng-model="$parent.publishTime" ng-init="$parent.publishTime = 1">
+							      <option value="1" ng-selected="true"> 1 Week</option>
+							      <option value="1.6" > 2 Weeks</option>
+							      <option value="2.1" > 3 Weeks</option>
+							      <option value="2.4" > 1 Month</option>
+							    </select>
+				              </div>
+				            </div> 
+          				</div>
+				        <div class="dker p-a text-right" ng-if="!bidId">
+				            <button type="submit" class="btn color-five" ng-click="sendBid()">Send bid</button>
+				            
+
+				        </div>
+        			</div>
+			    </div>
+		    </div>
+</div>
+
+<div ng-if="bSent">
+	<div class="col-sm-12 col-md-12">
+    	<div class="box" layout="row" layout-align="space-between center">
+    		<div class="box-header">
+    			<h3>
+    				Bid sent!, you can see your bids in the menu 'My bids'.
+    			</h3>
+    		</div>
+	    </div>
+    </div>
+</div>

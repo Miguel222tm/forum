@@ -27,6 +27,8 @@ class CreateItemsTable extends Migration
             $table->integer('price');
             $table->string('description', 500);
             $table->boolean('active');
+            $table->boolean('notification_brand');
+            $table->boolean('notification_model');
             $table->timestamps();
         });
     }

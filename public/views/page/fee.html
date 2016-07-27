@@ -1,0 +1,82 @@
+<div ng-if="fee">
+	<li class="list-item">
+    <a herf class="list-left" ng-click="showContent()">
+    	<span class="w-40 r-2x _600 text-lg color-two">
+      	{{fee.code[0]}}  
+      </apan>
+    </a>
+    <div class="list-body" >
+    	<div class="m-y-sm pull-right" ng-if="fee.feeId">
+        Edit <a href class="btn btn-xs white btn-icon" ng-click="showContent()"> <i class="fa fa-pencil"></i></a>
+      	Delete <a href class="btn btn-xs white btn-icon" ng-click="showConfirm()"><i class="fa fa-trash"></i></a>
+  	  </div>
+      <div>
+        <a href>{{fee.code}} - {{fee.name}}</a>
+      </div>
+      <div class="text-sm">
+      	<span class="text-muted"><strong>From</strong> {{fee.from}}, <strong>To</strong> {{fee.to}} <strong>Percentage </strong>{{fee.percentage}} %</span> 
+      </div>
+    </div>
+    <div class="col-sm-12 m-t" ng-if="bContent">
+      <form ui-jp="parsley">
+        <div class="box">
+          <div class="box-header">
+            <h2>Fee information</h2>
+          </div>
+          <div class="box-body" >                    
+            <div class="form-group row" >
+              <label class="col-sm-3 form-control-label b-p-top">Code</label>
+              <div class="col-sm-9">
+                <input type="text" required data-parsley-type="text" class="form-control" placeholder="Code" ng-model="fee.code">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Name</label>
+              <div class="col-sm-9">
+                <input type="text" required data-parsley-type="text" class="form-control" placeholder="Name" ng-model="fee.name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">From (quantity)</label>
+              <div class="col-sm-9">
+                <input type="number" min="1" required data-parsley-type="number" class="form-control" placeholder="from" ng-model="fee.from">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">To (quantity)</label>
+              <div class="col-sm-9">
+                <input type="number" min="{{fee.from}}+1" required data-parsley-type="number" class="form-control" placeholder="to" ng-model="fee.to">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Percentage (of total)</label>
+              <div class="col-sm-9">
+                <input type="number" required data-parsley-type="number" class="form-control" placeholder="Percentage" ng-model="fee.percentage">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Description</label>
+              <div class="col-sm-9">
+                <textarea type="text" data-parsley-type="text"  rows="4" class="form-control" placeholder="Description" ng-model="fee.description"> </textarea>
+              </div>
+            </div> 
+          </div>
+          <div class="dker p-a text-right">
+            <button type="submit" class="btn info" ng-click="edit()" ng-if="fee.feeId">Save</button>
+            <button type="submit" class="btn info" ng-click="save()" ng-if="!fee.feeId">Save</button>
+
+            <button type="submit" class="btn warning" ng-click="cancel()">Cancel</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- --------------------------------------------------------- -->
+
+    </li>
+
+    
+</div>

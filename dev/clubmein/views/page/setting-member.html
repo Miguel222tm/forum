@@ -1,0 +1,22 @@
+<div> 
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" ng-model="currentUser.firstName">
+  </div>
+  <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" ng-model="currentUser.lastName">
+  </div>
+  <div class="form-group">
+    <label>email</label>
+    <input type="text" class="form-control" ng-model="currentUser.email" ng-disabled="true">
+  </div>
+  <div class="form-group">
+    <label>Gender</label>
+    <select name="gender" class="form-control c-select m-y" ng-model="currentUser.gender">
+      <option value="">Select a gender</option>
+      <option value="Male" ng-selected="currentUser.gender === 'Male'">Male</option>
+      <option value="Female" ng-selected="currentUser.gender === 'Female'">Female</option>
+    </select>
+  </div>
+</div>

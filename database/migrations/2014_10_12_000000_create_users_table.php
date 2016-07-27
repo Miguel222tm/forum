@@ -21,11 +21,13 @@ class CreateUsersTable extends Migration
             $table->string('picture_url');
             $table->string('password', 60);
             $table->integer('type');
+            $table->string('gender');
             $table->integer('active');
             $table->string('googleId');
             $table->string('facebookId');
             $table->string('linkedInId');
             $table->boolean('signup_email');
+            $table->string('unactive_reason')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

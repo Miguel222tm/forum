@@ -15,7 +15,7 @@ class VendorProduct extends Model
 
     public function vendor(){
     	$foreignKey ='vendorId';
-    	return $this->belongsTo('App/models/Vendor', $foreignKey);
+    	return $this->belongsTo('App\models\Vendor', $foreignKey);
     }
     
 }

@@ -16,14 +16,16 @@ class CreateVendorBidsTable extends Migration
             $table->increments('bidId');
             $table->integer('vendorId');
             $table->string('type');
-            $table->integer('categoryId')->nullable();
-            $table->integer('productId')->nullable();
             $table->integer('brandId')->nullable();
             $table->integer('modelId')->nullable();
-            $table->string('category_name')->nullable();;
-            $table->string('product_name')->nullable();;
-            $table->string('brand_name')->nullable();;
-            $table->string('model_name')->nullable();;
+            $table->string('brand_name')->nullable();
+            $table->string('model_name')->nullable();
+            $table->integer('total_items');
+            $table->integer('min_price');
+            $table->integer('max_price');
+            $table->integer('average_price');
+            $table->integer('offer');
+            $table->integer('payment');
             $table->timestamps();
         });
     }

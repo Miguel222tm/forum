@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::get('/test', 'testController@index');
 
 Route::post('/send-email', 'emailController@sendEmail');
+
+Route::post('/send-invitation', 'emailController@sendInvite');
+
 Route::get('/verify-user', 'emailController@verifyUser');
 
 //reset password
@@ -29,6 +32,8 @@ Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
 Route::put('/change-password', 'UsersController@changePassword');
 Route::put('/forgot-password', 'UsersController@forgotPassword');
 Route::put('/users/{id}/activate', 'UsersController@activateAccount');
+//disable account
+Route::get('/disable-account', 'UsersController@disableAccount');
 
 /**
  *  System.
@@ -42,9 +47,13 @@ Route::get('/app', function(){
 =====================================*/
 
 Route::post('/signup', 'AuthenticateController@registerUserByEmail');
+
 Route::post('/authenticate', 'AuthenticateController@authenticate');
+
 Route::post('/auth/google', 'socialAuthController@google');
+
 Route::post('/auth/linkedin', 'socialAuthController@linkedin');
+
 Route::post('/auth/facebook', 'socialAuthController@facebook');
 
 
@@ -61,6 +70,15 @@ Route::group(['middleware' => 'jwt.auth'], function()
 });
 
 
+Route::get('/fees',  'feesController@index');
+
+Route::get('/fee/{id}', 'feesController@show');
+
+Route::post('/fees', 'feesController@store');
+
+Route::put('/fee/{id}', 'feesController@update');
+
+Route::delete('/fee/{id}', 'feesController@destroy');
 
 
 
@@ -79,7 +97,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::post('/users', 'UsersController@store');
 
-  Route::post('user/location', 'userLocationController@store');
+  Route::post('/user/location', 'userLocationController@store');
 
   Route::put('/user/location', 'userLocationController@update');
 
@@ -90,6 +108,21 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::delete('/users/{id}', 'UsersController@destroy');  
   /*=====  End of users  ======*/
  
+  /*=============================
+  =            rates            =
+  =============================*/
+  Route::get('/rates', 'rateController@index');
+
+  Route::get('/rate/{id}', 'rateController@show');
+
+  Route::post('/rates', 'rateController@store');
+
+  Route::put('/rate/{id}', 'rateController@update');
+
+  
+  
+  /*=====  End of rates  ======*/
+  
 
   /*====================================
   =            users profile            =
@@ -120,6 +153,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/vendor/products', 'vendorController@products');
 
   Route::get('/vendor/bids',  'vendorController@showBids');
+
+  Route::get('/vendor/biding-section', 'vendorController@bidingSection');
+
+  Route::post('/vendor/bids', 'vendorController@storeBid');
 
   Route::post('/vendor/product', 'vendorController@storeProduct');
 
@@ -266,11 +303,11 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   
   Route::get('/bids', 'bidsController@index');
 
-  Route::get('/bids/{id}',  'bidsController@show');
+  Route::get('/bid/{id}',  'bidsController@show');
 
   Route::post('/bids', 'bidsController@store');
 
-  Route::delete('/bids/{id}', 'bidsController@destroy');
+  Route::delete('/bid/{id}', 'bidsController@destroy');
   
   /*=====  End of bids  ======*/
   
@@ -281,6 +318,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/items', 'itemsController@index');
 
   Route::get('/item/{id}',  'itemsController@show');
+
+  Route::get('/item/{id}/bids', 'itemsController@showBids');
+
+  Route::put('/item/{id}/record', 'itemsController@storeBidRecord');
 
   Route::post('/item', 'itemsController@store');
 
@@ -356,6 +397,11 @@ Route::get('/near', 'nearByController@index');
 
   Route::delete('/access-level/{id}', 'AccessLevelController@destroy');
   
+
+
+  Route::get('/email', function(){
+    return view('emails.verification');
+  });
   /*=====  End of access level  ======*/
   
 

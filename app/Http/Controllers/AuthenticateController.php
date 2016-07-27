@@ -62,6 +62,7 @@ class AuthenticateController extends Controller
                 $functionalities = $access_level->getFunctionality()->get();
                 $employee->functionalities = $functionalities;
                 $employee->user= $user;
+                $employee->location = $location;
                 return response()->json($employee);
             }
 
@@ -134,14 +135,26 @@ class AuthenticateController extends Controller
 
                 $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
                 {
-                    $message->from('uuorkstore.inc@gmail.com');
+                    $message->from('membership.relations@clubmein.com');
                     $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
                 });
 
                 if($sent)
                     return response()->json($user);
             }else{
-                return "account already created";
+                if(!$user->active){
+                $sent = Mail::send('emails.verification', array('key' => $user->remember_token, 'name'=> $user->name), function($message)
+                {
+                    $message->from('membership.relations@clubmein.com');
+                    $message->to(Input::all()['email'], Input::all()['name'])->subject('Email verification');
+                });
+
+                if($sent)
+                    return "account already created";
+                }else{
+                    return "account activated";
+                }
+                
             }
 
         } catch(Exception $ex){

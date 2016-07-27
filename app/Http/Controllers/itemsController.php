@@ -11,6 +11,10 @@ use Input;
 use App\models\ItemLocation;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use App\models\Bid;
+use App\models\ItemBidRecord;
+use App\models\VendorProduct;
+use Mail;
 class itemsController extends Controller
 {
     /**
@@ -22,9 +26,10 @@ class itemsController extends Controller
     {
         try{
             if(Input::has('active') && Input::all()['active'] === "false"){
-             $items = Item::where('active', '=', false)->get();
+             $items = Item::where('active', '=', false)->with('member')->get();
             }else{
                 $items = Item::all();
+                
             }
 
         }catch(Exception $ex){
@@ -55,33 +60,91 @@ class itemsController extends Controller
             //return Input::all()['location'];
             $item = new Item();
             $item->fill(Input::all());
+            //return $item;
             $item->save();
 
 
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
-            $userLocation = $user->location()->first();
-
-            $itemLocation = new ItemLocation();
-            $itemLocation->itemId = $item->itemId;
-            $itemLocation->country = $userLocation->country;
-            $itemLocation->state = $userLocation->state;
-            $itemLocation->city = $userLocation->city;
             
-            $itemLocation->save();
 
-            if(isset(Input::all()['location'])){
+            if(Input::all()['location']){
                 $itemLocation = new ItemLocation();
                 $itemLocation->itemId = $item->itemId;
                 $itemLocation->country = Input::all()['location']['country'];
                 $itemLocation->state = Input::all()['location']['state'];
                 $itemLocation->city = Input::all()['location']['city'];
                 $itemLocation->save();
+            }else{
+                //your current location
+                $userLocation = $user->location()->first();
+                $itemLocation = new ItemLocation();
+                $itemLocation->itemId = $item->itemId;
+                $itemLocation->country = $userLocation->country;
+                $itemLocation->state = $userLocation->state;
+                $itemLocation->city = $userLocation->city;
+                
+                $itemLocation->save();
             }
 
             $item->location = $item->location()->get();
 
+            //send email to vendors and other members
+            $allItems = array();
+            $brand = Item::where('notification_brand', '=', true)->where('brandId', '=', $item->brandId)->with('member')->get();
+            foreach ($brand as $bra) {
+                array_push($allItems, $bra->member->email);
+            }
+            $model = Item::where('notification_model', '=', true)->where('modelId', '=', $item->modelId)->with('member')->get();
+            foreach ($model as $mo) {
+                array_push($allItems, $mo->member->email);
+            }
+            $preMembers = array_unique($allItems);
+            $members = array();
+            foreach ($preMembers as $member) {
+                if($member != $user->email){
+                    array_push($members, $member);
+                }
+            }
+            //return $members;
+
+            $allProducts = VendorProduct::where('categoryId', '=', $item->categoryId)->with('vendor')->get();
+            $preVendors = array();
+            foreach ($allProducts as $product) {
+                array_push($preVendors, $product->vendor->email);
+            }
+            $vendors = array_unique($preVendors);
+            if($vendors){
+                foreach ($vendors as $vendor) {
+                    $sent = Mail::send('emails.vendor-alert', array('key' => ''), function($message) use($vendor)
+                    {
+                        $message->from('membership.relations@clubmein.com');
+                        // $message->embed('/images/default_picture.png');
+                        $message->to($vendor, 'Vendor')->subject('Members interested in your products');
+                    });
+
+                    if($sent){
+                        //return response()->json('email sent', 200);      
+                    }     
+                }
+            }
+            if($members){
+                foreach ($members as $member) {
+                    $sent = Mail::send('emails.member-alert', array('key' => ''), function($message) use($member)
+                    {
+                        $message->from('membership.relations@clubmein.com');
+                        $message->to($member, 'Member')->subject('Members interested in the same brands as you!');
+                    });
+
+                    if($sent){
+                        //return response()->json('email sent', 200);      
+                    }  
+                }
+            }
+            
+
+            
         }catch(Exception $ex){
             return response()->json($ex);
         }
@@ -137,7 +200,6 @@ class itemsController extends Controller
                 $itemLocation->city = Input::all()['modifyLocation']['city'];
                 $itemLocation->save();
             }
-
             $item->location = $item->location()->get();
 
         }catch(Exception $ex){
@@ -157,7 +219,7 @@ class itemsController extends Controller
         try{
             $item = Item::find($id);
             $locations = $item->location()->get();
-            if(isset($locations)){
+            if($locations){
                 foreach ($locations as $location) {
                     $location->delete();
                 }
@@ -167,5 +229,33 @@ class itemsController extends Controller
             return response()->json($ex);
         }
         return response()->json($item);
+    }
+
+    public function showBids($id){
+        try{
+            $item = Item::find($id);
+            $modelBids = Bid::where('modelId', '=', $item->modelId)->get();
+
+
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($modelBids);
+    }
+
+    public function storeBidRecord($id){
+        try{
+            $bidRecord = ItemBidRecord::where('itemId', '=', $id)->where('bidId', '=', Input::all()[0])->get();
+            //return sizeof($bidRecord);
+            if(sizeof($bidRecord) === 0){
+                //return Input::all()[0];
+                $ItemBidRecord = ItemBidRecord::create(['itemId'=>$id, 'bidId'=> Input::all()[0]]);
+            }else{
+                return response()->json($bidRecord);
+            }
+        }catch(Exception $ex){
+            return response()->json($ex);
+        }
+        return response()->json($ItemBidRecord);
     }
 }

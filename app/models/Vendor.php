@@ -10,7 +10,7 @@ class Vendor extends Model
 
     protected $primaryKey = 'vendorId';
 
-    protected $fillable = ['userId','name', 'firstName', 'lastName', 'email', 'title', 'picture_url', 'unique_code', 'access_level','telephone','ext','address', 'zip_code','alternative_first_name','alternative_last_name','alternative_email','alternative_title','alternative_telephone','alternative_ext', 'website'];
+    protected $fillable = ['userId','name', 'firstName', 'lastName', 'email', 'title', 'picture_url', 'unique_code', 'access_level','telephone','ext','address', 'zip_code','alternative_first_name','alternative_last_name','alternative_email','alternative_title','alternative_telephone','alternative_ext', 'website', 'company_name'];
 
 
 

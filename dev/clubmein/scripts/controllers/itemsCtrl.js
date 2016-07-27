@@ -13,20 +13,16 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 	}
 
 	function getItems(){
-		if(membersService.getItems()){
-			scope.items = membersService.getItems();
-		}else{
-			var request;
-			request = clubService.sendRequest('GET', 'members/items');
-			request.then(function(response){
-				scope.items = response;
-				membersService.setItems(response);
-				//console.log('scope.items', scope.items);
-				
-			}, function(error){
-				clubService.addNotification("error getting member's items", 'error');
-			});
-		}
+		var request;
+		request = clubService.sendRequest('GET', 'members/items');
+		request.then(function(response){
+			scope.items = response;
+			membersService.setItems(response);
+			//console.log('scope.items', scope.items);
+			
+		}, function(error){
+			clubService.addNotification("error getting member's items", 'error');
+		});
 	}
 
 	scope.haveRequests = function(){
@@ -42,7 +38,7 @@ var itemsCtrl =  ['$rootScope', '$state', '$scope', 'RootService', 'MembersServi
 		if(!membersService.getCategories()){
 			var request = clubService.sendRequest('GET', '/categories?bundle=true');
 			request.then(function(response){
-				console.log('response!', response);
+				//console.log('response!', response);
 				scope.categories = response;
 				scope.categories.push({name: 'Other', code: 'otr'});
 				

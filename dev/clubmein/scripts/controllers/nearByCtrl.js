@@ -30,7 +30,7 @@ var nearByCtrl =  ['$rootScope', '$state', '$scope', 'RootService','MembersServi
 
 		request.then(function(response){
 			setFinalItems(response);
-			console.log('got the items');
+			console.log('got the items', response);
 		}, function(error){
 			clubService.addNotification('error getting nearBy items', 'error');
 		});

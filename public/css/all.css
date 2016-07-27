@@ -88,8 +88,36 @@ growl-notifications growl-notification {
   position: relative;
   bottom: 26px; }
 
+.b-space {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.b-space-all {
+  padding: 10px; }
+
+.b-p-top {
+  padding-top: 20px; }
+
 .i-not-active {
   background-color: rgba(0, 0, 0, 0.06); }
+
+.color-one {
+  background-color: #D0DD4C !important; }
+
+.color-two {
+  background-color: #00BF70 !important; }
+
+.color-three {
+  background-color: #4ACCC4 !important; }
+
+.color-four {
+  background-color: #62B058 !important; }
+
+.color-five {
+  background-color: #559946 !important; }
+
+.b-bold {
+  font-weight: bold; }
 
 .alert-message {
   background-color: red;

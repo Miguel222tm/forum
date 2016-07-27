@@ -4,11 +4,11 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 		templateUrl: 'views/partials/vendor-product.html',
 		scope: {
 			vproduct: '=',
+			products: '=',
 			user: '=', 
 			categories: '='
 		},
 		link: function(scope, element, attrs){
-			console.log('user', scope.user);
 			scope.bOCategory  = false;
 			scope.bOProduct = false;
 			scope.bOBrand = false;
@@ -28,6 +28,9 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 
 			scope.addOther = function(parent, type){
 				var array = [];
+				if(type === 'model'){
+					array.push({modelId: "All", name: 'All', active: 1});
+				}
 				angular.forEach(parent, function(element, key){
 					if(type === 'category' && element.categoryId){
 						array.push(element);
@@ -42,8 +45,10 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 						array.push(element);
 					}
 				});
-				var nuevo = {name:"Other", active: 1};
-				array.push(nuevo);
+				/*var nuevo = {name:"Other", active: 1};
+				array.push(nuevo);*/
+				
+				
 				console.log('array ',type );
 				return array;
 			};
@@ -180,14 +185,24 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 					}
 				}
 				if(bSave){
+					console.log('reADY TO SAVE!', scope.vproduct);
 					if(scope.isRepeatedProduct(scope.vproduct)){
 						clubService.addNotification('sorry, you already have this product in your list', 'error');
 					}else{
 						scope.vproduct.vendorId = scope.user.vendorId;
 						var request = clubService.sendRequest('POST', '/vendor/product', scope.vproduct);
 						request.then(function(response){
-
-							scope.vproduct.vendorProductId = response.vendorProductId;
+							console.log('store vproduct', response);
+							if(!response.length){
+								scope.vproduct = null;
+								clubService.addNotification('cannot add more models with the  settings you selected');
+							}
+							if(scope.vproduct.modelId === "All"){
+								console.log('response from save All', response);
+								scope.products = response;
+							}else{
+								scope.vproduct.vendorProductId = response.vendorProductId;
+							}
 							//scope.safeProduct = scope.vproduct;
 							scope.bContent = false;
 							clubService.addNotification('product saved' , 'success');
@@ -213,6 +228,14 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 				});
 				return booleano;
 			};
+
+			scope.totalItems = function(){
+				var total =0;
+				angular.forEach(scope.vproduct.buyers, function(buyer, key){
+					total += buyer.quantity;
+				});
+				return total;			
+			}
 
 			scope.cancel = function (){
 				scope.bContent = false;
@@ -259,6 +282,7 @@ var vendorProduct = ['$state','RootService','vendorService', '$mdDialog', '$time
 			};
 
 
+			
 
 			scope.init();
 

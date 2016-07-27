@@ -35,6 +35,28 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					scope.bContent = true;
 			};
 
+			scope.showBids = function(){
+				if(scope.bBidsContent)
+					scope.bBidsContent = false;
+				else
+					scope.bBidsContent = true;
+					
+			};
+
+			scope.bidDetails = function(bid){
+				if(bid){
+					//create record that the user clicked on see bid details
+					var request = clubService.sendRequest('PUT', '/item/'+scope.item.itemId+'/record', bid.bidId);
+					request.then( function(response){
+						console.log('response::: ', response);
+						$state.go('app.bidInformation', {id: bid.bidId});
+					}, function(error){
+						clubService.addNotification('error, couldnt get bid information', 'error');
+					});
+					
+				}
+			};
+
 			scope.addOther = function(parent, type){
 				var array = [];
 				angular.forEach(parent, function(element, key){
@@ -134,10 +156,10 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 				scope.model = model;
 				console.log('modelo', scope.model);
 				if(scope.model){
-					if(scope.model.modelId){
-						scope.bOModel = false;
-					}else{
+					if(!scope.model.modelId){
 						scope.bOModel = true;
+					}else{
+						scope.bOModel = false;
 					}
 					scope.item.model_name = null;
 				}
@@ -196,6 +218,7 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					bSave = true;
 				}
 				else if(allFieldsCompleted() && (scope.bOCategory || scope.bOProduct || scope.bOBrand || scope.bOModel) ){
+					console.log('scope.bOModel', scope.model);
 					if(scope.category){
 						if(scope.category.categoryId)
 							scope.item.categoryId = scope.category.categoryId;
@@ -205,20 +228,23 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 					if(scope.product){
 						if(scope.product.productId)
 							scope.item.productId = scope.product.productId;
-						if(scope.product.name)
+						if(scope.product.productId && scope.product.name)
 							scope.item.product_name = scope.product.name;
 					}
 					if(scope.brand){
 						if(scope.brand.brandId)
 							scope.item.brandId = scope.brand.brandId;
-						if(scope.brand.name)
+						if(scope.brand.brandId &&scope.brand.name)
 							scope.item.brand_name = scope.brand.name;
 					}
 					if(scope.model){
-						if(scope.model.modelId)
+						if(scope.model.modelId){
 							scope.item.modelId = scope.model.modelId;
-						if(scope.model.name)
+						}
+						if(scope.modelId && scope.model.name){
 							scope.item.model_name = scope.model.name;
+							console.log('scope.item.model_name', scope.item.model_name);
+						}
 					}
 
 					scope.item.active = false;
@@ -234,6 +260,8 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 						city: scope.city
 					};
 					scope.item.location = scope.location;
+				}else{
+					scope.item.location = null;
 				}
 				if(bSave){
 					if(scope.isItemRepeated(scope.item)){
@@ -244,11 +272,10 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 						scope.bContent = false;
 						var request = clubService.sendRequest('POST', '/item', scope.item);
 						request.then(function(response){
-							
+							console.log('response from saving item', response);
 							scope.item.itemId= response.itemId;
 							scope.item.location = response.location;
-							scope.safeItem.itemId = response.itemId;
-							scope.safeItem.location = response.location;
+							scope.safeItem = angular.copy(scope.item);
 							clubService.addNotification('added item successfully', 'success');
 							scope.bContent = false;
 						}, function(error){
@@ -276,9 +303,14 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 
 			scope.cancel = function (){
 				scope.bContent = false;
-				scope.item = angular.copy(scope.safeItem);
+			 	if(scope.item.itemId){
+						scope.item = angular.copy(scope.safeItem);
+			 	}else{
+			 		scope.item = null;
+			 	}
 
 				console.log('item cancel', scope.item);
+				scope.bBidsContent = false;
 			};
 
 			scope.showContent = function(){
@@ -296,8 +328,9 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 
 			scope.otherLocation = function(){
 				scope.item.otherLocation != scope.item.otherlocation;
-				//console.log('scope.item.otherLocation', scope.item.otherLocation);
+				
 			};
+
 
 			scope.showConfirm = function(ev, code, type){
 				 // Appending dialog to document.body to cover sidenav in docs app
@@ -313,18 +346,39 @@ var item = ['$state','RootService','MembersService','$rootScope','$mdDialog','$t
 		    		scope.deleteItem();
 		    	
 			    }, function() {
-			      console.log('canceled');
+			      	console.log('canceled');
 			    });
-		    
 			};
 			scope.deleteItem = function(){
-				var request = clubService.sendRequest('DELETE', '/item/'+scope.item.itemId);
-				request.then(function(response){
-					membersService.removeItem(response);
+				console.log('scope.item', scope.item);
+				if(scope.item.itemId){
+					var request = clubService.sendRequest('DELETE', '/item/'+scope.item.itemId);
+					request.then(function(response){
+						membersService.removeItem(response);
+						scope.item = null;
+						scope.bContent = false;
+					}, function(error){
+						clubService.addNotification('error deleting the item', 'error');
+					});
+				}else{
 					scope.item = null;
-					scope.bContent = false;
+				}
+			};
+
+
+			scope.rateAndDelete = function(){
+				var rates = [];
+				angular.forEach(scope.item.records, function(record, key){
+					//console.log('record', record.rate);
+					rates.push({rate: record.rate, userId: record.bid.vendor.user.userId});
+				});
+				console.log('rates', rates);
+				var request = clubService.sendRequest('POST', '/rates', rates);
+				request.then(function(response){
+					console.log('response from rating multiple', response);
+					scope.deleteItem();
 				}, function(error){
-					clubService.addNotification('error deleting the item', 'error');
+					clubService.addNotification('error rating the vendors', 'error');
 				});
 			};
 

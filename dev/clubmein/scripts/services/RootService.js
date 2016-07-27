@@ -158,6 +158,8 @@ var RootService = ['$http', '$q', function ($http, $q){
       	else
       		this.notifications = [notification];
       	console.log('notifications ',this.notifications);
+
+      	i = 0;
 	};
 
 	this.getNotifications = function (){

@@ -10,8 +10,7 @@ class Bid extends Model
 
     protected $primaryKey = 'bidId';
 
-    protected $fillable = ['vendorId', 'type', 'categoryId', 'productId','brandId', 'modelId', 'category_name', 'product_name', 'brand_name', 'model_name'];
-
+    protected $fillable = ['vendorId', 'type','brandId', 'modelId', 'brand_name', 'model_name', 'total_items', 'min_price', 'max_price', 'average_price', 'offer', 'payment'];
 
     public function vendor(){
     	$foreignKey = 'vendorId';
@@ -21,5 +20,10 @@ class Bid extends Model
     public function location(){
     	$foreignKey = 'bidId';
     	return $this->hasMany('App\models\BidLocation', $foreignKey);
+    }
+
+    public function bidRecord(){
+        $foreignKey = 'bidId';
+        return $this->hasMany('App\models\ItemBidRecord', $foreignKey);
     }
 }

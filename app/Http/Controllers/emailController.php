@@ -10,7 +10,7 @@ use Mail;
 use Input;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\USer;
+use App\User;
 use Hash;
 class emailController extends Controller
 {
@@ -104,7 +104,7 @@ class emailController extends Controller
         }
         $sent = Mail::send(Input::all()['type'], array('key' => $key, 'name'=> Input::all()['user']['name']), function($message)
         {
-            $message->from('uuorkstore.inc@gmail.com');
+            $message->from('membership.relations@clubmein.com');
             // $message->embed('/images/default_picture.png');
             $message->to(Input::all()['user']['email'], Input::all()['user']['name'])->subject(Input::all()['title']);
         });
@@ -138,6 +138,27 @@ class emailController extends Controller
             return response()->json($e);
         }
         return response()->json($user);
+    }
+
+    public function sendInvite(){
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+            $sent = Mail::send('emails.invitation', array('from' => $user->name, 'to'=> Input::all()['to']), function($message) use ($user)
+            {
+                $message->from('membership.relations@clubmein.com');
+                $message->to(Input::all()['email'], Input::all()['to'])->subject('Join ClubMeIn.com community!');
+            });
+
+            if($sent){
+                return response()->json('email sent', 200);      
+            }
+        }catch (Exception $e) {
+            return response()->json($e);
+        }
+
+
     }
 
 

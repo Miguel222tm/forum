@@ -99,7 +99,7 @@
             dashboard = 'views/dashboard/dashboard.'+l+'html';
 
         $urlRouterProvider
-          .otherwise('/app/dashboard');
+          .otherwise('/app/home');
         $stateProvider
           .state('app', {
             abstract: true,
@@ -125,6 +125,13 @@
               data: { title: 'Home' } ,
               controller: 'homeCtrl',  
             })
+            .state('app.invite', {
+              url: '/invite',
+              templateUrl: 'views/page/invite.html', 
+              data: { title: 'Invite' } ,
+              controller: 'InviteCtrl',  
+            })
+
             .state('app.items', {
               url: '/items',
               templateUrl: 'views/page/items.html', 
@@ -151,6 +158,18 @@
               templateUrl: 'views/page/my-products.html', 
               data: { title: 'My products' } ,
               controller: 'myProductsCtrl',  
+            })
+            .state('app.bidingSection', {
+              url: '/product/:id',
+              templateUrl: 'views/page/biding-section.html', 
+              data: { title: 'Biding Section' } ,
+              controller: 'bidSectionCtrl',  
+            })
+            .state('app.bidInformation', {
+              url: '/bid/:id',
+              templateUrl: 'views/page/bid-information.html', 
+              data: { title: 'Bid information' } ,
+              controller: 'bidInformationCtrl',  
             })
 
             .state('app.mybids', {
@@ -197,6 +216,20 @@
               templateUrl: 'views/page/vendors.html', 
               data: { title: 'Vendors' } ,
               controller: 'vendorsListCtrl',  
+            })
+            .state('app.employees', {
+              url: '/users/employees',
+              templateUrl: 'views/page/employees.html', 
+              data: { title: 'Employees' } ,
+              controller: 'employeesListCtrl',  
+            })
+
+            //fees
+            .state('app.fees', {
+              url: '/fees',
+              templateUrl: 'views/page/fees.html', 
+              data: { title: 'Fees' } ,
+              controller: 'feeListCtrl',  
             })
 
 
