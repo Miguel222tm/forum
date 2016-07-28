@@ -21,11 +21,14 @@ Route::get('/', function () {
 
 Route::get('/test', 'testController@index');
 
-Route::post('/send-email', 'emailController@sendEmail');
+// Mailing Routes
+Route::get('/mail', 'emailController@testemail');
 
-Route::post('/send-invitation', 'emailController@sendInvite');
+//Route::post('/send-email', 'emailController@sendEmail');
 
-Route::get('/verify-user', 'emailController@verifyUser');
+//Route::post('/send-invitation', 'emailController@sendInvite');
+
+//Route::get('/verify-user', 'emailController@verifyUser');
 
 //reset password
 Route::put('user/{id}/reset-password', 'UsersController@resetPassword');
@@ -34,9 +37,6 @@ Route::put('/forgot-password', 'UsersController@forgotPassword');
 Route::put('/users/{id}/activate', 'UsersController@activateAccount');
 //disable account
 Route::get('/disable-account', 'UsersController@disableAccount');
-
-// Mailing Routes
-Route::get('mail', 'HomeController@mail');
 
 /**
  *  System.
@@ -416,9 +416,9 @@ Route::get('/near', 'nearByController@index');
 
 
 
-  Route::get('/email', function(){
-    return view('emails.verification');
-  });
+  // Route::get('/email', function(){
+  //   return view('emails.verification');
+  // });
   /*=====  End of access level  ======*/
 
 

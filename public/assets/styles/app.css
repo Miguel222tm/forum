@@ -5747,9 +5747,20 @@ textarea.md-input {
   padding: 10px 0 0 0;
   text-align: center;
 }
+.box-body-extra {
+  height: 230px;
+  text-align: justify;
+  font-size: 1.0em;
+}
 .box-footer-button {
   text-align: right;
 }
 .box-form {
   margin-bottom: 0px!important;
+}
+.box-header > small {
+  font-size: 1.2em!important;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
 }

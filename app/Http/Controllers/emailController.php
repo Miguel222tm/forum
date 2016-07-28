@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Mail;
-user App\Libs\MailgunHandler;
+//use Mail;
+use Mailgun\Mailgun;
 use Input;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
+//use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use Hash;
 class emailController extends Controller
@@ -23,6 +23,36 @@ class emailController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function testemail()
+    {
+      // FIXME: Kien setup reciepient to Migule eventiq for now to test. Please change it later.
+      $this->sendMail(
+          'miguel.trevino@eventiq.com',
+          'This is a notifications from Mailgun',
+          'This is a notifications from Mailgun. This is a notifications from Mailgun'
+      );
+    }
+
+    public function sendMail($to, $subject, $message) {
+      $mg = new Mailgun(env('MAILGUN_SECRET'));
+      $domain = env('MAILGUN_DOMAIN');
+
+      // FIXME: Please change 'from' and 'to' values 
+      $return = $mg->sendMessage($domain, array(
+        'from'    => 'admin@dancein.tv',
+        'to'      => $to,
+        'subject' => $subject,
+        'text'    => $message
+      ));
+        
+      echo var_dump($return);
     }
 
     /**
