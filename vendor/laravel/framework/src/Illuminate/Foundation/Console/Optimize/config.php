@@ -2,7 +2,7 @@
 
 $basePath = $app['path.base'];
 
-return [
+return array_map('realpath', [
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Container/Container.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Container/ContextualBindingBuilder.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Foundation/Application.php',
@@ -32,11 +32,9 @@ return [
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/View/View.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Http/Kernel.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Guard.php',
-    $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Access/Gate.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Hashing/Hasher.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Auth/Guard.php',
-    $basePath.'/vendor/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Contracts/Auth/UserProvider.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Auth/EloquentUserProvider.php',
     $basePath.'/vendor/laravel/framework/src/Illuminate/Container/Container.php',
@@ -183,7 +181,6 @@ return [
     $basePath.'/vendor/symfony/http-foundation/ResponseHeaderBag.php',
     $basePath.'/vendor/symfony/http-foundation/Cookie.php',
     $basePath.'/vendor/symfony/finder/SplFileInfo.php',
-    $basePath.'/vendor/symfony/finder/Expression/Glob.php',
     $basePath.'/vendor/symfony/finder/Expression/Regex.php',
     $basePath.'/vendor/symfony/finder/Expression/ValueInterface.php',
     $basePath.'/vendor/symfony/finder/Expression/Expression.php',
@@ -193,7 +190,6 @@ return [
     $basePath.'/vendor/symfony/finder/Iterator/ExcludeDirectoryFilterIterator.php',
     $basePath.'/vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php',
     $basePath.'/vendor/symfony/finder/Iterator/FileTypeFilterIterator.php',
-    $basePath.'/vendor/symfony/finder/Iterator/FilenameFilterIterator.php',
     $basePath.'/vendor/symfony/finder/Shell/Shell.php',
     $basePath.'/vendor/symfony/finder/Adapter/AdapterInterface.php',
     $basePath.'/vendor/symfony/finder/Adapter/AbstractAdapter.php',
@@ -202,7 +198,4 @@ return [
     $basePath.'/vendor/symfony/finder/Adapter/PhpAdapter.php',
     $basePath.'/vendor/symfony/finder/Adapter/BsdFindAdapter.php',
     $basePath.'/vendor/symfony/finder/Finder.php',
-    $basePath.'/vendor/symfony/finder/Glob.php',
-    $basePath.'/vendor/vlucas/phpdotenv/src/Dotenv.php',
-    $basePath.'/vendor/nesbot/carbon/src/Carbon/Carbon.php',
-];
+]);

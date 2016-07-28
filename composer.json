@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "tymon/jwt-auth": "0.5.*",
         "guzzlehttp/guzzle": "~6.1.1",
-        "guzzlehttp/oauth-subscriber": "dev-master"
+        "guzzlehttp/oauth-subscriber": "dev-master",
+        "mailgun/mailgun-php": "~1.7.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -19,7 +20,7 @@
     },
     "autoload": {
         "classmap": [
-            "database", 
+            "database",
             "app/models"
         ],
         "psr-4": {

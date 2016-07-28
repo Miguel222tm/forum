@@ -152,14 +152,8 @@ class Repository implements CacheContract, ArrayAccess
      */
     public function add($key, $value, $minutes)
     {
-        $minutes = $this->getMinutes($minutes);
-
-        if (is_null($minutes)) {
-            return false;
-        }
-
         if (method_exists($this->store, 'add')) {
-            return $this->store->add($key, $value, $minutes);
+            return $this->store->add($key, $value, $this->getMinutes($minutes));
         }
 
         if (is_null($this->get($key))) {
@@ -340,7 +334,7 @@ class Repository implements CacheContract, ArrayAccess
     protected function getMinutes($duration)
     {
         if ($duration instanceof DateTime) {
-            $fromNow = Carbon::now()->diffInMinutes(Carbon::instance($duration), false);
+            $fromNow = Carbon::instance($duration)->diffInMinutes();
 
             return $fromNow > 0 ? $fromNow : null;
         }

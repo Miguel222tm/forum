@@ -57,10 +57,6 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
 
             $this->app = null;
         }
-
-        if (property_exists($this, 'serverVariables')) {
-            $this->serverVariables = [];
-        }
     }
 
     /**

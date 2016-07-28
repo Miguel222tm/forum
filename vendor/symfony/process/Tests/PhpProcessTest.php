@@ -35,15 +35,15 @@ PHP
 PHP
         );
 
-        $commandLine = $process->getCommandLine();
-
         $f = new PhpExecutableFinder();
-        $this->assertContains($f->find(), $commandLine, '::getCommandLine() returns the command line of PHP before start');
+        $commandLine = $f->find();
+
+        $this->assertSame($commandLine, $process->getCommandLine(), '::getCommandLine() returns the command line of PHP before start');
 
         $process->start();
-        $this->assertContains($commandLine, $process->getCommandLine(), '::getCommandLine() returns the command line of PHP after start');
+        $this->assertSame($commandLine, $process->getCommandLine(), '::getCommandLine() returns the command line of PHP after start');
 
         $process->wait();
-        $this->assertContains($commandLine, $process->getCommandLine(), '::getCommandLine() returns the command line of PHP after wait');
+        $this->assertSame($commandLine, $process->getCommandLine(), '::getCommandLine() returns the command line of PHP after wait');
     }
 }

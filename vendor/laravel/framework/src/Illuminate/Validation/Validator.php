@@ -147,7 +147,7 @@ class Validator implements ValidatorContract
      * @var array
      */
     protected $implicitRules = [
-        'Required', 'RequiredWith', 'RequiredWithAll', 'RequiredWithout', 'RequiredWithoutAll', 'RequiredIf', 'RequiredUnless', 'Accepted',
+        'Required', 'RequiredWith', 'RequiredWithAll', 'RequiredWithout', 'RequiredWithoutAll', 'RequiredIf', 'Accepted',
     ];
 
     /**
@@ -686,29 +686,6 @@ class Validator implements ValidatorContract
     }
 
     /**
-     * Validate that an attribute exists when another attribute does not have a given value.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @param  mixed  $parameters
-     * @return bool
-     */
-    protected function validateRequiredUnless($attribute, $value, $parameters)
-    {
-        $this->requireParameterCount(2, $parameters, 'required_unless');
-
-        $data = Arr::get($this->data, $parameters[0]);
-
-        $values = array_slice($parameters, 1);
-
-        if (! in_array($data, $values)) {
-            return $this->validateRequired($attribute, $value);
-        }
-
-        return true;
-    }
-
-    /**
      * Get the number of attributes in a list that are present.
      *
      * @param  array  $attributes
@@ -981,7 +958,7 @@ class Validator implements ValidatorContract
         // is the size. If it is a file, we take kilobytes, and for a string the
         // entire length of the string will be considered the attribute size.
         if (is_numeric($value) && $hasNumeric) {
-            return $value;
+            return Arr::get($this->data, $attribute);
         } elseif (is_array($value)) {
             return count($value);
         } elseif ($value instanceof File) {
@@ -1607,7 +1584,7 @@ class Validator implements ValidatorContract
      * @param  string  $attribute
      * @param  string  $lowerRule
      * @param  array   $source
-     * @return string|null
+     * @return string
      */
     protected function getInlineMessage($attribute, $lowerRule, $source = null)
     {
@@ -1969,22 +1946,6 @@ class Validator implements ValidatorContract
     }
 
     /**
-     * Replace all place-holders for the required_unless rule.
-     *
-     * @param  string  $message
-     * @param  string  $attribute
-     * @param  string  $rule
-     * @param  array   $parameters
-     * @return string
-     */
-    protected function replaceRequiredUnless($message, $attribute, $rule, $parameters)
-    {
-        $other = $this->getAttribute(array_shift($parameters));
-
-        return str_replace([':other', ':values'], [$other, implode(', ', $parameters)], $message);
-    }
-
-    /**
      * Replace all place-holders for the same rule.
      *
      * @param  string  $message
@@ -2103,14 +2064,10 @@ class Validator implements ValidatorContract
     protected function parseRule($rules)
     {
         if (is_array($rules)) {
-            $rules = $this->parseArrayRule($rules);
-        } else {
-            $rules = $this->parseStringRule($rules);
+            return $this->parseArrayRule($rules);
         }
 
-        $rules[0] = $this->normalizeRule($rules[0]);
-
-        return $rules;
+        return $this->parseStringRule($rules);
     }
 
     /**
@@ -2160,24 +2117,6 @@ class Validator implements ValidatorContract
         }
 
         return str_getcsv($parameter);
-    }
-
-    /**
-     * Normalizes a rule so that we can accept short types.
-     *
-     * @param  string  $rule
-     * @return string
-     */
-    protected function normalizeRule($rule)
-    {
-        switch ($rule) {
-            case 'Int':
-                return 'Integer';
-            case 'Bool':
-                return 'Boolean';
-            default:
-                return $rule;
-        }
     }
 
     /**
@@ -2576,7 +2515,7 @@ class Validator implements ValidatorContract
      *
      * @param  string  $rule
      * @param  array   $parameters
-     * @return bool|null
+     * @return bool
      */
     protected function callExtension($rule, $parameters)
     {
@@ -2610,7 +2549,7 @@ class Validator implements ValidatorContract
      * @param  string  $attribute
      * @param  string  $rule
      * @param  array   $parameters
-     * @return string|null
+     * @return string
      */
     protected function callReplacer($message, $attribute, $rule, $parameters)
     {

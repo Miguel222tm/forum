@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Mail;
+user App\Libs\MailgunHandler;
 use Input;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -110,7 +111,7 @@ class emailController extends Controller
         });
 
         if($sent){
-            return response()->json('email sent', 200);      
+            return response()->json('email sent', 200);
         }
     }
 
@@ -152,7 +153,7 @@ class emailController extends Controller
             });
 
             if($sent){
-                return response()->json('email sent', 200);      
+                return response()->json('email sent', 200);
             }
         }catch (Exception $e) {
             return response()->json($e);

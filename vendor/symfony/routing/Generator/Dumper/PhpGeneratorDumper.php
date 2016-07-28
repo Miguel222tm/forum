@@ -16,6 +16,8 @@ namespace Symfony\Component\Routing\Generator\Dumper;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Tobias Schultze <http://tobion.de>
+ *
+ * @api
  */
 class PhpGeneratorDumper extends GeneratorDumper
 {
@@ -30,6 +32,8 @@ class PhpGeneratorDumper extends GeneratorDumper
      * @param array $options An array of options
      *
      * @return string A PHP class representing the generator class
+     *
+     * @api
      */
     public function dump(array $options = array())
     {
@@ -53,7 +57,7 @@ use Psr\Log\LoggerInterface;
  */
 class {$options['class']} extends {$options['base_class']}
 {
-    private static \$declaredRoutes;
+    private static \$declaredRoutes = {$this->generateDeclaredRoutes()};
 
     /**
      * Constructor.
@@ -62,9 +66,6 @@ class {$options['class']} extends {$options['base_class']}
     {
         \$this->context = \$context;
         \$this->logger = \$logger;
-        if (null === self::\$declaredRoutes) {
-            self::\$declaredRoutes = {$this->generateDeclaredRoutes()};
-        }
     }
 
 {$this->generateGenerateMethod()}

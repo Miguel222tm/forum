@@ -16,7 +16,7 @@
  */
 Route::get('/', function () {
     return view('home');
-   	
+
 });
 
 Route::get('/test', 'testController@index');
@@ -34,6 +34,9 @@ Route::put('/forgot-password', 'UsersController@forgotPassword');
 Route::put('/users/{id}/activate', 'UsersController@activateAccount');
 //disable account
 Route::get('/disable-account', 'UsersController@disableAccount');
+
+// Mailing Routes
+Route::get('mail', 'HomeController@mail');
 
 /**
  *  System.
@@ -76,7 +79,7 @@ Route::group(['middleware' => 'jwt.auth'], function()
 {
     Route::resource('session', 'AuthenticateController', ['only' => ['index']]);
     Route::get('/session/user', 'AuthenticateController@getSessionUser');
-    
+
 });
 
 
@@ -94,10 +97,10 @@ Route::delete('/fee/{id}', 'feesController@destroy');
 
 Route::group(['middleware' => 'jwt.auth'], function(){
 
-  
 
 
-  
+
+
   /*=============================
   =            users            =
   =============================*/
@@ -115,9 +118,9 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
 
 
-  Route::delete('/users/{id}', 'UsersController@destroy');  
+  Route::delete('/users/{id}', 'UsersController@destroy');
   /*=====  End of users  ======*/
- 
+
   /*=============================
   =            rates            =
   =============================*/
@@ -129,26 +132,26 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::put('/rate/{id}', 'rateController@update');
 
-  
-  
+
+
   /*=====  End of rates  ======*/
-  
+
 
   /*====================================
   =            users profile            =
   ====================================*/
-  
+
   /*----------  job seekers  ----------*/
   Route::get('/members', 'membersController@index');
-  
+
   Route::get('/member/profile', 'membersController@profile');
 
   Route::get('/members/items', 'membersController@items');
-  
+
   Route::get('/member/{id}', 'membersController@show');
-  
+
   Route::post('/members', 'membersController@store');
-  
+
   Route::put('/member/{id}', 'membersController@update');
 
   Route::delete('/members/{id}', 'membersController@destroy');
@@ -171,9 +174,9 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::post('/vendor/product', 'vendorController@storeProduct');
 
   Route::get('/vendor/{id}', 'vendorController@show');
-  
+
   Route::post('/vendors', 'vendorController@store');
-  
+
   Route::put('/vendor/{id}', 'vendorController@update');
 
   Route::delete('/vendor/product/{id}', 'vendorController@destroyProduct');
@@ -186,14 +189,14 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::get('/employees', 'employeesController@index');
 
   Route::get('/employee/{id}', 'employeesController@show');
-  
+
   Route::post('/employees', 'employeesController@store');
-  
+
   Route::put('/employee/{id}', 'employeesController@update');
 
   Route::delete('/employee/{id}', 'employeesController@destroy');
-  
-  
+
+
   /*=====  End of user profile  ======*/
   /*================================
   =            location            =
@@ -208,14 +211,14 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/locations', 'locationController@update');
 
   Route::delete('/location', 'locationController@destroy');
-    
+
   /*=====  End of location  ======*/
 
 
 
- 
 
-  
+
+
 
    /*===============================
   =            requests            =
@@ -231,7 +234,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/request', 'requestController@update');
 
   Route::delete('/request/{id}', 'requestController@destroy');
-    
+
   /*=====  End of requests  ======*/
 
 
@@ -241,7 +244,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   /*====================================
   =             category            =
   ====================================*/
-  
+
   Route::get('/categories', 'categoryController@index');
 
   Route::get('/category/{id}', 'categoryController@show');
@@ -253,13 +256,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/category/{id}', 'categoryController@update');
 
   Route::delete('/category/{id}', 'categoryController@destroy');
-  
+
   /*=====  End of  category  ======*/
 
   /*=================================
   =             product            =
   =================================*/
-  
+
   Route::get('/products', 'productController@index');
 
   Route::get('/product/{id}', 'productController@show');
@@ -270,8 +273,8 @@ Route::group(['middleware' => 'jwt.auth'], function(){
 
   Route::put('/product/{id}', 'productController@update');
 
-  Route::delete('/product/{id}', 'productController@destroy'); 
-  
+  Route::delete('/product/{id}', 'productController@destroy');
+
   /*=====  End of  product  ======*/
 
 
@@ -280,7 +283,7 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   /*==================================
   =             brands            =
   ==================================*/
-  
+
   Route::get('/brands', 'brandsController@index');
 
   Route::get('/brand/{id}', 'brandsController@show');
@@ -292,13 +295,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/brand/{id}', 'brandsController@update');
 
   Route::delete('/brand/{id}', 'brandsController@destroy');
-   
+
   /*=====  End of  brands  ======*/
-    
+
   /*=====================================
   =             models            =
   =====================================*/
-  
+
   Route::get('/models', 'modelsController@index');
 
   Route::get('/models/{id}', 'modelsController@show');
@@ -308,13 +311,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/model/{id}', 'modelsController@update');
 
   Route::delete('/model/{id}', 'modelsController@destroy');
-  
+
   /*=====  End of  models  ======*/
 
   /*=================================
   =             bids            =
   =================================*/
-  
+
   Route::get('/bids', 'bidsController@index');
 
   Route::get('/bid/{id}',  'bidsController@show');
@@ -322,13 +325,13 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::post('/bids', 'bidsController@store');
 
   Route::delete('/bid/{id}', 'bidsController@destroy');
-  
+
   /*=====  End of bids  ======*/
-  
+
   /*=================================
   =             items            =
   =================================*/
-  
+
   Route::get('/items', 'itemsController@index');
 
   Route::get('/item/{id}',  'itemsController@show');
@@ -342,11 +345,11 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::put('/item/{id}', 'itemsController@update');
 
   Route::delete('/item/{id}', 'itemsController@destroy');
-  
+
   /*=====  End of items  ======*/
-  
-  
-  
+
+
+
 });
 
 /*=================================
@@ -394,7 +397,7 @@ Route::get('/near', 'nearByController@index');
 
 /*=====  End of constants  ======*/
 
-  
+
 
 
 
@@ -410,14 +413,14 @@ Route::get('/near', 'nearByController@index');
   Route::put('/access-level/{id}', 'AccessLevelController@update');
 
   Route::delete('/access-level/{id}', 'AccessLevelController@destroy');
-  
+
 
 
   Route::get('/email', function(){
     return view('emails.verification');
   });
   /*=====  End of access level  ======*/
-  
+
 
  /*Route::get('/token', function () {
        $token = "";
