@@ -32,8 +32,9 @@
                 <div class="form-group">
                   <!-- <label></label> -->
                   <textarea class="form-control" min-rows="4" ng-model="comment" placeholder="Join the discussion..."></textarea>
-                  <div layout="row" layout-align="end end">
-                     <button type="submit" class="btn btn-info" ng-click="leaveComment(comment)" ng-disabled="!comment">Post as {{currentUser.name}}</button>
+                  <div layout="row" layout-align="end end" >
+                     <button type="submit" class="btn btn-info" ng-click="leaveComment(comment)" ng-disabled="!comment" ng-if="currentUser">Post as {{currentUser.name}}</button>
+                     <a href="" ui-sref="access.signin" ng-if="!currentUser">Login to leave a comment</a>
                   </div>
                </div>
             </div>
@@ -65,7 +66,7 @@
                      <div ng-if="comment.showReply">
                         <textarea class="form-control" min-rows="4" ng-model="reply" placeholder="Join the discussion..."></textarea>
                         <div layout="row" layout-align="end end">
-                           <button type="submit" class="btn btn-info" ng-click="leaveReply(reply, comment)" ng-disabled="!reply">reply as {{currentUser.name}}</button>
+                           <button type="submit" class="btn btn-info" ng-click="leaveReply(reply, comment)" ng-disabled="!reply" >reply as {{currentUser.name}}</button>
                         </div>   
                      </div>
                      <div class="p-t p-l" ng-repeat="reply in comment.replies" layout="column">

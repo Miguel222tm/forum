@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
     'System' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
@@ -15,8 +14,12 @@ return array(
     'Namshi\\JOSE' => array($vendorDir . '/namshi/jose/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'Mailgun\\Tests' => array($vendorDir . '/mailgun/mailgun-php/tests'),
+    'Mailgun' => array($vendorDir . '/mailgun/mailgun-php/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
+    'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
+    'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
