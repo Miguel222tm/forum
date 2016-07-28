@@ -1,7 +1,132 @@
 <!-- only need a height for layout 4 -->
 <div style="min-height: 200px">
-<div layout="row" layout-align="center center" >
-<!-- <img src="images/home-stuff.png"> -->
-</div>
+
+  <div layout="row" layout-align="center">
+    <img src="/images/home-banner.png" class="header-image" />
+  </div>
+
+  <div layout="row" layout-align="center">
+
+    <div class="padding">
+      <form action="#" class="m-b-md">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Type keyword">
+          <span class="input-group-btn">
+            <button class="btn b-a no-shadow white" type="button">Search</button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div layout="row" layout-align="center" class="col-md-12">
+
+      <!-- Start ActivityRight -->
+      <div class="col-md-4">
+        <div class="box">
+          <div class="box-header-image">
+            <a href="http://activityright.com" target="_blank"><img src="/images/ActivityRightLogo.svg" /></a></div>
+          <div class="box-header info">
+            <small>Sub title goes here with small font</small>
+          </div>
+          <div class="box-body">
+            <p class="m-a-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam-a-0 m-b-smitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementu</p>
+          </div>
+          <div class="box-footer box-footer-button">
+            <button class="btn btn-fw info" data-toggle="modal" data-target="#ask-expert-modal">Ask Me?</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start ElectionBuddy  -->
+      <div class="col-md-4">
+        <div class="box">
+          <div class="box-header-image">
+            <a href="http://electionbuddy.com" target="_blank"><img src="/images/ElectionBuddyLogo.png" /></a>
+          </div>
+          <div class="box-header indigo">
+            <small>Sub title goes here with small font</small>
+          </div>
+          <div class="box-body">
+            <p class="m-a-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam-a-0 m-b-smitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementu</p>
+          </div>
+          <div class="box-footer box-footer-button">
+            <button class="btn btn-fw indigo">Ask Me?</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start InviteRight -->
+      <div class="col-md-4">
+        <div class="box">
+          <div class="box-header-image">
+            <a href="http://inviteright.com" target="_blank"><img src="/images/InviteRightLogo.svg" /></a></div>
+          <div class="box-header warn">
+            <small>Sub title goes here with small font</small>
+          </div>
+          <div class="box-body">
+            <p class="m-a-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam-a-0 m-b-smitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementu</p>
+          </div>
+          <div class="box-footer box-footer-button">
+            <button class="btn btn-fw warn">Ask Me?</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
 </div>
+
+<!-- .modal -->
+<div id="ask-expert-modal" class="modal" data-backdrop="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h5 class="modal-title">Ask Expert</h5>
+      </div>
+      <div class="modal-body no-border">
+        <div class="box box-form">
+          <div class="list box box-form">
+            <div class="list-item box-header-extra">
+              <div class="list-left">
+                <img src="../assets/images/a0.jpg" class="w-40 circle">
+              </div>
+              <div class="list-body">
+                <a href="" class="_500">Answering by: Miguel Joan</a>
+                <small class="block text-muted">Senior Developer / ActivityRight</small>
+              </div>
+            </div>
+          </div>
+          <div class="box-divider m-a-0"></div>
+          <div class="box-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" />
+              </div>
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control form-control-sm" id="category">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="question">Question</label>
+                <textarea class="form-control" id="question" rows="5"></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary p-x-md" data-dismiss="modal">Submit</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<!-- / .modal -->
