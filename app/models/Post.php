@@ -10,7 +10,7 @@ class Post extends Model
 
     protected $primaryKey = 'postId';
 
-    protected $fillable = ['categoryId', 'title', 'content', 'isParent', 'parentId'];
+    protected $fillable = ['categoryId', 'title', 'content', 'isParent', 'parentId', 'type'];
 
 
     public function category(){

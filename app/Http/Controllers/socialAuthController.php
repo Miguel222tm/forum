@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use GuzzleHttp;
 use App\User;
+use App\models\Member;
 use App\models\UsersAccessToken;
 use DB;
 use JWTAuth;
@@ -219,6 +220,7 @@ class socialAuthController extends Controller {
             }
 
             $user = new User;
+            $user->type = 1;
             $user->googleId = $profile['id'];
             $user->email = $profile['emails'][0]['value'];
             $user->password = Hash::make($user->googleId);
@@ -227,7 +229,7 @@ class socialAuthController extends Controller {
             $user->lastName = $profile['name']['familyName'];
             $user->picture_url = $picture[0];
             $user->active = 1;
-            $user->type = 0;
+            
             
             $user->save();
             //save access token :D 
@@ -237,6 +239,20 @@ class socialAuthController extends Controller {
             $userAccessToken->access_token = $accessToken['access_token'];
             $userAccessToken->expires_in = $accessToken['expires_in'];
             $userAccessToken->save();
+
+            $js = new Member();
+                $js->userId = $user->userId;
+                $js->name = $user->name;
+                $js->firstName = $user->firstName;
+                $js->lastName = $user->lastName;
+                $js->email = $user->email;
+                $js->access_level = 1;
+                $js->picture_url = $user->picture_url;
+                $js->unique_code = str_random(20);
+                $js->save();
+            
+
+
 
             DB::commit();
             return $token= response()->json(['token' => $this->createToken($user)]);

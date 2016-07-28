@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use App\models\Post;
-
-class PostController extends Controller
+use Input;
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,19 @@ class PostController extends Controller
     public function index()
     {
         try {
-            $posts = Post::all();
-            
+            $buildQuery = [];
+            $posts = new Post();
+            $posts = $posts->with($buildQuery);
+            $posts = $this->buildQuery($posts);
+            // return Input::all();
+            if(Input::has('type') && Input::all()['type']){
+                $posts = $posts->where('type', '=', Input::all()['type']);
+            }
+            // $posts = Post::all();
+                
+            $posts = $posts->get();
+
+
         } catch (Exception $e) {
             return response()->json($e);
         }
@@ -36,10 +47,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         try {
-            return $request->all();
+            // retu//rn $request->all();
+            $post = new Post();
+            $post->fill($request->all());
+            $post->save();
         } catch (Exception $e) {
             return response()->json($e);
         }
+        return response()->json($post);
     }
 
     /**
@@ -50,7 +65,19 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $post = Post::with(['comments' => function($query){
+                $query->with(['replies' =>function($query){
+                    $query->orderBy('created_at', 'desc');
+                    $query->with('user');
+                }]);
+                $query->with('user');
+                $query->orderBy('created_at', 'desc');
+            }])->findOrFail($id);
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json($post);
     }
 
     /**

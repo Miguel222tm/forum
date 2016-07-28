@@ -41,9 +41,9 @@
             <div ng-repeat="comment in post.comments" class="p-t" layout="column">
                   <div class="list-left" layout="row">
 
-                     <img src="{{currentUser.picture_url}}" class="w-40 circle">
+                     <img src="{{comment.user.picture_url}}" class="w-40 circle">
                      <div layout="row" layout-align="space-between">
-                        <small>{{currentUser.name}}</small>
+                        <small>{{comment.user.name}}</small>
                         <!-- <p>{{formatDate(comment.updated_at)}}</p> -->
                         <div class="list-right p-l" ng-if="comment.userId === currentUser.user.userId">
                            <a href="" ng-click="deleteComment(comment.commentId)" style="color: red;">delete</a>
@@ -65,9 +65,34 @@
                      <div ng-if="comment.showReply">
                         <textarea class="form-control" min-rows="4" ng-model="reply" placeholder="Join the discussion..."></textarea>
                         <div layout="row" layout-align="end end">
-                           <button type="submit" class="btn btn-info" ng-click="leaveReply(reply)" ng-disabled="!comment">reply as {{currentUser.name}}</button>
+                           <button type="submit" class="btn btn-info" ng-click="leaveReply(reply, comment)" ng-disabled="!reply">reply as {{currentUser.name}}</button>
                         </div>   
                      </div>
+                     <div class="p-t p-l" ng-repeat="reply in comment.replies" layout="column">
+                        <div class="list-left" layout="row">
+                           <img src="{{reply.user.picture_url}}" class="w-40 circle">
+                           <div layout="row" layout-align="space-between">
+                              <small>{{reply.user.name}}</small>
+                              <!-- <p>{{formatDate(comment.updated_at)}}</p> -->
+                              <div class="list-right p-l" ng-if="reply.userId === currentUser.user.userId">
+                                 <a href="" ng-click="deleteReply(reply.replyId)" style="color: red;">delete</a>
+                              </div>
+                           </div>
+                        </div>
+                        <div layout="column" class="p-l-lg">
+                           <div>
+                             <!--  <span class="w-40 circle"></span> -->
+                              {{reply.content}}
+                              
+                           </div>
+                           <div layout="row" style="color: grey;">
+                              <!-- controls -->
+                              <i class="fa fa-angle-up p-r" aria-hidden="true" ng-click="voteUp(reply, 'reply')"></i>
+                              <i class="fa fa-angle-down p-r" aria-hidden="true" ng-click="voteDown(reply, 'reply')"></i>
+                           </div>
+                        </div>
+                     </div>
+
                   </div>
 
             <hr>

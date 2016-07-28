@@ -69,6 +69,19 @@ Route::put('/post/{id}', 'PostController@update');
 
 Route::delete('/post/{id}', 'PostController@destroy');
 
+/*================================
+=            comments            =
+================================*/
+
+Route::post('/post/comment', 'CommentsController@store');
+
+Route::post('/comment/reply', 'CommentsController@reply');
+
+Route::delete('/post/comment/{id}', 'CommentsController@destroy');
+/*=====  End of comments  ======*/
+
+
+
 Route::get('/v1/tags', 'TagsController@index');
 
 

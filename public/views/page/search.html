@@ -1,22 +1,33 @@
 <div class="padding">
    <form action="#" class="m-b-md">
-      <div class="input-group input-group-lg">
-         <input type="text" class="form-control" placeholder="What do you need help with?">
-         <span class="input-group-btn">
-            <button class="btn b-a no-shadow white" type="button">Search</button>
-         </span>
+      <div class="input-group input-group-lg" class="row">
+         <div class="form-group col-sm-3">
+            <label>Type</label>
+            <select class="form-control c-select" ng-model="selectedType">
+               <option ng-repeat="tag in searchTags">{{tag.name}}</option>
+               <option>Product Services</option>
+           
+               <option>Login/Signup Problem</option>
+            </select>
+         </div>
+         <div class="col-sm-6" style="margin-top:29px;">
+            <input type="text" class="form-control" ng-model="searchText" placeholder="What do you need help with?">
+         </div>
+         <div class="col-sm-3" style="margin-top:29px;">
+            <span class="input-group-btn">
+               <button class="btn b-a no-shadow white" ng-click="search()" type="button">Search</button>
+            </span>   
+
+         </div>
       </div>
    </form>
-   <div>
-      <span class="input-group-btn">
-        <button class="btn b-a no-shadow blue" type="button">Create a post</button>
+   <div style="padding-left: 18px;">
+     <span class="input-group-btn">
+        <button class="btn blue" data-toggle="modal" data-target="#m-md" ng-click="checkUser()">Create a post</button>
       </span>
+      <p class="m-b-md"><strong>{{posts.length}}</strong> Result(s) found </p>
    </div>
-   <div>
-
-      <p class="m-b-md"><strong>23</strong> Results found for: <strong>Keyword</strong></p>
-      
-   </div>
+   
 
    <div class="">
       <div class="row">
@@ -25,14 +36,11 @@
             <!-- all the posts -->
             <div class="col-sm-12">
                <div class="box" ng-repeat="post in posts">
-                  <div class="box-header blue">
-                     <h3><a href="" ui-sref="app.post({id: post.postId})">{{post.title}} </a> ({{post.type}})</h3>
-                     
+                  <div class="box-header" layout="row" layout-align="space-between start">
+                     <h3><a href="" ui-sref="app.post({id: post.postId})">{{post.title}} </a></h3>
+
+                     <h3>{{post.type}}</h3>
                   </div>
-                  <div class="box-body">
-            
-                  </div>
-                  
                </div>
                <div ng-if="!posts || !posts.length">
                   there are no posts yet.
@@ -118,11 +126,13 @@
       <div class="modal-dialog modal-lg">
          <div class="modal-content">
             <div class="modal-header">
-               <h5 class="modal-title">Create Post</h5>
+               <h5 class="modal-title"><span ng-if="!postCreated"> Create Post</span>
+                  <span ng-if="postCreated">Post created</span>
+               </h5>
             </div>
             <div class="modal-body text-center p-lg">
                
-                  <form name="form-contact" class="form-validation m-b-lg" >
+                  <form name="form-contact" class="form-validation m-b-lg" ng-if="!postCreated">
                      <div class="row" layout="row">
                         <div flex>
                            <div class="form-group">
@@ -153,11 +163,19 @@
                      
                   </form>
 
+                  <div ng-if="postCreated">
+                        Thank you, please go to the main page and wait till some one of our team come to help you or any other customer!
+                  </div>
+
 
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" ng-if="!postCreated">
                <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">Cancel</button>
-               <button type="submit" class="btn btn-info" ng-click="createPost()">Submit</button>
+               <button type="submit" class="btn btn-info" ng-click="createPost()" ng-disabled="!post.content || !post.type || !post.title">Submit</button>
+            </div>
+
+            <div class="modal-footer" ng-if="postCreated">
+               <button type="button" class="btn dark-white p-x-md"  data-dismiss="modal" ng-click="cleanPost()">Cancel</button>
             </div>
          </div><!-- /.modal-content -->
       </div>

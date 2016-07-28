@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration
+class CreateRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,13 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->increments('commentId');
-            $table->integer('postId');
+        Schema::create('replies', function (Blueprint $table) {
+            $table->increments('replyId');
+            $table->integer('commentId');
             $table->integer('userId');
             $table->text('content');
             $table->boolean('edited')->default(false);
             $table->string('edited_content')->nullable();
-            // $table->boolean('isParent')->default(true);
-            // $table->integer('parentId'); // post parent linked.
-            
-            $table->boolean('best');
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('comments');
+        Schema::drop('replies');
     }
 }

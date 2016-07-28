@@ -68,6 +68,21 @@ var postCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stateParams', 
  		comment.showReply = true;
  	};
 
+ 	scope.leaveReply = function(content, comment){
+ 		var data = {
+ 			commentId : comment.commentId,
+ 			userId: $rootScope.currentUser.user.userId,
+	 		content: content
+ 		};
+ 		var request = clubService.sendRequest('post', '/comment/reply', data);
+ 		request.then(function(response){
+ 			console.log('reply!', response);
+ 			comment.replies.unshift(response);
+ 		}, function(error){
+ 			console.log('error publishing a reply', error);
+ 		});
+ 	};
+
  	
 
  	
