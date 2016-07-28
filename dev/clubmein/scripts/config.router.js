@@ -126,7 +126,7 @@
               controller: 'homeCtrl',  
             })
             .state('app.post', {
-              url: '/post:id',
+              url: '/post/:id',
               templateUrl: 'views/page/post.html', 
               data: { title: 'Post' } ,
               controller: 'postCtrl',  

@@ -21,6 +21,8 @@ var MainController = ['$auth', '$rootScope','$state','RootService','$scope', fun
                 }
             }, function(error){
                 vm.error= error;
+                $rootScope.currentUser = null;
+                $rootScope.guest = true;
             });
         }else{
             $rootScope.currentUser = $RootService.getCurrentUser();

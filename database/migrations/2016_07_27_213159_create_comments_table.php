@@ -16,8 +16,12 @@ class CreateCommentsTable extends Migration
             $table->increments('commentId');
             $table->integer('postId');
             $table->integer('userId');
+            $table->text('content');
+            $table->boolean('edited')->default(false);
+            $table->string('edited_content')->nullable();
             $table->boolean('isParent')->default(true);
             $table->integer('parentId'); // post parent linked.
+            
             $table->boolean('best');
             $table->timestamps();
         });

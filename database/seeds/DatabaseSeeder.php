@@ -19,17 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(EmployeeTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
-        $this->call(ProductTableSeeder::class);
-        $this->call(BrandTableSeeder::class);
-        $this->call(ModelTableSeeder::class);
-<<<<<<< HEAD
-
-        // $this->call(CountrySeederTable::class);
-        // $this->call(StateSeederTable::class);
-        // $this->call(CitySeederTable::class);
-=======
-        $this->call(FeeTableSeeder::class);
->>>>>>> 8e5893ede9f47a2ae382ce2284ceb182a1fac9a6
+        $this->call(TagsTableSeeder::class);
         /**
          * more seeder tables
          */

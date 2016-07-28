@@ -19,7 +19,6 @@ class CreateMembersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('email')->unique();
-            $table->string('gender');
             $table->string('picture_url');
             $table->string('unique_code');
             $table->integer('access_level');

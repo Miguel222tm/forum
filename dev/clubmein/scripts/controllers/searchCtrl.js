@@ -13,7 +13,24 @@ var searchCtrl =  ['$rootScope', '$state', '$scope', 'RootService', function($ro
 
 	scope.init = function(){
 		console.log('init');
+		getPosts();
 		loadTags();
+	};
+
+	var getPosts = function(){
+		var request = clubService.sendRequest('get', '/posts');
+		request.then(function(response){
+			scope.posts = response;
+		}, function(error){
+			console.log('error', error);
+		});
+	};
+
+	scope.checkUser = function(){
+		console.log('error check user',$rootScope.currentUser);
+		if(!$rootScope.currentUser){
+			$state.go('access.signin');
+		}
 	};
 
 	scope.createPost = function(){
