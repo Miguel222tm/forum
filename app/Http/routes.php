@@ -59,7 +59,17 @@ Route::post('/auth/facebook', 'socialAuthController@facebook');
 
 /*=====  End of social logins  ======*/
 
+Route::get('/posts', 'PostController@index');
 
+Route::get('/post/{id}', 'PostController@show');
+
+Route::post('/post', 'PostController@store');
+
+Route::put('/post/{id}', 'PostController@update');
+
+Route::delete('/post/{id}', 'PostController@destroy');
+
+Route::get('/v1/tags', 'TagsController@index');
 
 
 Route::group(['middleware' => 'jwt.auth'], function()
@@ -223,6 +233,10 @@ Route::group(['middleware' => 'jwt.auth'], function(){
   Route::delete('/request/{id}', 'requestController@destroy');
     
   /*=====  End of requests  ======*/
+
+
+
+
 
   /*====================================
   =             category            =

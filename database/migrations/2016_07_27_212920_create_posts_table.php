@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration
             $table->increments('postId');
             $table->integer('categoryId')->index()->unsigned();
             $table->integer('userId');
+            $table->string('type');
+            $table->boolean('system');
             $table->string('title');
             $table->text('content');
             $table->boolean('isParent');

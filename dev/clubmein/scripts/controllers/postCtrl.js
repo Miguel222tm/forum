@@ -1,4 +1,4 @@
-var inviteCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stateParams',  function($rootScope, $state, scope,  clubService,$stateParams){
+var postCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stateParams',  function($rootScope, $state, scope,  clubService,$stateParams){
 
  	scope.init = function(){
  		scope.setUser();
@@ -36,4 +36,4 @@ var inviteCtrl = ['$rootScope', '$state', '$scope', 'RootService','$stateParams'
 
 
 angular.module('app')
-	.controller('InviteCtrl', inviteCtrl);
+	.controller('postCtrl', postCtrl);

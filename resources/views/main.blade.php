@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ClubMeIn | App</title>
+  <title>Forum | App</title>
   <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,7 +65,7 @@
 
 
   <script src="scripts/scripts.min.js"> </script>
-  <script src="http://lab.iamrohit.in/js/location.js"></script>
+  <!-- <script src="http://lab.iamrohit.in/js/location.js"></script> -->
 
 <!-- App 
   

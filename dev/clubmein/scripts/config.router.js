@@ -125,11 +125,11 @@
               data: { title: 'Home' } ,
               controller: 'homeCtrl',  
             })
-            .state('app.invite', {
-              url: '/invite',
-              templateUrl: 'views/page/invite.html', 
-              data: { title: 'Invite' } ,
-              controller: 'InviteCtrl',  
+            .state('app.post', {
+              url: '/post:id',
+              templateUrl: 'views/page/post.html', 
+              data: { title: 'Post' } ,
+              controller: 'postCtrl',  
             })
 
             .state('app.items', {
