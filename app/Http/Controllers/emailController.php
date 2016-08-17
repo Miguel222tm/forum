@@ -46,13 +46,13 @@ class emailController extends Controller
 
       // FIXME: Please change 'from' and 'to' values 
       $return = $mg->sendMessage($domain, array(
-        'from'    => 'admin@dancein.tv',
+        'from'    => 'mg@rightlabs.com',
         'to'      => $to,
         'subject' => $subject,
         'text'    => $message
       ));
         
-      echo var_dump($return);
+      // echo var_dump($return);
     }
 
     /**

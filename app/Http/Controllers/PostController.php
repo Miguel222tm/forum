@@ -28,7 +28,7 @@ class PostController extends BaseController
             }
             // $posts = Post::all();
                 
-            $posts = $posts->get();
+            $posts = $posts->orderBy('created_at','desc')->get();
 
 
         } catch (Exception $e) {

@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\emailController;
 use App\models\Comment;
 use App\Reply;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-class CommentsController extends Controller
+class CommentsController extends emailController
 {
     /**
      * Display a listing of the resource.
@@ -37,6 +37,16 @@ class CommentsController extends Controller
             $comment->fill($request->all());
             $comment->save();
             $comment->user = $comment->user()->first();
+            $comment->post = $comment->post()->first();
+
+            $this->sendMail('miguel.trevinom@gmail.com', $comment->user->name.' commented on '.$comment->post->title, 'Comment: '.$comment->content);
+            $this->sendMail('christopher.tiangco@eventiq.com', $comment->user->name.' commented on '.$comment->post->title, 'Comment: '.$comment->content);
+            $this->sendMail('dave.bodnarchuk@rightlabs.com', $comment->user->name.' commented on '.$comment->post->title, 'Comment: '.$comment->content);
+            // $this->sendMail('miguel.trevinom@gmail.com', $comment->user->name.' commented on '.$comment->post->title, 'Comment: '.$comment->content);
+            // $this->sendMail('miguel.trevinom@gmail.com', $comment->user->name.' commented on '.$comment->post->title, 'Comment: '.$comment->content);
+            // $this->sendMail('christopher.tiangco@eventiq.com', 'new Comment', ' this is a test of new comments');
+            // $this->sendMail('miguel.trevinom@gmail.com', 'new Comment', ' this is a test of new comments');
+
         } catch (Exception $e) {
             return response()->json($e);
         }
